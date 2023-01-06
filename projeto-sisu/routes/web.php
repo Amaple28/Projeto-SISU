@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::get('/index',[UserController::class, 'index']);
+
+Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
+
+// ROTAS DAS TELAS DO FRONT
+Route::get('/index-front',[UserController::class, 'indexFront']);
