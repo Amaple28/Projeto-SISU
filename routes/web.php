@@ -14,11 +14,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [UserController::class, 'index-front']);
+Route::get('/', [UserController::class, 'indexFront']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
 
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
 
 // ROTAS DAS TELAS DO FRONT
-Route::get('/index-front',[UserController::class, 'indexFront']);
+Route::get('/index-front', [UserController::class, 'indexFront']);
