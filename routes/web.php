@@ -21,4 +21,3 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
 
 // ROTAS DAS TELAS DO FRONT
-Route::get('/index-front', [UserController::class, 'indexFront']);
