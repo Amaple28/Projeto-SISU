@@ -14,14 +14,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [UserController::class, 'index-front']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
-
-Route::get('/index',[UserController::class, 'index']);
 
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
 
