@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -21,40 +23,48 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user.profile', [
+        return view('welcome', [
             'user' => User::findOrFail($id)
         ]);
     }
 
-    public function index(Request $request){
-        // $decrypted = $request->input('password'); 
-        // $user      = User::where('email', $request->input('email'))->first();
+    public function login(Request $request){
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);      
+
+        $user=User::where('email',$request->input('email'))->first();
+
+       
+        
+        $credentials = $request->only('email', 'password');
+        // dd($credentials);
+        if (Auth::attempt($credentials)) {
+            return redirect('home/'.$user->id);
+        }
     
-        // if ($user) {
-        //     if (Crypt::decryptString($user->password) == $decrypted) {
-        //         Auth::login($user);
-    
-        //         return $this->sendLoginResponse($request);
-        //     }
-        // }
-    
-        // return $this->sendFailedLoginResponse($request);
-        return view('indexLogin');
+        return view('welcome');
     }
 
-    public function criarUsuario(Request $request){
+    public function indexLogin($id){
+        return view('indexLogin',[
+            'user' => User::findOrFail($id)
+        ]);
+    }
+
+    public function criarUsuario(Request $request){        
+        // dd($request);
         $novoUsuario = new User();
-
-        $novoUsuario->name = $request->input('nomeUsuario');
-        $novoUsuario->nomeCompleto= $request->input('nomeCompleto');
+        $novoUsuario->name = $request->input('name');        
         $novoUsuario->email= $request->input('email');
-        $novoUsuario->telefone= $request->input('telefone');
-
-        $novoUsuario->password = Crypt::encryptString('321312');
-        
+        $novoUsuario->telefone= $request->input('tel');
+        $senha= $request->input('password');
+        $novoUsuario->password = Hash::make($senha);        
         // dd($novoUsuario->password);
-        
-        return redirect('/index-front')     //criar div para isso
+        $novoUsuario->save();
+        return redirect('/user_cadastro/'.$novoUsuario->id)     //criar div para isso
         ->with('success', 'Usuario criado com sucesso!');
     }
 
