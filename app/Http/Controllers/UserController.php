@@ -45,7 +45,8 @@ class UserController extends Controller
             return redirect('home/'.$user->id);
         }
     
-        return view('welcome');
+        return redirect('/')
+        ->with('error', 'Usuario ou senha invalidos');;
     }
 
     public function indexLogin($id){
