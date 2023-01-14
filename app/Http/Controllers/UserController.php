@@ -46,7 +46,7 @@ class UserController extends Controller
         }
     
         return redirect('/')
-        ->with('error', 'Usuario ou senha invalidos');;
+        ->with('error', 'Usuario ou senha invalidosp');;
     }
 
     public function indexLogin($id){
