@@ -16,8 +16,12 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [UserController::class, 'indexFront']);
 
-Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user_cadastro/{id}', [UserController::class, 'show']);
 
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
+
+Route::post('/login',[UserController::class, 'login']);
+
+Route::get('/home/{id}',[UserController::class, 'indexLogin']);
 
 // ROTAS DAS TELAS DO FRONT
