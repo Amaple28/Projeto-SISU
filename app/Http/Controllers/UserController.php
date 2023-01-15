@@ -62,11 +62,18 @@ class UserController extends Controller
         $novoUsuario->email= $request->input('email');
         $novoUsuario->telefone= $request->input('tel');
         $senha= $request->input('password');
-        $novoUsuario->password = Hash::make($senha);        
+        $novoUsuario->password = Hash::make($senha);
+        
+        if (User::where('email',$novoUsuario->email)->first()){
+            return redirect('/')
+        ->with('error', 'Email já cadastrado');;
+        }
+        else{
         // dd($novoUsuario->password);
         $novoUsuario->save();
         return redirect('/user_cadastro/'.$novoUsuario->id)     //criar div para isso
         ->with('success', 'Usuario criado com sucesso!');
+        }
     }
 
     // FUNÇÕES DO FRONT

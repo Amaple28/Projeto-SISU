@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-floating  mb-3">
-        <input required type="tel" class="form-control" id="tel" name="tel" placeholder="xx xxxx-xxxx">
+        <input required type="text" class="form-control" id="tel" name="tel" placeholder="xx xxxx-xxxx" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
         <label for="tel">Telefone</label>
     </div>
 
