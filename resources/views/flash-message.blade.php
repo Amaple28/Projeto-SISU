@@ -1,3 +1,14 @@
+
+<style>
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+</style>
+
 @if ($message = Session::get('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>{{ $message }}</strong>
