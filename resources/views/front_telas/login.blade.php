@@ -1,11 +1,12 @@
-<form>
+<form method="post" action="/login">
+@csrf
     <div class="form-floating mb-3">
-        <input required type="email" class="form-control" id="email" placeholder="name@example.com">
+        <input required type="email" class="form-control" id="email" name='email' placeholder="name@example.com">
         <label for="email">E-mail</label>
     </div>
     
     <div class="form-floating  mb-3">
-        <input required type="password" class="form-control" id="password" placeholder="Password">
+        <input required type="password" class="form-control" id="password" name='password' placeholder="Password">
         <label for="password">Senha</label>
     </div>
 
