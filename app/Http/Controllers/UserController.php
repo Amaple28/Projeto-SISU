@@ -51,7 +51,8 @@ class UserController extends Controller
 
     public function indexLogin($id){
         return view('indexLogin',[
-            'user' => User::findOrFail($id)
+            'user' => User::findOrFail($id) 
+            //teste
         ]);
     }
 
