@@ -37,16 +37,17 @@ class UserController extends Controller
 
         $user=User::where('email',$request->input('email'))->first();
 
-       
-        
         $credentials = $request->only('email', 'password');
         // dd($credentials);
         if (Auth::attempt($credentials)) {
-            return redirect('home/'.$user->id);
+            //return redirect('home/'.$user->id);
+            return true;
         }
     
-        return redirect('/')
-        ->with('error', 'Usuario ou senha invalidosp');;
+        // return redirect('/')
+        //->with('error', 'Usuario ou senha Inválidos');
+
+        return false;
     }
 
     public function indexLogin($id){
@@ -67,13 +68,16 @@ class UserController extends Controller
         
         if (User::where('email',$novoUsuario->email)->first()){
             return redirect('/')
-        ->with('error', 'Email já cadastrado');;
+            ->with('error', 'Email já cadastrado, tente outro!');
         }
         else{
-        // dd($novoUsuario->password);
-        $novoUsuario->save();
-        return redirect('/user_cadastro/'.$novoUsuario->id)     //criar div para isso
-        ->with('success', 'Usuario criado com sucesso!');
+            $novoUsuario->save();
+
+            return redirect('/')
+            ->with('success', 'Usuário cadastrado com sucesso, faça o login!');
+
+           // return redirect('/user_cadastro/'.$novoUsuario->id)   
+           // ->with('success', 'Usuário cadastrado com sucesso!');
         }
     }
 

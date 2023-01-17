@@ -10,13 +10,13 @@
 
 </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-dark bg-warning">
     <div class="container-fluid">
         
         <div>
             <a class="navbar-brand" href="#">
-                <img src="{{asset('imagens/logo_clara.png')}}" alt="" width="30" height="auto" class="d-inline-block align-text-top">
                 <h5>Sisu Vemmed</h5>
             </a>
         </div>

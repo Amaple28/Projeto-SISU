@@ -18,11 +18,14 @@
     }
 
     .cadastro{
-      padding: 10%;
+      padding: 2%;
+      padding-left: 5%;
+      padding-right: 5%;
+      color: #fff;
     }
 
     .forms{
-      padding: 8%;
+      padding: 5%;
       padding-left: 5%;
       padding-right: 5%;
       
@@ -41,22 +44,25 @@
     }
 
     .passos{
-      background-color: #000;
-      color: #fff;
+      background-color: #FFC107;
+      color: #000;
       padding: 5%;
     }
 
     .passos h2{
-      color: #FFC107;
+      color: #000;
       padding-bottom: 3%;
     }
 
     .passos h3{
       color: #000;
-      background-color: #FFC107;
+      background-color: #fff;
       border-radius: 50%;
       width: 50px;
       height: 50px;
+      text-align: center;
+      padding-top: 5px;
+      font-weight: bold;
     }
 
     .passo{
@@ -76,7 +82,7 @@
 
     .accordion-button:not(.collapsed) {
       color: #000;
-      background-color: #f7ff82;
+      background-color: #fff;
       box-shadow: inset 0 -1px 0 rgba(255, 217, 0, 0.5);     
       font-weight: bold;
     }
@@ -90,13 +96,40 @@
     }
 
     .accordion-body a{
-      color: #e9b006;
+      color: #FFC107;
     }
 
     .accordion-body a:hover{
       color: #362b0b;
     }
 
+    .nota{
+      background-color: #000;
+      border-radius: 10%;
+      color: #fff;
+      margin: 1%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .nota p{
+      font-size: 1rem !important;
+    }
+
+    .nota input{
+      font-size: 1rem !important;
+      text-align: center;
+      width: 100%;
+    }
+
+    .notas{
+      justify-content: space-around;
+    }
+
+    .form-user{
+      font-size: 100%;
+      font-weight: bold;
+    }
   </style>
   
   <body>
@@ -107,24 +140,68 @@
     <div class="container-fluid text-center conteudo">
         <div class="row">
 
-            <div class="col-12 col-md-7 bg-warning cadastro">
+            <div class="col-12 col-md-7 cadastro bg-dark">
               <h2>Simulador SISU 2023</h2>
               <br>
               <p>Com o Simulador SISU VEMMED você usa o resultado do Enem e confere suas chances de aprovação na faculdade dos seus sonhos!</p>
+              <hr>
+              <h4>Preencha as suas notas abaixo:</h4>
+
+              <div class="container-fluid text-center">
+                <div class="row notas">
+                  <!--formulario para preencher as notas do enem-->
+                  <div class="col-6 col-sm-4 nota" style="background-color: #FF5757;">
+                    <p>Matemática</p>
+                    <input type="number" class="form-control" id="matematica" name="matematica" min="0" max="1000" step="1" placeholder="000.0">
+                 </div>
+
+                  <div class="col-6 col-sm-4 nota"  style="background-color: #FFBD59;">
+                    <p>C. Humanas</p>
+                    <input type="number" class="form-control" id="humanas" name="humanas" min="0" max="1000" step="1"  placeholder="000.0">
+                  </div>
+
+                  <div class="col-6 col-sm-4 nota"  style="background-color: #7ED957;">
+                    <p>C. Natureza</p>
+                    <input type="number" class="form-control" id="natureza" name="natureza" min="0" max="1000" step="1"  placeholder="000.0">
+                  </div>
+
+                  <div class="col-6 col-sm-4 nota"  style="background-color: #FF66C4;">
+                    <p>Linguagens</p>
+                      <input type="number" class="form-control" id="linguagens" name="linguagens" min="0" max="1000" step="1"  placeholder="000.0">
+                  </div>
+
+                  <div class="col-6 col-sm-4 nota"  style="background-color: #8C52FF;">
+                    <p>Redação</p>
+                      <input type="number" class="form-control" id="redacao" name="redacao" min="0" max="1000" step="1"  placeholder="000.0">
+                  </div>
+                
+                </div>
+              </div>
+
+              <div class="col-12">
+                <br>
+                <a href="" class="btn btn-light" style="width:80%;">Simular Nota</a>
+              </div>
+
             </div>
+
             @include('flash-message')
             <div class="col-12 col-md-5 forms">
                 
                 <ul class="nav nav-tabs justify-content-center">
                     <li class="nav-item">
-                      <a class="nav-link" href="#cadastro" onclick="cadastro()"
+                      <a class="nav-link form-user" href="#cadastro" onclick="cadastro()"
                       data-bs-toggle="collapse" data-bs-target="#cadastro" aria-expanded="true" aria-controls="cadastro"
-                      >Cadastro</a>
+                      >
+                      <i class="fas fa-user-plus"></i>
+                      Cadastro</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#login" onclick="login()"
+                      <a class="nav-link form-user" href="#login" onclick="login()"
                       data-bs-toggle="collapse" data-bs-target="#login" aria-expanded="false" aria-controls="login"
-                      >Login</a>
+                      >
+                      <i class="fas fa-sign-in-alt"></i>
+                      Login</a>
                     </li>
                 </ul>
 
