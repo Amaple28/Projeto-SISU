@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\simulacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,18 @@ class UserController extends Controller
         $novoUsuario->telefone= $request->input('tel');
         $senha= $request->input('password');
         $novoUsuario->password = Hash::make($senha);
+
+        $simulacao = new simulacao();
+        $simulacao->matematica = $request->input('matematica');
+        $simulacao->humanas = $request->input('humanas');
+        $simulacao->linguagens = $request->input('linguagens');
+        $simulacao->natureza = $request->input('natureza');
+        $simulacao->redacao = $request->input('redacao');
+        $simulacao->faculdades_id = 1;
+        $simulacao->modalidade =1;
+        $simulacao->estado ='mg';
+        $simulacao->nota_corte = ($simulacao->matematica + $simulacao->humanas + $simulacao->linguagens + $simulacao->natureza + $simulacao->redacao)/5;
+
         
         if (User::where('email',$novoUsuario->email)->first()){
             return redirect('/')
@@ -72,9 +85,13 @@ class UserController extends Controller
         }
         else{
             $novoUsuario->save();
-
+            
+            $simulacao->user_id = $novoUsuario->id;
+            $simulacao->save();
+            
             return redirect('/')
-            ->with('success', 'Usuário cadastrado com sucesso, faça o login!');
+            ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
+            ->with('tab', 'login');
 
            // return redirect('/user_cadastro/'.$novoUsuario->id)   
            // ->with('success', 'Usuário cadastrado com sucesso!');
