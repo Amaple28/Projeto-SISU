@@ -135,6 +135,13 @@
   <body>
 
     @include('front_telas.nav')
+    @if($message = Session::get('success')){
+      input type="hidden" id="tabsuc" value="login">
+    }
+    @else{
+      input type="hidden" id="tabsuc" value="false">
+    }
+    @endif
 
 
     <div class="container-fluid text-center conteudo">
@@ -147,7 +154,7 @@
               <hr>
               <h4>Preencha as suas notas abaixo:</h4>
 
-              <div class="container-fluid text-center">
+              {{-- <div class="container-fluid text-center">
                 <div class="row notas">
                   <!--formulario para preencher as notas do enem-->
                   <div class="col-6 col-sm-4 nota" style="background-color: #FF5757;">
@@ -176,7 +183,7 @@
                   </div>
                 
                 </div>
-              </div>
+              </div> --}}
 
               <div class="col-12">
                 <br>
@@ -352,19 +359,7 @@
             document.getElementById("cadastro").classList.remove("show");
         }
 
-        const notas = document.querySelectorAll(".resultado"); 
-        console.log(notas);
-
-        notas.forEach(notas => {
-        notas.addEventListener('change', (event) => {
-        console.log(event.target);
-        if(event.target.value > 1000)
-        {
-          event.target.value = 1000;
-        }
-          event.target.value= parseFloat(event.target.value).toFixed(1);
-        });
-        });
+        
     </script>
 
 </body>
