@@ -29,7 +29,7 @@
         
         <div>
             <a class="navbar-brand" href="#">
-                <h6>Sisu Vemmed</h6>
+                <h6>Sisu Vemmed testanso</h6>
             </a>
         </div>
 
