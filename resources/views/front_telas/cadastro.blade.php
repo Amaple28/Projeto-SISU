@@ -14,7 +14,6 @@
 
 <form method="POST" action="/criar-usuario">
     @csrf
-    
     <div class="form-floating mb-3">
         <input required type="text" class="form-control" id="nome" name="name" placeholder="name">
         <label for="nome">Nome</label>
@@ -42,7 +41,7 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div> --}}
-@include('front_telas.notas')
+
     <button type="submit" class="btn btn-warning col-12">Cadastrar</button>
 </form>
 

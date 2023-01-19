@@ -1,46 +1,82 @@
-<div class="container-fluid text-center">
-                <div class="row notas">
-                  <!--formulario para preencher as notas do enem-->
-                  <div class="col-6 col-sm-4 nota" style="background-color: #FF5757;">
-                    <p>Matemática</p>
-                    <input type="number" class="form-control resultado" id="matematica" name="matematica" min="0" max="1000" step="0.1" placeholder="000.0">
-                 </div>
 
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #FFBD59;">
-                    <p>C. Humanas</p>
-                    <input type="number" class="form-control resultado" id="humanas" name="humanas" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
+<style>
+ .nota{
+      background-color: #000;
+      border-radius: 10%;
+      color: #fff;
+      margin: 1%;
+      padding-left: 0;
+      padding-right: 0;
+    }
 
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #7ED957;">
-                    <p>C. Natureza</p>
-                    <input type="number" class="form-control resultado" id="natureza" name="natureza" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
+    .nota p{
+      font-size: 1rem !important;
+    }
 
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #FF66C4;">
-                    <p>Linguagens</p>
-                      <input type="number" class="form-control resultado" id="linguagens" name="linguagens" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
+    .nota input{
+      font-size: 1rem !important;
+      text-align: center;
+      width: 100%;
+    }
 
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #8C52FF;">
-                    <p>Redação</p>
-                      <input type="number" class="form-control resultado"  id="redacao" name="redacao" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
-                
-                </div>
-</div>
+    .notas{
+      justify-content: space-around;
+    }
+
+    span{
+      font-size: 0.8rem;
+    }
+</style>
+
+
+  <h2>Simulador SISU 2023</h2>
+  <br>
+  <p>Com o Simulador SISU VEMMED você usa o resultado do Enem e confere suas chances de aprovação na faculdade dos seus sonhos!</p>
+  <hr>
+  <h4>Preencha as suas notas abaixo:</h4>
+    
+  <!--formulario para preencher as notas do enem-->
+  <div class="row notas">
+    <div class="col-6 col-sm-4 nota" style="background-color: #FF5757;">
+      <p>Matemática</p>
+      <input type="number" class="form-control resultado" id="matematica" name="matematica" min="0" max="1000" step="0.1" placeholder="000.0">
+    </div>
+
+    <div class="col-6 col-sm-4 nota"  style="background-color: #FFBD59;">
+      <p>C. Humanas</p>
+      <input type="number" class="form-control resultado" id="humanas" name="humanas" min="0" max="1000" step=".1"  placeholder="000.0">
+    </div>
+
+    <div class="col-6 col-sm-4 nota"  style="background-color: #7ED957;">
+      <p>C. Natureza</p>
+      <input type="number" class="form-control resultado" id="natureza" name="natureza" min="0" max="1000" step=".1"  placeholder="000.0">
+    </div>
+
+    <div class="col-6 col-sm-4 nota"  style="background-color: #FF66C4;">
+      <p>Linguagens</p>
+        <input type="number" class="form-control resultado" id="linguagens" name="linguagens" min="0" max="1000" step=".1"  placeholder="000.0">
+    </div>
+
+    <div class="col-6 col-sm-4 nota"  style="background-color: #8C52FF;">
+      <p>Redação</p>
+        <input type="number" class="form-control resultado"  id="redacao" name="redacao" min="0" max="1000" step=".1"  placeholder="000.0">
+    </div>
+  </div>
+
+  <span>Se já tiver uma conta, não é necessário preencher as notas. Após preencher as notas, realize o seu cadastro e faça sua simulação.</span>
 
 <script>
 const notas = document.querySelectorAll(".resultado"); 
-        console.log(notas);
+console.log(notas);
 
-        notas.forEach(notas => {
-        notas.addEventListener('change', (event) => {
-        console.log(event.target);
-        if(event.target.value > 1000)
-        {
-          event.target.value = 1000;
-        }
-          event.target.value= parseFloat(event.target.value).toFixed(1);
-        });
-        });
+notas.forEach(notas => {
+  notas.addEventListener('change', (event) => {
+    console.log(event.target);
+    if(event.target.value > 1000)
+    {
+      event.target.value = 1000;
+    }
+    event.target.value= parseFloat(event.target.value).toFixed(1);
+  });
+});
 </script>

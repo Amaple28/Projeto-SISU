@@ -83,12 +83,16 @@
     .accordion-button:not(.collapsed) {
       color: #000;
       background-color: #fff;
-      box-shadow: inset 0 -1px 0 rgba(255, 217, 0, 0.5);     
       font-weight: bold;
     }
 
     .accordion-button:focus {
-        border-color: #000 !important;
+      border-color: #000 !important;
+      box-shadow: none !important;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+      background-image: var(--bs-accordion-btn-icon) !important;
     }
 
     .accordion-body{
@@ -103,29 +107,6 @@
       color: #362b0b;
     }
 
-    .nota{
-      background-color: #000;
-      border-radius: 10%;
-      color: #fff;
-      margin: 1%;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .nota p{
-      font-size: 1rem !important;
-    }
-
-    .nota input{
-      font-size: 1rem !important;
-      text-align: center;
-      width: 100%;
-    }
-
-    .notas{
-      justify-content: space-around;
-    }
-
     .form-user{
       font-size: 100%;
       font-weight: bold;
@@ -135,65 +116,25 @@
   <body>
 
     @include('front_telas.nav')
-    @if($message = Session::get('success')){
-      input type="hidden" id="tabsuc" value="login">
-    }
-    @else{
-      input type="hidden" id="tabsuc" value="false">
-    }
-    @endif
 
+    <?php
+      if($message = Session::get('success')){
+        $input = 'login';
+      }else{
+        $input = 'false';
+      }
+    ?>
+    <input type="hidden" id="tabsuc" value="{{$input}}">
 
     <div class="container-fluid text-center conteudo">
         <div class="row">
+          <div class="col-12 col-md-7 cadastro bg-dark" id="simular">
+            @include('front_telas.notas')
+          </div>
 
-            <div class="col-12 col-md-7 cadastro bg-dark">
-              <h2>Simulador SISU 2023</h2>
-              <br>
-              <p>Com o Simulador SISU VEMMED você usa o resultado do Enem e confere suas chances de aprovação na faculdade dos seus sonhos!</p>
-              <hr>
-              <h4>Preencha as suas notas abaixo:</h4>
-
-              {{-- <div class="container-fluid text-center">
-                <div class="row notas">
-                  <!--formulario para preencher as notas do enem-->
-                  <div class="col-6 col-sm-4 nota" style="background-color: #FF5757;">
-                    <p>Matemática</p>
-                    <input type="number" class="form-control resultado" id="matematica" name="matematica" min="0" max="1000" step="0.1" placeholder="000.0">
-                 </div>
-
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #FFBD59;">
-                    <p>C. Humanas</p>
-                    <input type="number" class="form-control resultado" id="humanas" name="humanas" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
-
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #7ED957;">
-                    <p>C. Natureza</p>
-                    <input type="number" class="form-control resultado" id="natureza" name="natureza" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
-
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #FF66C4;">
-                    <p>Linguagens</p>
-                      <input type="number" class="form-control resultado" id="linguagens" name="linguagens" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
-
-                  <div class="col-6 col-sm-4 nota"  style="background-color: #8C52FF;">
-                    <p>Redação</p>
-                      <input type="number" class="form-control resultado"  id="redacao" name="redacao" min="0" max="1000" step=".1"  placeholder="000.0">
-                  </div>
-                
-                </div>
-              </div> --}}
-
-              <div class="col-12">
-                <br>
-                <a href="" class="btn btn-light" style="width:80%;">Simular Nota</a>
-              </div>
-
-            </div>
-
-            @include('flash-message')
+            
             <div class="col-12 col-md-5 forms">
+              @include('flash-message')
                 
                 <ul class="nav nav-tabs justify-content-center">
                     <li class="nav-item">
@@ -237,21 +178,21 @@
 
             <div class="col-12 col-md-4 passo">
                 <h3>1</h3>
-                <h5>Faça login ou complete suas informações de cadastro.</h5>
+                <h5>Preencha suas notas e faça o seu cadastro ou faça login.</h5>
             </div>
 
             <div class="col-12 col-md-4 passo">
               <h3>2</h3>
-              <h5>Use suas notas do Enem e escolha 3 opções de faculdade.</h5>
+              <h5>Escolha 1 estado, 3 opções de faculdade e sua modalidade.</h5>
             </div>
 
             <div class="col-12 col-md-4 passo">
               <h3>3</h3>
-              <h5>Veja a chance de passar de acordo com sua nota de corte.</h5>
+              <h5>Veja as chances de passar de acordo com sua nota de corte.</h5>
             </div>
 
             <div class="col-12">
-              <a href="" class="btn btn-light" style="width:30%;">Simular Nota</a>
+              <a href="#simular" class="btn btn-light" style="width:30%;">Simular Nota</a>
             </div>
         </div>
 
@@ -347,7 +288,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     
     <script>
-
       // colapso do cadastro deve estar aparecendo ao abrir tela
       document.getElementById("cadastro").classList.add("show");
 
@@ -358,8 +298,6 @@
         function login(){
             document.getElementById("cadastro").classList.remove("show");
         }
-
-        
     </script>
 
 </body>

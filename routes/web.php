@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +16,25 @@ use App\Http\Controllers\UserController;
 |
 */
 
+//PÁGINA INICIAL
 Route::get('/', [UserController::class, 'indexFront']);
 
-Route::get('/user_cadastro/{id}', [UserController::class, 'show']);
+// Route::get('/user_cadastro/{id}', [UserController::class, 'show']);
 
+//CADASTRO DE USUÁRIO
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
 
+//LOGIN DE USUÁRIO
 Route::post('/login',[UserController::class, 'login']);
 
-Route::get('/home/{id}',[UserController::class, 'indexLogin']);
+//DASHBOARD DO USUÁRIO
+Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario']);
 
-// ROTAS DAS TELAS DO FRONT
+//DASHBOARD DO ADMIN
+Route::get('/dashboard-admin', function () {
+    $users = User::all();
+    return view('front_telas.dashboardAdmin')
+    ->with('users', $users);
+})->name('admin');
+
+Route::post('deletar/{id}',[AdminController::class, 'deletar']);

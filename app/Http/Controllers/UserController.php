@@ -22,12 +22,6 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\View\View
      */
-    public function show($id)
-    {
-        return view('welcome', [
-            'user' => User::findOrFail($id)
-        ]);
-    }
 
     public function login(Request $request){
 
@@ -39,22 +33,20 @@ class UserController extends Controller
         $user=User::where('email',$request->input('email'))->first();
 
         $credentials = $request->only('email', 'password');
-        // dd($credentials);
         if (Auth::attempt($credentials)) {
-            //return redirect('home/'.$user->id);
-            return true;
+            // chamar funcap de dashboard
+            return redirect('/dashboard/'.$user->id)
+                ->with('success', 'Login realizado com sucesso!');
+        } else{
+            return redirect('/')
+                ->with('error', 'Usuário ou senha Inválidos!')
+                ->with('tab', 'login');
         }
-    
-        // return redirect('/')
-        //->with('error', 'Usuario ou senha Inválidos');
-
-        return false;
     }
 
-    public function indexLogin($id){
-        return view('indexLogin',[
+    public function dashboardUsuario($id){
+        return view('front_telas.simulacao',[
             'user' => User::findOrFail($id) 
-            //teste
         ]);
     }
 
@@ -92,9 +84,6 @@ class UserController extends Controller
             return redirect('/')
             ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
             ->with('tab', 'login');
-
-           // return redirect('/user_cadastro/'.$novoUsuario->id)   
-           // ->with('success', 'Usuário cadastrado com sucesso!');
         }
     }
 
