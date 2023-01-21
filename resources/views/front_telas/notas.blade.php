@@ -82,10 +82,12 @@ notas.forEach(notas => {
     if(event.target.id == "matematica")
     {
       document.getElementById("matematicaR").value = event.target.value;
+      console.log(document.getElementById("matematicaR").value);
     }
     if(event.target.id == "humanas")
     {
       document.getElementById("humanasR").value = event.target.value;
+      console.log(document.getElementById("humanasR").value);
     }
     if(event.target.id == "natureza")
     {
