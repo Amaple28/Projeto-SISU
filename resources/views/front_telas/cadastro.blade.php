@@ -49,7 +49,7 @@
     <input type="number" hidden class="form-control resultadoLinguagens" id="linguagensR" name="linguagensR" min="0" max="1000" step=".1"  placeholder="000.0">
     <input type="number" hidden class="form-control resultadoRedacao"  id="redacaoR" name="redacaoR" min="0" max="1000" step=".1"  placeholder="000.0">
     
-  </div>
+  
 
     <button type="submit" class="btn btn-warning col-12">Cadastrar</button>
 </form>
