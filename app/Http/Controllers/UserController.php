@@ -63,31 +63,34 @@ class UserController extends Controller
         $novoUsuario->password = Hash::make($senha);
 
         $simulacao = new simulacao();
-        $simulacao->matematica = $request->input('matematica');
-        $simulacao->humanas = $request->input('humanas');
-        $simulacao->linguagens = $request->input('linguagens');
-        $simulacao->natureza = $request->input('natureza');
-        $simulacao->redacao = $request->input('redacao');
+        $simulacao->matematica = $request->input('matematicaR');
+        $simulacao->humanas = $request->input('humanasR');
+        $simulacao->linguagens = $request->input('linguagensR');
+        $simulacao->natureza = $request->input('naturezaR');
+        $simulacao->redacao = $request->input('redacaoR');
         $simulacao->faculdades_id = 1;
         $simulacao->modalidade =1;
         $simulacao->estado ='mg';
         $simulacao->nota_corte = ($simulacao->matematica + $simulacao->humanas + $simulacao->linguagens + $simulacao->natureza + $simulacao->redacao)/5;
+     
 
         
         if (User::where('email',$novoUsuario->email)->first()){
             return redirect('/')
             ->with('error', 'Email já cadastrado, tente outro!');
         }
-        else{
-            $novoUsuario->save();
-            
-            $simulacao->user_id = $novoUsuario->id;
-            $simulacao->save();
-            
+
+        $novoUsuario->save();
+        $simulacao->user_id = $novoUsuario->id;
+        try{ 
+            $simulacao->save();            
+        } catch (\Throwable $th) {
+            return redirect('/')
+            ->with('error', 'Erro ao cadastrar usuário, é necessario preencher todas as notas para cadastro!');
+        }
             return redirect('/')
             ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
-            ->with('tab', 'login');
-        }
+            ->with('tab', 'login');        
     }
 
     // FUNÇÕES DO FRONT
