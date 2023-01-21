@@ -59,7 +59,6 @@ class UserController extends Controller
         $senha= $request->input('password');
         $novoUsuario->password = Hash::make($senha);
 
-        try{
         $simulacao = new simulacao();
         $simulacao->matematica = $request->input('matematicaR');
         $simulacao->humanas = $request->input('humanasR');
@@ -70,28 +69,25 @@ class UserController extends Controller
         $simulacao->modalidade =1;
         $simulacao->estado ='mg';
         $simulacao->nota_corte = ($simulacao->matematica + $simulacao->humanas + $simulacao->linguagens + $simulacao->natureza + $simulacao->redacao)/5;
-        $simulacao->save();
-        } catch (\Throwable $th) {
-            return redirect('/')
-            ->with('error', 'Erro ao cadastrar usuário, é necessario preencher todas as notas para cadastro!')
-            ->with('tab', 'login');
-        }
+     
 
         
         if (User::where('email',$novoUsuario->email)->first()){
             return redirect('/')
             ->with('error', 'Email já cadastrado, tente outro!');
         }
-        else{
-            $novoUsuario->save();
-            
-            $simulacao->user_id = $novoUsuario->id;
-            $simulacao->save();
-            
+
+        $novoUsuario->save();
+        $simulacao->user_id = $novoUsuario->id;
+        try{ 
+            $simulacao->save();            
+        } catch (\Throwable $th) {
+            return redirect('/')
+            ->with('error', 'Erro ao cadastrar usuário, é necessario preencher todas as notas para cadastro!');
+        }
             return redirect('/')
             ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
-            ->with('tab', 'login');
-        }
+            ->with('tab', 'login');        
     }
 
     // FUNÇÕES DO FRONT
