@@ -71,12 +71,34 @@ console.log(notas);
 
 notas.forEach(notas => {
   notas.addEventListener('change', (event) => {
-    console.log(event.target);
+    
     if(event.target.value > 1000)
     {
       event.target.value = 1000;
     }
     event.target.value= parseFloat(event.target.value).toFixed(1);
+    console.log(event.target.id);
+
+    if(event.target.id == "matematica")
+    {
+      document.getElementById("matematicaR").value = event.target.value;
+    }
+    if(event.target.id == "humanas")
+    {
+      document.getElementById("humanasR").value = event.target.value;
+    }
+    if(event.target.id == "natureza")
+    {
+      document.getElementById("naturezaR").value = event.target.value;
+    }
+    if(event.target.id == "linguagens")
+    {
+      document.getElementById("linguagensR").value = event.target.value;
+    }
+    if(event.target.id == "redacao")
+    {
+      document.getElementById("redacaoR").value = event.target.value;
+    }
   });
 });
 </script>
