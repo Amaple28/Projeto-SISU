@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\simulacao;
+use App\Models\faculdade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,9 @@ class UserController extends Controller
 
     public function dashboardUsuario($id){
         return view('front_telas.simulacao',[
-            'user' => User::findOrFail($id) 
+            'user' => User::findOrFail($id),
+            'estados' => $this->estados(),
+            'faculdades' => faculdade::all()
         ]);
     }
 
@@ -90,5 +93,39 @@ class UserController extends Controller
     // FUNÇÕES DO FRONT
     public function indexFront(){
         return view('front_telas.index');
+    }
+
+    //ESTADOS DO BRASIL
+    public function estados(){
+        $estados = [];
+        $estados[] = 'AC';
+        $estados[] = 'AL';
+        $estados[] = 'AP';
+        $estados[] = 'AM';
+        $estados[] = 'BA';
+        $estados[] = 'CE';
+        $estados[] = 'DF';
+        $estados[] = 'ES';
+        $estados[] = 'GO';
+        $estados[] = 'MA';
+        $estados[] = 'MT';
+        $estados[] = 'MS';
+        $estados[] = 'MG';
+        $estados[] = 'PA';
+        $estados[] = 'PB';
+        $estados[] = 'PR';
+        $estados[] = 'PE';
+        $estados[] = 'PI';
+        $estados[] = 'RJ';
+        $estados[] = 'RN';
+        $estados[] = 'RS';
+        $estados[] = 'RO';
+        $estados[] = 'RR';
+        $estados[] = 'SC';
+        $estados[] = 'SP';
+        $estados[] = 'SE';
+        $estados[] = 'TO';
+
+        return $estados;
     }
 }
