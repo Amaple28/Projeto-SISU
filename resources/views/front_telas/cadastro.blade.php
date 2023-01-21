@@ -42,6 +42,15 @@
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div> --}}
 
+          
+    <input type="number" hidden class="form-control resultadoMatematica" id="matematicaR" name="matematicaR" min="0" max="1000" step="0.1" placeholder="000.0">    
+    <input type="number" hidden class="form-control resultadoHumanas" id="humanasR" name="humanasR" min="0" max="1000" step=".1"  placeholder="000.0">
+    <input type="number" hidden class="form-control resultadoNatureza" id="naturezaR" name="naturezaR" min="0" max="1000" step=".1"  placeholder="000.0">    
+    <input type="number" hidden class="form-control resultadoLinguagens" id="linguagensR" name="linguagensR" min="0" max="1000" step=".1"  placeholder="000.0">
+    <input type="number" hidden class="form-control resultadoRedacao"  id="redacaoR" name="redacaoR" min="0" max="1000" step=".1"  placeholder="000.0">
+    
+  </div>
+
     <button type="submit" class="btn btn-warning col-12">Cadastrar</button>
 </form>
 
