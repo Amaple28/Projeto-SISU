@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Models\User;
 
 /*
@@ -29,9 +30,9 @@ Route::post('/login',[UserController::class, 'login']);
 
 //RECUPERAR SENHA
 
-Route::get('/recuperar-senha',[UserController::class, 'recuperarSenha']);
-Route::post('/recuperacao-senha',[UserController::class, 'recuperacaoSenha']);
-Route::post('/nova-senha/{id}',[UserController::class, 'novaSenha']);
+Route::get('/recuperar-senha',[ResetPasswordController::class, 'recuperarSenha']);
+Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSenha']);
+Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
 Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario']);
