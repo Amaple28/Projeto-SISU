@@ -29,6 +29,9 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Permanecer conectado</label>
     </div>
+    <div class="mb-3 form-check">
+        <a href="{{url ('/recuperar-senha')}}">Esqueci minha senha</a>
+    </div>
 
     <button type="submit" class="btn btn-warning col-12">Entrar</button>
 </form>

@@ -15,6 +15,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
+use Sentinel;
+// use Reminder;
+use Mail;
+
 class UserController extends Controller
 {
     /**
@@ -49,7 +53,8 @@ class UserController extends Controller
         return view('front_telas.simulacao',[
             'user' => User::findOrFail($id),
             'estados' => $this->estados(),
-            'faculdades' => faculdade::all()
+            'faculdades' => faculdade::all(),
+            'simulacao' => simulacao::where('user_id',$id)->first()
         ]);
     }
 
@@ -91,7 +96,8 @@ class UserController extends Controller
             return redirect('/')
             ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
             ->with('tab', 'login');        
-    }
+    }    
+
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
