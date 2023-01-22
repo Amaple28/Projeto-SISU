@@ -27,6 +27,12 @@ Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
 //LOGIN DE USUÁRIO
 Route::post('/login',[UserController::class, 'login']);
 
+//RECUPERAR SENHA
+
+Route::get('/recuperar-senha',[UserController::class, 'recuperarSenha']);
+Route::post('/recuperacao-senha',[UserController::class, 'recuperacaoSenha']);
+Route::post('/nova-senha/{id}',[UserController::class, 'novaSenha']);
+
 //DASHBOARD DO USUÁRIO
 Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario']);
 

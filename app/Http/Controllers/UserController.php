@@ -14,6 +14,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
+use Sentinel;
+use Reminder;
+use Mail;
+
 class UserController extends Controller
 {
     /**
@@ -89,6 +93,43 @@ class UserController extends Controller
             ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
             ->with('tab', 'login');        
     }
+
+    public function recuperarSenha(Request $request){
+        return view('front_telas.recuperarSenha');
+    }
+
+    public function recuperacaoSenha(Request $request){
+    
+        $user = User::where('email',$request->input('email'))->first();
+        
+        if($user == null){
+            return redirect('/')
+            ->with('error', 'Email não cadastrado, tente outro!');
+        }
+        
+        $user = Sentinel::findById($user->id);
+        // $reminder = Reminder::exists($user) ?: Reminder::create($user);
+        $this->sendEmail($user);
+
+        return redirect('/')
+        ->with('success', 'Email enviado com sucesso, verifique sua caixa de entrada!');
+    }
+
+    public function sendEmail($user){
+        Mail::send('emails.recuperarSenha', [
+            'user' => $user,
+            // 'code' => $code
+        ], function($message) use ($user){
+            $message->to($user->email);
+            $message->subject("Olá $user->name, recupere sua senha!");
+        });
+    }
+
+    public function novaSenha(Request $request, $id){
+
+        return view('front_telas.novaSenha');
+    }
+
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
