@@ -28,6 +28,11 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
 
+    //  TIPOS DE USUÁRIOS 
+    //     0 - USUÁRIO
+    //     1 - ADMIN
+
+
     public function login(Request $request){
 
         $request->validate([

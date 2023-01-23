@@ -10,6 +10,22 @@
         transform: translateY(-50%);
         cursor: pointer;
     }
+
+    .conectado{
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .form-check-input:checked {
+        background-color: #FFC107 !important;
+        border-color: #FFC107 !important;
+    }
+
+    .form-check-input:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25) !important;
+        border-color:rgba(255, 193, 7, 0.25) !important;
+    }
 </style>
 
 <form method="post" action="/login">
@@ -25,15 +41,16 @@
         <i class="fas fa-eye" id="togglePasswordlogin"></i>
     </div>
 
-    <div class="mb-3 form-check">
+    <div class="mb-3 form-check conectado">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Permanecer conectado</label>
-    </div>
-    <div class="mb-3 form-check">
-        <a href="{{url ('/recuperar-senha')}}">Esqueci minha senha</a>
+        <label class="form-check-label" for="exampleCheck1">  Permanecer conectado</label>
     </div>
 
-    <button type="submit" class="btn btn-warning col-12">Entrar</button>
+    <button type="submit" class="btn btn-warning col-12 mb-3">Entrar</button>
+
+    <div class="mb-3">
+        <a href="{{url ('/recuperar-senha')}}" class="btn btn-light col-12">Esqueci minha senha</a>
+    </div>
 </form>
 
 
