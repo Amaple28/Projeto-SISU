@@ -39,9 +39,15 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            // chamar funcap de dashboard
+            
+            if($user->tipo_user == 1){
+                return redirect('/dashboard-admin',compact('user'))
+                ->with('success', 'Login realizado com sucesso!');
+            }
+            else{
             return redirect('/dashboard',compact('user'))
                 ->with('success', 'Login realizado com sucesso!');
+            }
         } else{
             return redirect('/')
                 ->with('error', 'Usuário ou senha Inválidos!')
@@ -102,7 +108,9 @@ class UserController extends Controller
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
-        return view('front_telas.index');
+        $user= Auth::user();
+        return view('front_telas.index')
+        ->with('user', $user);
     }
 
     //ESTADOS DO BRASIL
