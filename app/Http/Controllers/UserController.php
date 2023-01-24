@@ -110,9 +110,26 @@ class UserController extends Controller
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
+        if(Auth::check()){
+            $user= Auth::user();
+            if($user->tipo_user == 1){
+                return redirect('/dashboard-admin')
+                ->with('user', $user)                
+                ->with('success', 'Login realizado com sucesso!');
+            }
+            else{
+            return redirect('/dashboard')
+                ->with('user', $user)
+                ->with('success', 'Login realizado com sucesso!');
+            }
+        }
+        else{
+            
         $user= Auth::user();
         return view('front_telas.index')
         ->with('user', $user);
+        }
+        
     }
 
     //ESTADOS DO BRASIL
