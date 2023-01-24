@@ -41,11 +41,13 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             
             if($user->tipo_user == 1){
-                return redirect('/dashboard-admin',compact('user'))
+                return redirect('/dashboard-admin')
+                ->with('user', $user)                
                 ->with('success', 'Login realizado com sucesso!');
             }
             else{
-            return redirect('/dashboard',compact('user'))
+            return redirect('/dashboard')
+                ->with('user', $user)
                 ->with('success', 'Login realizado com sucesso!');
             }
         } else{

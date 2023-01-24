@@ -47,6 +47,9 @@
               <a class="nav-link" href="{{route('admin')}}">Dashboard Admin</a>
             </li>
             @endif
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('logout')}}">Logout</a>
+            </li>
           </ul>
         </div>
       </div>
