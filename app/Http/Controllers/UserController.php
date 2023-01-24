@@ -28,6 +28,11 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
 
+    //  TIPOS DE USUÁRIOS 
+    //     0 - USUÁRIO
+    //     1 - ADMIN
+
+
     public function login(Request $request){
 
         $request->validate([
@@ -39,8 +44,14 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            // chamar funcap de dashboard
-            return redirect('/dashboard/'.$user->id)
+            
+            if(User::where('email',$request->input('email'))->first()->tipo == 1){
+                return redirect('/dashboard/admin')
+                    ->with('user', $user)
+                    ->with('success', 'Login realizado com sucesso!');
+            }
+            return redirect('/dashboard')
+                ->with('user', $user)
                 ->with('success', 'Login realizado com sucesso!');
         } else{
             return redirect('/')
@@ -49,12 +60,14 @@ class UserController extends Controller
         }
     }
 
-    public function dashboardUsuario($id){
-        return view('front_telas.simulacao',[
-            'user' => User::findOrFail($id),
+    public function dashboardUsuario(){
+        $user = Auth::user();
+         
+        return view('simulacao',[
+            'user' => $user,
             'estados' => $this->estados(),
             'faculdades' => faculdade::all(),
-            'simulacao' => simulacao::where('user_id',$id)->first()
+            'simulacao' => simulacao::where('user_id',$user->id)->first()
         ]);
     }
 
@@ -101,7 +114,7 @@ class UserController extends Controller
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
-        return view('front_telas.index');
+        return view('index');
     }
 
     //ESTADOS DO BRASIL
