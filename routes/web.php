@@ -39,7 +39,7 @@ Route::get('/dashboard',[UserController::class, 'dashboardUsuario']);
 
 //DASHBOARD DO ADMIN
 Route::get('/dashboard-admin', function () {
-    $users = User::all();
+    $users = User::orderBy('id', 'desc')->paginate(15);
     $user = Auth::user();
     return view('front_telas.dashboardAdmin')
     ->with('user', $user)
