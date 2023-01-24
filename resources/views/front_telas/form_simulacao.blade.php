@@ -34,7 +34,6 @@
       @endforeach
 
     </select>
-    
     <label for="floatingSelect">Faculdades</label>
 </div>
 

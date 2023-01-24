@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIMULADOR SISU MED</title>
+    <title>Simulador Sisu Vemmed</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="shortcut icon" href="{{asset('imagens/logo_clara.png')}}" type="image/x-icon">
   </head>
@@ -115,7 +115,7 @@
   
   <body>
 
-    @include('nav')
+    @include('front_telas.nav')
 
     <?php
       if($message = Session::get('success')){
@@ -129,7 +129,7 @@
     <div class="container-fluid text-center conteudo">
         <div class="row">
           <div class="col-12 col-md-7 cadastro bg-dark" id="simular">
-            @include('notas')
+            @include('front_telas.notas')
           </div>
 
             
@@ -156,13 +156,13 @@
                 <div>
                     <div class="collapse collapse-horizontal" id="cadastro">
                         <div class="container-fluid">
-                            @include('cadastro')
+                            @include('front_telas.cadastro')
                         </div>
                     </div>
 
                     <div class="collapse collapse-horizontal" id="login">
                         <div class="container-fluid">
-                            @include('login')
+                            @include('front_telas.login')
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
 
         <div class="row passos">
             <div class="col-12">
-                <h2>Como funciona o SIMULADOR SISU MED?</h2>
+                <h2>Como funciona o Simulador SISU VEMED?</h2>
             </div>
 
 
@@ -283,7 +283,7 @@
     </div>
 
 
-    @include('footer')
+    @include('front_telas.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     
