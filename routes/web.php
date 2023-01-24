@@ -35,7 +35,7 @@ Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSe
 Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario']);
+Route::get('/dashboard',[UserController::class, 'dashboardUsuario']);
 
 //DASHBOARD DO ADMIN
 Route::get('/dashboard-admin', function () {

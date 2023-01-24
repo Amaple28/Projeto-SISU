@@ -40,7 +40,7 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // chamar funcap de dashboard
-            return redirect('/dashboard/'.$user->id)
+            return redirect('/dashboard',compact('user'))
                 ->with('success', 'Login realizado com sucesso!');
         } else{
             return redirect('/')
@@ -49,7 +49,8 @@ class UserController extends Controller
         }
     }
 
-    public function dashboardUsuario($id){
+    public function dashboardUsuario(){
+        $id = Auth::user()->id;
         return view('front_telas.simulacao',[
             'user' => User::findOrFail($id),
             'estados' => $this->estados(),
