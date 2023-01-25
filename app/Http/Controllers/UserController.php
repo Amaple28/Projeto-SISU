@@ -28,11 +28,6 @@ class UserController extends Controller
      * @return \Illuminate\View\View
      */
 
-    //  TIPOS DE USUÁRIOS 
-    //     0 - USUÁRIO
-    //     1 - ADMIN
-
-
     public function login(Request $request){
 
         $request->validate([
@@ -44,9 +39,17 @@ class UserController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            // chamar funcap de dashboard
-            return redirect('/dashboard/'.$user->id)
+            
+            if($user->tipo_user == 1){
+                return redirect('/dashboard-admin')
+                ->with('user', $user)                
                 ->with('success', 'Login realizado com sucesso!');
+            }
+            else{
+            return redirect('/dashboard')
+                ->with('user', $user)
+                ->with('success', 'Login realizado com sucesso!');
+            }
         } else{
             return redirect('/')
                 ->with('error', 'Usuário ou senha Inválidos!')
@@ -54,7 +57,8 @@ class UserController extends Controller
         }
     }
 
-    public function dashboardUsuario($id){
+    public function dashboardUsuario(){
+        $id = Auth::user()->id;
         return view('front_telas.simulacao',[
             'user' => User::findOrFail($id),
             'estados' => $this->estados(),
@@ -106,7 +110,26 @@ class UserController extends Controller
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
-        return view('front_telas.index');
+        if(Auth::check()){
+            $user= Auth::user();
+            if($user->tipo_user == 1){
+                return redirect('/dashboard-admin')
+                ->with('user', $user)                
+                ->with('success', 'Login realizado com sucesso!');
+            }
+            else{
+            return redirect('/dashboard')
+                ->with('user', $user)
+                ->with('success', 'Login realizado com sucesso!');
+            }
+        }
+        else{
+            
+        $user= Auth::user();
+        return view('front_telas.index')
+        ->with('user', $user);
+        }
+        
     }
 
     //ESTADOS DO BRASIL

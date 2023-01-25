@@ -15,15 +15,7 @@ use Illuminate\Http\JsonResponse;
 
 class AdminController extends Controller
 {
-    // public function dashboardAdmin(){
 
-    //     $users = User::all();
-    //     //dd($users);
-
-    //     return view('front_telas.dashboardAdmin')
-    //     ->with('users', $users);
-    // }
-    
 
     public function deletar($id){
 

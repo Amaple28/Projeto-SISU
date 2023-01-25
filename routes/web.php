@@ -35,15 +35,21 @@ Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSe
 Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario'])->name('dashboard');
+Route::get('/dashboard',[UserController::class, 'dashboardUsuario']);
 
 //DASHBOARD DO ADMIN
-Route::get('/dashboard-admin/{id}', function ($id) {
-    $users = User::all();
-    $user = User::find($id);
+Route::get('/dashboard-admin', function () {
+    $users = User::orderBy('id', 'desc')->paginate(15);
+    $user = Auth::user();
     return view('front_telas.dashboardAdmin')
-    ->with('users', $users)
-    ->with('user', $user);
+    ->with('user', $user)
+    ->with('users', $users);
 })->name('admin');
 
 Route::post('deletar/{id}',[AdminController::class, 'deletar']);
+
+//Logout
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
