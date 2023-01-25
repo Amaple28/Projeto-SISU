@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,15 +36,16 @@ Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSe
 Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard',[UserController::class, 'dashboardUsuario']);
+Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario'])->name('dashboard');
 
 //DASHBOARD DO ADMIN
-Route::get('/dashboard-admin', function () {
+Route::get('/dashboard-admin/{id}', function ($id) {
     $users = User::orderBy('id', 'desc')->paginate(15);
-    $user = Auth::user();
+    $user = User::find($id);
+    // $user = Auth::user();
     return view('front_telas.dashboardAdmin')
-    ->with('user', $user)
-    ->with('users', $users);
+    ->with('users', $users)
+    ->with('user', $user);
 })->name('admin');
 
 Route::post('deletar/{id}',[AdminController::class, 'deletar']);

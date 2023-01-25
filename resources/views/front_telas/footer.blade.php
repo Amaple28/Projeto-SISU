@@ -22,6 +22,36 @@
         padding-left: 15px;
     }
 
+    span{
+        color: #fff;
+    }
+
+    .copy{
+        display: none;
+    }
+
+    .copy span{
+        border-top: 1px solid rgba(255, 255, 255, 0.219);
+        text-align: center;
+        padding-top: 10px;
+        margin-top: 10px;
+
+        /* alinhar no centro */
+        display: flex;
+        justify-content: center;
+
+    }
+
+    @media (max-width: 700px) {
+        .copyright{
+            display: none;
+        }
+
+        .copy{
+            display: block;
+        }
+    }
+
 </style>
 
 <nav class="navbar navbar-dark bg-dark">
@@ -29,8 +59,14 @@
         
         <div>
             <a class="navbar-brand" href="#">
-                <h6>Sisu Vemmed</h6>
+                <h6>SISU MED</h6>
             </a>
+        </div>
+
+        <div class="copyright">
+            <span>
+                Copyright © 2023 - Todos os direitos reservados
+            </span>
         </div>
 
         <div class="icones">
@@ -49,6 +85,12 @@
             <a href="https://www.cursovemmed.com.br/" target="_blank">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/web.png" alt="web" width="30" height="30" class="d-inline-block align-text-top">
             </a>
+        </div>
+
+        <div class="col-12 copy">
+            <span>
+                Copyright © 2023 - Todos os direitos reservados
+            </span>
         </div>
 
       
