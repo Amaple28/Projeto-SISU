@@ -21,7 +21,7 @@
         
       <div>
           <a class="navbar-brand" href="#">
-              <h5>Sisu Vemmed</h5>
+              <h5>SISU MED</h5>
           </a>
       </div>
       
@@ -84,7 +84,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('admin',$user->id)}}">
+                  <a class="nav-link" href="{{route('logout')}}">
                     <i class="fas fa-sign-out-alt"></i>
                     Sair
                   </a>

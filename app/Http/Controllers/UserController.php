@@ -40,31 +40,17 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             
-            if($user->tipo_user == 1){
-                return redirect('/dashboard-admin')
-                ->with('user', $user)                
-                ->with('success', 'Login realizado com sucesso!');
+            if($user->tipo_user == 1){                
+                return redirect('dashboard-admin');
             }
             else{
-            return redirect('/dashboard')
-                ->with('user', $user)
-                ->with('success', 'Login realizado com sucesso!');
+            return redirect('dashboard');
             }
         } else{
             return redirect('/')
                 ->with('error', 'Usuário ou senha Inválidos!')
                 ->with('tab', 'login');
         }
-    }
-
-    public function dashboardUsuario(){
-        $id = Auth::user()->id;
-        return view('front_telas.simulacao',[
-            'user' => User::findOrFail($id),
-            'estados' => $this->estados(),
-            'faculdades' => faculdade::all(),
-            'simulacao' => simulacao::where('user_id',$id)->first()
-        ]);
     }
 
     public function criarUsuario(Request $request){        
@@ -126,7 +112,7 @@ class UserController extends Controller
         else{
             
         $user= Auth::user();
-        return view('front_telas.index')
+        return view('index')
         ->with('user', $user);
         }
         

@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Models\faculdade;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\simulacao;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,14 +38,19 @@ Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSe
 Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard/{id}',[UserController::class, 'dashboardUsuario'])->name('dashboard');
+Route::get('/dashboard', function () {
+    $user = Auth::user();
+    return view('dashboard')
+    ->with('user', $user)
+    ->with('simulacao',  simulacao::where('user_id',$user->id)->first())
+    ->with('faculdades',  faculdade::all());
+})->name('dashboard');
 
 //DASHBOARD DO ADMIN
-Route::get('/dashboard-admin/{id}', function ($id) {
+Route::get('/dashboard-admin', function () {
     $users = User::orderBy('id', 'desc')->paginate(15);
-    $user = User::find($id);
-    // $user = Auth::user();
-    return view('front_telas.dashboardAdmin')
+    $user = Auth::user();
+    return view('dashboardAdmin')
     ->with('users', $users)
     ->with('user', $user);
 })->name('admin');

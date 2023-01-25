@@ -16,7 +16,7 @@ class ResetPasswordController extends Controller
     //
 
     public function recuperarSenha(Request $request){
-        return view('front_telas.recuperarSenha');
+        return view('recuperarSenha');
     }
 
     public function recuperacaoSenha(Request $request){
@@ -56,7 +56,7 @@ class ResetPasswordController extends Controller
 
     public function novaSenha(Request $request, $token){
 
-        return view('front_telas.novaSenha',['token'=>$token]);
+        return view('novaSenha',['token'=>$token]);
     }
 
     public function resetPassword(Request $request){
