@@ -24,4 +24,14 @@ class AdminController extends Controller
 
         return redirect()->route('dashboardAdmin');
     }
+
+    public function notas2023(Request $request){
+        $user = Auth::user();
+        if($user->tipo_user != 1){
+            return redirect()->route('dashboard');
+        }
+       
+
+        return redirect()->route('dashboardAdmin');
+    }
 }
