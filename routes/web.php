@@ -62,3 +62,7 @@ Route::get('logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+
+//Rota Notas 2023
+Route::get('/notas-2023', [AdminController::class, 'notas2023'])->name('notas2023');

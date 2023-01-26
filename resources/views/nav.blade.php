@@ -56,7 +56,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">
+                    <a class="nav-link" aria-current="page" href="{{route('notas2023')}}">
                       <i class="fas fa-edit"></i>
                       Notas Sisu 2023
                     </a>
