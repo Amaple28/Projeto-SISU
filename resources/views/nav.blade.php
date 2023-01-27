@@ -49,7 +49,7 @@
                   </li>
                 
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{route('dashboard',$user->id)}}">
+                    <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">
                       <i class="fas fa-clipboard-list"></i>
                       Simulação
                     </a>
