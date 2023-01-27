@@ -42,14 +42,14 @@
                 @if($user->tipo_user == 1)
                 
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin',$user->id)}}">
+                    <a class="nav-link" href="{{route('admin')}}">
                       <i class="fas fa-user-cog"></i>
                       Dashboard
                     </a>
                   </li>
                 
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{route('dashboard',$user->id)}}">
+                    <a class="nav-link" aria-current="page" href="">
                       <i class="fas fa-clipboard-list"></i>
                       Simulação
                     </a>

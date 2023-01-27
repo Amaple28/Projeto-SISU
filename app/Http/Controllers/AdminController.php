@@ -22,7 +22,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('dashboardAdmin');
+        return redirect()->route('admin');
     }
 
     public function notas2023(Request $request){
@@ -32,6 +32,6 @@ class AdminController extends Controller
         }
        
 
-        return redirect()->route('dashboardAdmin');
+        return view('welcome', ['user' => $user]);
     }
 }
