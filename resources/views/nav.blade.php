@@ -42,7 +42,7 @@
                 @if($user->tipo_user == 1)
                 
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('admin',$user->id)}}">
+                    <a class="nav-link" href="{{route('admin')}}">
                       <i class="fas fa-user-cog"></i>
                       Dashboard
                     </a>

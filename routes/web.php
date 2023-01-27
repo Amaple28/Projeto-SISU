@@ -40,10 +40,11 @@ Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 //DASHBOARD DO USUÁRIO
 Route::get('/dashboard', function () {
     $user = Auth::user();
-    return view('dashboard')
+    return view('simulacao')
     ->with('user', $user)
     ->with('simulacao',  simulacao::where('user_id',$user->id)->first())
-    ->with('faculdades',  faculdade::all());
+    ->with('faculdades',  faculdade::all())
+    ->with('estados',  faculdade::select('estado')->distinct()->get());
 })->name('dashboard');
 
 //DASHBOARD DO ADMIN
