@@ -22,7 +22,7 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('admin');
+        return redirect()->route('dashboardAdmin');
     }
 
     public function notas2023(Request $request){
