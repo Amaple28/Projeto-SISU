@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\simulacao;
 use App\Models\faculdade;
+use App\Models\sisu_atual;
+use App\Models\sisu_anterior;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -15,31 +18,34 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
+
 class SimulacaoController extends Controller
 {
     public function simulacaoFaculdades(Request $request){
         // dd($request->input('faculdades'));
         $user = Auth::user();
         $user_simulacao= simulacao::where('user_id', $user->id)->first();
-
+        
         $simulacoes_positivas = [];
         $simulacoes_negativas = [];
         $simulacoes_neutras = [];
 
         $faculdades = [];
         foreach($request->input('faculdades') as $faculdade){
-            $faculdades[] = faculdade::where('id', $faculdade)->first();
+            $faculdades[] = faculdade::where('id', $faculdade)->first();            
         }
 
         foreach($faculdades as $faculdade){
-            if($user_simulacao->nota_corte > $faculdade->nota_corte){
-                $simulacoes_positivas[] = $faculdade;
+            $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
+            
+            if($user_simulacao->nota_corte > $nota_corte->nota){
+                $simulacoes_positivas[] = $nota_corte;
             }
-            else if($user_simulacao->nota_corte < $faculdade->nota_corte){
-                $simulacoes_negativas[] = $faculdade;
+            else if($user_simulacao->nota_corte < $nota_corte->nota){
+                $simulacoes_negativas[] = $nota_corte;
             }
             else{
-                $simulacoes_neutras[] = $faculdade;
+                $simulacoes_neutras[] = $nota_corte;
             }
         }
         $faculdades = faculdade::all();
@@ -79,6 +85,7 @@ class SimulacaoController extends Controller
             ->with('simulacao', $user_simulacao)
             ->with('faculdades', $faculdades)
             ->with('estados', $estados);
+            
     }
     
     
