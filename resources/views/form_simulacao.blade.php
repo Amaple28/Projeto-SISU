@@ -21,6 +21,9 @@
     
 </style>
 
+<form action="{{route('simulacao')}}" method="get">
+    @csrf
+
 <div class="col-12 col-md-12 mb-3" id="simular">
     <h4>Preencha o formulário e faça a sua simulação</h4>
 </div>
@@ -40,7 +43,7 @@
   @foreach ($faculdades as $faculdade)
     <div class="input-group mb-2">
       <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" value="{{$faculdade->id}}">
+        <input class="form-check-input mt-0" type="checkbox" name="faculdades[]" value="{{$faculdade->id}}">
       </div>
       <input type="text" class="form-control" value="{{$faculdade->nome}}" disabled>
     </div>
@@ -49,7 +52,7 @@
 
 
 <div class="form-floating col-12 col-md-4 mb-3 lado_direito">
-  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+  <select class="form-select" id="floatingSelect" name="estados" aria-label="Floating label select example">
     <option selected>Selecione...</option>
     
     @foreach ($estados as $estado)
@@ -61,5 +64,6 @@
 </div>
 
 <div class="col-8 mb-3">
-    <a href="" class="btn btn-outline-warning btn-lg" style="width: 100%">Simular</a>
+    <button submit class="btn btn-outline-warning btn-lg" style="width: 100%">Simular</button>
 </div>
+</form>

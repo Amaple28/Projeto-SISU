@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\NotasController;
+use App\Http\Controllers\SimulacaoController;
 use App\Models\faculdade;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -66,3 +67,7 @@ Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculda
 //baixar leads em excel
 Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
 Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
+
+
+//SIMULAÇÃO
+Route::get('/simulacao',[SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
