@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\NotasController;
 use App\Models\faculdade;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -23,16 +24,17 @@ use App\Models\simulacao;
 //PÁGINA INICIAL
 Route::get('/', [UserController::class, 'indexFront']);
 
-// Route::get('/user_cadastro/{id}', [UserController::class, 'show']);
-
 //CADASTRO DE USUÁRIO
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
-
 //LOGIN DE USUÁRIO
 Route::post('/login',[UserController::class, 'login']);
+//Logout
+Route::get('logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
 
 //RECUPERAR SENHA
-
 Route::get('/recuperar-senha',[ResetPasswordController::class, 'recuperarSenha']);
 Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSenha']);
 Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
@@ -58,12 +60,9 @@ Route::get('/dashboard-admin', function () {
 
 Route::post('deletar/{id}',[AdminController::class, 'deletar']);
 
-//Logout
-Route::get('logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
+//Gerenciar faculdades
+Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculdades');
 
-
-//Rota Notas 2023
-Route::get('/notas-2023', [AdminController::class, 'notas2023'])->name('notas2023');
+//baixar leads em excel
+Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
+Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');

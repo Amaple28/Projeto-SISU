@@ -121,17 +121,36 @@
             font-size:  0.8rem;
         }
 
+        /* tamanho dos botoes de editar e excluir da tabela */
+        @media(max-width: 1064px){
+            td a{
+                font-size: 0.8rem !important;
+            }
+        }
+
+        @media(max-width: 940px){
+            td a{
+                font-size: 0.5rem !important;
+            }
+        }
+
+        @media(max-width: 760px){
+            td a{
+                font-size: 0.3rem !important;
+            }
+        }
+
     </style>
 
     <body>
         @include('nav')
 
         <div class="header">
-            <h2>Gerenciar Usuários</h2>
-            <a href="{{route('baixar-leads')}}" class="btn btn-warning">
+            <h2>Gerenciar Faculdades</h2>
+            {{-- <a href="#" class="btn btn-warning">
                 <i class="fas fa-file-export"></i>    
                 Exportar Leads
-            </a>
+            </a> --}}
         </div>
 
         {{-- criar tabela que cria paginação automaticamente com os dados do banco de dados e botões de ação para editar e excluir --}}
@@ -142,44 +161,34 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nome</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Ações</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">2022</th>
+                                <th scope="col">2023</th>
+                                <th scope="col" style="width:13% !important"></th>
+                                <th scope="col" style="width:13% !important"></th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($users as $user)
-                                @if($user->tipo_user == 1)
-                                    <tr class="admin">
-                                        <td> <b>Admin: </b> {{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td class="acoes">
-                                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> Permissões</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Excluir Usuário</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td class="acoes">
-                                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{route('baixar-lead',$user->id)}}"> <i class="fas fa-download"></i> Exportar Dados</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> Permissões</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach ($faculdades as $faculdade)
+                                <tr>
+                                    <td>{{$faculdade->nome}}</td>
+                                    <td>{{$faculdade->estado}}</td>
+                                    <td>500.0</td>
+                                    <td>800.0</td>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-warning">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Excluir
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -188,7 +197,7 @@
         </div>
         
         <div class="card-footer">
-            {{$users->links()}}
+            {{$faculdades->links()}}
         </div>
         
         @include('footer')

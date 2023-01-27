@@ -13,25 +13,48 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 
+
+
 class AdminController extends Controller
 {
-
-
     public function deletar($id){
 
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('dashboardAdmin');
+        return redirect()->route('admin');
     }
 
-    public function notas2023(Request $request){
-        $user = Auth::user();
-        if($user->tipo_user != 1){
-            return redirect()->route('dashboard');
+    public function baixarLeads(Request $request){
+        $users = User::all();
+
+        $file = fopen('leads.csv', 'w');
+        fputcsv($file, array('Nome', 'Email', 'Telefone'));
+
+        foreach ($users as $user) {
+            if($user->tipo_user != 1){
+                fputcsv($file, array($user->name, $user->email, $user->telefone));
+            }
         }
-       
 
-        return view('welcome', ['user' => $user]);
+        fclose($file);
+
+        return response()->download('leads.csv');
     }
+
+    public function baixarLead(Request $request, $id){
+        $user = User::find($id);
+
+        $file = fopen('lead.csv', 'w');
+        fputcsv($file, array('Nome', 'Email', 'Telefone'));
+
+        if($user->tipo_user != 1){
+            fputcsv($file, array($user->name, $user->email, $user->telefone));
+        }
+        
+        fclose($file);
+
+        return response()->download('lead.csv');
+    }
+
 }
