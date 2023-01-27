@@ -106,3 +106,36 @@
       @endif
     </div>
   </nav>
+
+  <script>
+    function sendAjaxFormModal(formId){
+                var frm = $('#'+formId);
+                var url = frm.attr('action');
+                
+                $.ajax({
+                    type: frm.attr('method'),
+                    url: url,
+                    data: frm.serialize(),
+                    cache: false,
+                    dataType:"json",
+                    beforeSend: function(){
+                        antesDeEnviarFormulario(formId);
+                        showLoadingSendAjax(formId);                        
+                    },
+                    complete: function(){
+                        depoisDeEnviarFormulario(formId);
+                        hideLoadingSendAjax(formId); 
+                    },
+                    success: function(response){                        
+                        processResponse(response);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                          //var err = eval("(" + xhr.responseText + ")");
+                        erro = textStatus+" - Code: "+jqXHR.status + " "+errorThrown;
+                        console.log('jqXHR: '+JSON.stringify(jqXHR));
+                        console.log("Erro: "+erro);
+                        mostraNotificacaoErro(erro);
+                    }
+                });
+            }
+  </script>

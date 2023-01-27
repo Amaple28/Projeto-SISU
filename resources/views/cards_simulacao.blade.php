@@ -66,6 +66,7 @@
     </div>
 </div> --}}
 
+@if(isset($simulacoes_positivas , $simulacoes_negativas,$simulacoes_neutras))
 <div class="col-10 mb-3">
     <div class="card reprovado">
         <div class="card-body">
@@ -93,5 +94,5 @@
         </div>
     </div>
 </div>
-
+@endif
 {{-- fas fa-laugh-beam --}}

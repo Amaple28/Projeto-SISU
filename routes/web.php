@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\NotasController;
+use App\Http\Controllers\SimulacaoController;
 use App\Http\Controllers\EmailController;
 use App\Models\faculdade;
 use App\Models\User;
@@ -67,7 +68,3 @@ Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculda
 //baixar leads em excel
 Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
 Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
-
-
-//send email to user 
-Route::get('/send-email',[EmailController::class, 'sendEmail'])->name('send-email');
