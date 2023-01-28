@@ -28,7 +28,7 @@
         <div class="row">
           <div class="col-12 col-md-7 cadastro bg-dark" id="simular">
 
-            <a class="btn btn-info" href="{{route('send-email-cadastro')}}"  role="button">Enviar E-mail</a>
+            {{-- <a class="btn btn-info" href="{{route('send-email-cadastro')}}"  role="button">Enviar E-mail</a> --}}
 
             @include('notas')
           </div>
