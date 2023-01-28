@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Util;
 use App\Models\User;
 use App\Models\simulacao;
 use App\Models\faculdade;
@@ -96,59 +97,28 @@ class UserController extends Controller
 
     // FUNÇÕES DO FRONT
     public function indexFront(){
+        $estados = Util::estados();
         if(Auth::check()){
             $user= Auth::user();
             if($user->tipo_user == 1){
                 return redirect('/dashboard-admin')
-                ->with('user', $user)                
+                ->with('user', $user)   
+                ->with('estados', $estados)             
                 ->with('success', 'Login realizado com sucesso!');
             }
             else{
             return redirect('/dashboard')
                 ->with('user', $user)
+                ->with('estados', $estados)
                 ->with('success', 'Login realizado com sucesso!');
             }
         }
         else{
-            
-        $user= Auth::user();
-        return view('index')
-        ->with('user', $user);
+            $user= Auth::user();
+            return view('index')
+            ->with('user', $user);
         }
         
     }
 
-    //ESTADOS DO BRASIL
-    public function estados(){
-        $estados = [];
-        $estados[] = 'AC';
-        $estados[] = 'AL';
-        $estados[] = 'AP';
-        $estados[] = 'AM';
-        $estados[] = 'BA';
-        $estados[] = 'CE';
-        $estados[] = 'DF';
-        $estados[] = 'ES';
-        $estados[] = 'GO';
-        $estados[] = 'MA';
-        $estados[] = 'MT';
-        $estados[] = 'MS';
-        $estados[] = 'MG';
-        $estados[] = 'PA';
-        $estados[] = 'PB';
-        $estados[] = 'PR';
-        $estados[] = 'PE';
-        $estados[] = 'PI';
-        $estados[] = 'RJ';
-        $estados[] = 'RN';
-        $estados[] = 'RS';
-        $estados[] = 'RO';
-        $estados[] = 'RR';
-        $estados[] = 'SC';
-        $estados[] = 'SP';
-        $estados[] = 'SE';
-        $estados[] = 'TO';
-
-        return $estados;
-    }
 }

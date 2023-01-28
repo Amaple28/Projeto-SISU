@@ -1,0 +1,36 @@
+.card{
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.reprovado{
+    border-left: 10px solid #ff3300;
+}
+
+.reprovado i{
+    color: #d63e17;
+}
+
+.aprovado{
+    border-left: 10px solid #00cc00;
+}
+
+.aprovado i{
+    color: #17b817;
+}
+
+.quadro_resultado{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chances{
+    text-align: right;
+    margin: 0 0 0 0;
+}
+
+.notas_corte{
+    text-align: left;
+}

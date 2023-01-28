@@ -8,6 +8,7 @@ use App\Models\simulacao;
 use App\Models\faculdade;
 use App\Models\sisu_atual;
 use App\Models\sisu_anterior;
+use App\Util;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -57,35 +58,10 @@ class SimulacaoController extends Controller
                 $simulacoes_neutras[] = $nota_corte;
             }
         }
+
         $faculdades = faculdade::all();
-        $estados =  [];
-        $estados[] = 'AC';
-        $estados[] = 'AL';
-        $estados[] = 'AP';
-        $estados[] = 'AM';
-        $estados[] = 'BA';
-        $estados[] = 'CE';
-        $estados[] = 'DF';
-        $estados[] = 'ES';
-        $estados[] = 'GO';
-        $estados[] = 'MA';
-        $estados[] = 'MT';
-        $estados[] = 'MS';
-        $estados[] = 'MG';
-        $estados[] = 'PA';
-        $estados[] = 'PB';
-        $estados[] = 'PR';
-        $estados[] = 'PE';
-        $estados[] = 'PI';
-        $estados[] = 'RJ';
-        $estados[] = 'RN';
-        $estados[] = 'RS';
-        $estados[] = 'RO';
-        $estados[] = 'RR';
-        $estados[] = 'SC';
-        $estados[] = 'SP';
-        $estados[] = 'SE';
-        $estados[] = 'TO';
+
+        $estados = Util::estados();
 
         return view('simulacao')
             ->with('simulacoes_positivas', $simulacoes_positivas)

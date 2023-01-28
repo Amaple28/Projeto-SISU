@@ -1,0 +1,30 @@
+.faculdades{
+    display: flex;
+    height: 10rem;
+    overflow: auto;
+    flex-direction: column;
+    /* deixar div bonita  */
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;    
+}
+
+.lado_direito a{
+  margin-top: 5%;  
+}
+
+.row{
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nota_corte{
+    font-weight: bold;
+    padding: 20px;
+}

@@ -1,20 +1,6 @@
-
 <style>
-  .navbar-brand{
-  display: flex;
-}
-
-.navbar-brand h5{
-  padding-left: 15px;
-}
-
-.body-nav ul li .nav-link{
-  color: #fff !important;
-}
-
+  @include('layouts.css.nav');
 </style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
 <nav class="navbar navbar-light bg-warning">
     <div class="container-fluid">

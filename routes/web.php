@@ -11,6 +11,7 @@ use App\Models\faculdade;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\simulacao;
+use App\Util;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,14 +49,14 @@ Route::get('/dashboard', function () {
     ->with('user', $user)
     ->with('simulacao',  simulacao::where('user_id',$user->id)->first())
     ->with('faculdades',  faculdade::all())
-    ->with('estados',  faculdade::select('estado')->distinct()->get());
+    ->with('estados',  Util::estados());
 })->name('dashboard');
 
 //DASHBOARD DO ADMIN
 Route::get('/dashboard-admin', function () {
     $users = User::orderBy('id', 'desc')->paginate(15);
     $user = Auth::user();
-    return view('dashboardAdmin')
+    return view('admin')
     ->with('users', $users)
     ->with('user', $user);
 })->name('admin');
@@ -68,3 +69,6 @@ Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculda
 //baixar leads em excel
 Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
 Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
+
+//enviar e-mail
+Route::get('/send-email-cadastro', [EmailController::class, 'sendEmailCadastro'])->name('send-email-cadastro');

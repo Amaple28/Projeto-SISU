@@ -1,15 +1,5 @@
 <style>
-    .senha {
-        position: relative;
-    }
-
-    .senha i {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+    @include('layouts.css.cadastro');
 </style>
 
 <form method="POST" action="/criar-usuario">

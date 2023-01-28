@@ -1,0 +1,26 @@
+.nota{
+    background-color: #000;
+    border-radius: 10%;
+    color: #fff;
+    margin: 1%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nota p{
+    font-size: 1rem !important;
+  }
+
+  .nota input{
+    font-size: 1rem !important;
+    text-align: center;
+    width: 100%;
+  }
+
+  .notas{
+    justify-content: space-around;
+  }
+
+  span{
+    font-size: 0.8rem;
+  }

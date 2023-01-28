@@ -1,57 +1,5 @@
-
 <style>
-    a{
-        color: #fff;
-        text-decoration: none !important;
-    }
-
-    .navbar-brand{
-        display: flex;
-    }
-
-    .navbar-brand h5{
-        padding-left: 15px;
-    }
-
-    .icones{
-        /* display: flex; */
-        justify-content: space-between;
-    }
-
-    .icones a{
-        padding-left: 15px;
-    }
-
-    span{
-        color: #fff;
-    }
-
-    .copy{
-        display: none;
-    }
-
-    .copy span{
-        border-top: 1px solid rgba(255, 255, 255, 0.219);
-        text-align: center;
-        padding-top: 10px;
-        margin-top: 10px;
-
-        /* alinhar no centro */
-        display: flex;
-        justify-content: center;
-
-    }
-
-    @media (max-width: 700px) {
-        .copyright{
-            display: none;
-        }
-
-        .copy{
-            display: block;
-        }
-    }
-
+    @include('layouts.css.footer');
 </style>
 
 <nav class="navbar navbar-dark bg-dark">

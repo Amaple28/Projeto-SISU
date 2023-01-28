@@ -1,121 +1,19 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIMULADOR SISU MED</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="shortcut icon" href="{{asset('imagens/logo_clara.png')}}" type="image/x-icon">
-  </head>
+
+  @include('layouts.base.base')
 
   <style>
+    @include('layouts.css.index');
 
-    /* criar variaveis para cores */
-
-    /* criar variaveis para cores */
     .accordion{
       -- bs-accordion-active-color: #FFC107 !important;
-    }
-
-    .cadastro{
-      padding: 2%;
-      padding-left: 5%;
-      padding-right: 5%;
-      color: #fff;
-    }
-
-    .forms{
-      padding: 5%;
-      padding-left: 5%;
-      padding-right: 5%;
-      
-    }
-
-    .forms a{
-        color: black;
-    }
-
-    .forms a:hover{
-        color: black;
-    }
-
-    .forms a:focus{
-        color: black;
-    }
-
-    .passos{
-      background-color: #FFC107;
-      color: #000;
-      padding: 5%;
-    }
-
-    .passos h2{
-      color: #000;
-      padding-bottom: 3%;
-    }
-
-    .passos h3{
-      color: #000;
-      background-color: #fff;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      text-align: center;
-      padding-top: 5px;
-      font-weight: bold;
-    }
-
-    .passo{
-      /* alinhar itens no centro da div */
-      justify-content: center;
-      align-items: center;
-      /* alinhar itens no centro da div */
-      display: flex;
-      flex-direction: column;
-      padding: 3%;
-
-    }
-
-    .duvidas{
-      padding: 5%;
-    }
-
-    .accordion-button:not(.collapsed) {
-      color: #000;
-      background-color: #fff;
-      font-weight: bold;
-    }
-
-    .accordion-button:focus {
-      border-color: #000 !important;
-      box-shadow: none !important;
-    }
-
-    .accordion-button:not(.collapsed)::after {
-      background-image: var(--bs-accordion-btn-icon) !important;
-    }
-
-    .accordion-body{
-      text-align: justify;
-    }
-
-    .accordion-body a{
-      color: #FFC107;
-    }
-
-    .accordion-body a:hover{
-      color: #362b0b;
-    }
-
-    .form-user{
-      font-size: 100%;
-      font-weight: bold;
     }
   </style>
   
   <body>
 
-    @include('nav')
+    @include('layouts.base.nav')
 
     <?php
       if($message = Session::get('success')){
@@ -130,14 +28,14 @@
         <div class="row">
           <div class="col-12 col-md-7 cadastro bg-dark" id="simular">
 
-            {{-- <a class="btn btn-info" href="{{route('send-email')}}"  role="button">Enviar E-mail</a> --}}
+            {{-- <a class="btn btn-info" href="{{route('send-email-cadastro')}}"  role="button">Enviar E-mail</a> --}}
 
             @include('notas')
           </div>
 
             
             <div class="col-12 col-md-5 forms">
-              @include('flash-message')
+              @include('layouts.base.flash-message')
                 
                 <ul class="nav nav-tabs justify-content-center">
                     <li class="nav-item">
@@ -286,22 +184,23 @@
     </div>
 
 
-    @include('footer')
+    @include('layouts.base.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    
     <script>
       // colapso do cadastro deve estar aparecendo ao abrir tela
       document.getElementById("cadastro").classList.add("show");
 
-        function cadastro(){
-            document.getElementById("login").classList.remove("show");
-        }
+      function cadastro(){
+          document.getElementById("login").classList.remove("show");
+      }
 
-        function login(){
-            document.getElementById("cadastro").classList.remove("show");
-        }
+      function login(){
+          document.getElementById("cadastro").classList.remove("show");
+      }
     </script>
+    
+    
 
 </body>
 </html>
