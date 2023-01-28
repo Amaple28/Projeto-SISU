@@ -67,11 +67,13 @@
 </div> --}}
 
 @if(isset($simulacoes_positivas , $simulacoes_negativas,$simulacoes_neutras))
+@foreach($simulacoes_negativas as $simulacao_negativa)
 <div class="col-10 mb-3">
     <div class="card reprovado">
         <div class="card-body">
-            <h5 class="card-title">Universidade Federal de Minas Gerais</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: 817.22</h6>
+            <h5 class="card-title">{{$simulacao_negativa->sigla}}-{{$simulacao_negativa->nome}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva->getsisu_anterior()}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->getsisu_atual()}}</h6>
             <p class="text-muted chances">
                 <i class="fas fa-long-arrow-alt-down"></i>
                 Chances Baixas de Aprovação
@@ -80,12 +82,14 @@
         </div>
     </div>
 </div>
-
+@endforeach
+@foreach($simulacoes_positivas as $simulacao_positiva)
 <div class="col-10 mb-3">
     <div class="card aprovado">
         <div class="card-body">
-            <h5 class="card-title">Universidade Federal de Minas Gerais</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: 817.22</h6>
+            <h5 class="card-title">{{$simulacao_positiva->sigla}}-{{$simulacao_positiva->nome}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva->getsisu_anterior()}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->getsisu_atual()}}</h6>
             <p class="text-muted chances">
                 <i class="fas fa-long-arrow-alt-up"></i>
                 Chances Altas de Aprovação
@@ -94,5 +98,6 @@
         </div>
     </div>
 </div>
+@endforeach
 @endif
 {{-- fas fa-laugh-beam --}}
