@@ -22,10 +22,11 @@ class NotasController extends Controller
     public function faculdades(Request $request){
         $faculdades = faculdade::orderBy('id', 'desc')->paginate(15);
        
-        
+        $user=Auth::user();
         
 
         return view('faculdades')
-        ->with('faculdades', $faculdades);
+        ->with('faculdades', $faculdades)
+        ->with('user', $user);
     }
 }
