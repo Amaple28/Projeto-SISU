@@ -43,23 +43,11 @@ Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSe
 Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard', function () {
-    $user = Auth::user();
-    return view('simulacao')
-    ->with('user', $user)
-    ->with('simulacao',  simulacao::where('user_id',$user->id)->first())
-    ->with('faculdades',  faculdade::all())
-    ->with('estados',  Util::estados());
-})->name('dashboard');
+Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
 
 //DASHBOARD DO ADMIN
-Route::get('/dashboard-admin', function () {
-    $users = User::orderBy('id', 'desc')->paginate(15);
-    $user = Auth::user();
-    return view('admin')
-    ->with('users', $users)
-    ->with('user', $user);
-})->name('admin');
+Route::get('/admin', [UserController::class, 'dashboardAdmin'])->name('admin');
+    
 
 Route::post('deletar/{id}',[AdminController::class, 'deletar']);
 

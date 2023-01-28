@@ -121,4 +121,22 @@ class UserController extends Controller
         
     }
 
+    public function dashboard(){
+        $user = Auth::user();
+        
+        return view('simulacao')
+        ->with('user', $user)
+        ->with('simulacao',  simulacao::where('user_id',$user->id)->first())
+        ->with('faculdades',  faculdade::all())
+        ->with('estados',  Util::estados());
+    }
+
+    public function dashboardAdmin(){
+        $users = User::orderBy('id', 'desc')->paginate(15);
+        $user = Auth::user();
+        return view('admin')
+        ->with('users', $users)
+        ->with('user', $user);
+    }
+
 }
