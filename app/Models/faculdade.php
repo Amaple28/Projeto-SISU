@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\sisu_anterior;
 use App\Models\sisu_atual;
 
+
 class faculdade extends Model
 {
   /**
@@ -19,14 +20,21 @@ class faculdade extends Model
 
     public function getsisu_anterior()
     {
-       $nota = sisu_anterior::where('faculdade_id', $this->id)->get();
-        return $nota;
+       $nota = sisu_anterior::where('faculdade_id', $this->id)->first();
+       $notas = $nota->nota;
+         
+        return $notas;
     }
 
     public function getsisu_atual()
     {
-       $nota = sisu_atual::where('faculdade_id', $this->id)->get();
-        return $nota;
+         $nota = sisu_atual::where('faculdade_id', $this->id)->first();
+         
+         $notas = $nota->nota;
+         
+         return $notas;
     }
+
+    
 
 }

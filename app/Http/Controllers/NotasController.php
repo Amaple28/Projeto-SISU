@@ -13,12 +13,18 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Models\faculdade;
+use App\Models\sisu_atual;
+use App\Models\sisu_anterior;
 
 class NotasController extends Controller
 {
 
     public function faculdades(Request $request){
         $faculdades = faculdade::orderBy('id', 'desc')->paginate(15);
+       
+        
+        
+
         return view('faculdades')
         ->with('faculdades', $faculdades);
     }

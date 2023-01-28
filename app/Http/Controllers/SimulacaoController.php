@@ -29,10 +29,19 @@ class SimulacaoController extends Controller
         $simulacoes_positivas = [];
         $simulacoes_negativas = [];
         $simulacoes_neutras = [];
-
+        $modalidade = $request->input('modalidade');
         $faculdades = [];
+        
         foreach($request->input('faculdades') as $faculdade){
             $faculdades[] = faculdade::where('id', $faculdade)->first();            
+        }
+
+        if($request->input('estado') != 'Todos'){
+            $faculdades = faculdade::where('estado', $request->input('estado'))->get();
+        }
+
+        if($faculdades.length > 3 || $faculdades.length < 1){
+            return redirect()->back()->with('error', 'Selecione no mínimo 1 e no máximo 3 faculdades');            
         }
 
         foreach($faculdades as $faculdade){
