@@ -60,3 +60,6 @@ Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('b
 
 //enviar e-mail
 Route::get('/send-email-cadastro', [EmailController::class, 'sendEmailCadastro'])->name('send-email-cadastro');
+
+//editar notas
+Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');

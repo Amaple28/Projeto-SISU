@@ -101,7 +101,7 @@ class UserController extends Controller
         if(Auth::check()){
             $user= Auth::user();
             if($user->tipo_user == 1){
-                return redirect('/dashboard-admin')
+                return redirect('/admin')
                 ->with('user', $user)   
                 ->with('estados', $estados)             
                 ->with('success', 'Login realizado com sucesso!');

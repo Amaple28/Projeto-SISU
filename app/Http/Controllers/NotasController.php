@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use App\Models\faculdade;
 use App\Models\sisu_atual;
 use App\Models\sisu_anterior;
+use Illuminate\Support\Facades\DB;
 
 class NotasController extends Controller
 {
@@ -28,4 +29,16 @@ class NotasController extends Controller
         ->with('faculdades', $faculdades)
         ->with('user', $user);
     }
+
+    public function editarNotas($id){
+        
+        $data = DB::table('faculdade')
+            ->join('sisu_atual', 'faculdade.id', '=', 'sisu_atual.faculdade_id')
+            ->join('sisu_anterior', 'faculdade.id', '=', 'sisu_anterior.faculdade_id')
+            ->select('faculdade.*', 'sisu_atual.nota as nota_atual', 'sisu_anterior.nota as nota_anterior')
+            ->where('faculdade.id', '=', $id)
+            ->get();
+        return $data;
+    }
+
 }

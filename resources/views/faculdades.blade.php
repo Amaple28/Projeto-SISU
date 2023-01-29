@@ -3,7 +3,7 @@
 @include('layouts.base.base')
 
 <style>
-    @include('layouts.css.faculdades');
+@include('layouts.css.faculdades');
 </style>
 
 <body>
@@ -35,25 +35,24 @@
                     <tbody>
 
                         @foreach ($faculdades as $faculdade)
-                            <tr>
-                                <td>{{ $faculdade->nome }}</td>
-                                <td>{{ $faculdade->estado }}</td>
-                                <td>{{ $faculdade->getsisu_anterior() }}</td>
-                                <td>{{ $faculdade->getsisu_atual() }}</td>
-                                <td>
-                                    <button type="button"class="btn btn-outline-warning"data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        <i class="fas fa-edit"></i>
-                                        Editar
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-outline-danger">
-                                        <i class="fas fa-trash-alt"></i>
-                                        Excluir
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $faculdade->nome }}</td>
+                            <td>{{ $faculdade->estado }}</td>
+                            <td>{{ $faculdade->getsisu_anterior() }}</td>
+                            <td>{{ $faculdade->getsisu_atual() }}</td>
+                            <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    onclick="yourJsFunction(this)" id="{{$faculdade->id}}">
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </button>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -64,16 +63,28 @@
     <div class="card-footer">
         {{ $faculdades->links() }}
     </div>
-    <!-- Modal -->
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title">Editar Notas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form>
+                        <div class="form-group">
+                            <label for="nota_sisu_atual">Nota Sisu Atual:</label>
+                            <input type="text" class="form-control" id="nota_sisu_atual"
+                                value="{{$faculdade->getsisu_atual()}}" name="nota_sisu_atual">
+                        </div>
+                        <div class="form-group">
+                            <label for="nota_sisu_anterior">Nota Sisu Anterior:</label>
+                            <input type="text" class="form-control" id="nota_sisu_anterior"
+                                value="{{$faculdade->getsisu_anterior()}}" name="nota_sisu_anterior">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -82,23 +93,35 @@
             </div>
         </div>
     </div>
-
     @include('layouts.base.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 
+
 </body>
-
-
-
 <script>
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-    var buttons = document.querySelectorAll('.myModal')
-    myModal.addEventListener('shown.bs.modal', function() {
-        myInput.focus()
-    })
+const yourJsFunction = async (element) => {
+    const id = element.id;
+    const url = "{{route('editar-notas')}}" + '/' + id;
+    console.log(url);
+    const data = await getData(url);
+    console.log(data);
+
+}
+
+const getData = async (url, options = {}) => {
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 </script>
+
 
 </html>
