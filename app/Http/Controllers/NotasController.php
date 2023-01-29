@@ -42,15 +42,19 @@ class NotasController extends Controller
     }
 
     public function salvarNotas(Request $request){
-        // dd($request->input('id'));
-
-        $sisu_atual = sisu_atual::where('faculdade_id', $request->input('id'))->first();
-        $sisu_atual->nota = $request->input('nota_sisu_atual');
-        $sisu_atual->save();
-
-        $sisu_anterior = sisu_anterior::where('faculdade_id', $request->input('id'))->first();
-        $sisu_anterior->nota = $request->input('nota_sisu_anterior');
+        // dd($request->all());
+        $id = $request->input('id');
+        $nota_sisu_atual = $request->input('nota_sisu_atual');
+        $nota_sisu_anterior = $request->input('nota_sisu_anterior');
+        $faculdade = faculdade::where('id', $id)->first();
+        
+        $sisu_anterior = sisu_anterior::where('faculdade_id', $faculdade->id)->first();
+        $sisu_anterior->nota = $nota_sisu_anterior;
         $sisu_anterior->save();
+
+        $sisu_atual = sisu_atual::where('faculdade_id', $faculdade->id)->first();
+        $sisu_atual->nota = $nota_sisu_atual;
+        $sisu_atual->save();       
 
           
 
