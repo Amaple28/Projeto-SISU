@@ -66,14 +66,16 @@
 
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Editar Notas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form method="get" action="{{route('salvar-notas')}}">
+                    <div class="modal-body">
+
                         <div class="form-group">
                             <label for="nota_sisu_atual">Nota Sisu Atual:</label>
                             <input type="text" class="form-control" id="nota_sisu_atual"
@@ -84,14 +86,17 @@
                             <input type="text" class="form-control" id="nota_sisu_anterior"
                                 value="{{$faculdade->getsisu_anterior()}}" name="nota_sisu_anterior">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                        <input type="hidden" name="id" value="{{$faculdade->id}}">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
+
     </div>
     @include('layouts.base.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -105,6 +110,7 @@ const yourJsFunction = async (element) => {
     const id = element.id;
     const url = "{{route('editar-notas')}}" + '/' + id;
     console.log(url);
+    console.log(id);
     const data = await getData(url);
     console.log(data);
 

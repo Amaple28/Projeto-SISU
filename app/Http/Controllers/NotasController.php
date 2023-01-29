@@ -41,4 +41,20 @@ class NotasController extends Controller
         return $data;
     }
 
+    public function salvarNotas(Request $request){
+        // dd($request->input('id'));
+
+        $sisu_atual = sisu_atual::where('faculdade_id', $request->input('id'))->first();
+        $sisu_atual->nota = $request->input('nota_sisu_atual');
+        $sisu_atual->save();
+
+        $sisu_anterior = sisu_anterior::where('faculdade_id', $request->input('id'))->first();
+        $sisu_anterior->nota = $request->input('nota_sisu_anterior');
+        $sisu_anterior->save();
+
+          
+
+        return redirect()->route('faculdades');
+    }
+
 }

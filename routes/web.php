@@ -63,3 +63,4 @@ Route::get('/send-email-cadastro', [EmailController::class, 'sendEmailCadastro']
 
 //editar notas
 Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');
+Route::get('/salvar-notas', [NotasController::class, 'salvarNotas'])->name('salvar-notas');
