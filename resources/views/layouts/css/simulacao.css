@@ -28,3 +28,8 @@
     font-weight: bold;
     padding: 20px;
 }
+
+.span{
+    font-weight: bold;
+    font-size: 15px !important;
+}
