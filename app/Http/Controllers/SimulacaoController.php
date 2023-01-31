@@ -51,24 +51,22 @@ class SimulacaoController extends Controller
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
 
             if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
-                if (($user_simulacao->nota_corte *0.1) > $nota_corte->nota) {
+                if (($user_simulacao->nota_corte * 0.1) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
-                } else if (($user_simulacao->nota_corte *0.1) < $nota_corte->nota) {
+                } else if (($user_simulacao->nota_corte * 0.1) < $nota_corte->nota) {
                     $simulacoes_negativas[] = $nota_corte;
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
-            }
-            else if($request->input('estado')=='Acre' && $nota_corte->estado =='AC'){
-                if (($user_simulacao->nota_corte *0.15) > $nota_corte->nota) {
+            } else if ($request->input('estado') == 'Acre' && $nota_corte->estado == 'AC') {
+                if (($user_simulacao->nota_corte * 0.15) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
-                } else if (($user_simulacao->nota_corte *0.15) < $nota_corte->nota) {
+                } else if (($user_simulacao->nota_corte * 0.15) < $nota_corte->nota) {
                     $simulacoes_negativas[] = $nota_corte;
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
-            }
-            else if($request->input('estado')=="Amazonas" && $nota_corte->estado=="AM"){
+            } else if ($request->input('estado') == "Amazonas" && $nota_corte->estado == "AM") {
                 if (($user_simulacao->nota_corte * 0.2) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
                 } else if (($user_simulacao->nota_corte * 0.2) < $nota_corte->nota) {
@@ -76,14 +74,15 @@ class SimulacaoController extends Controller
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
-            }
-
-            if ($user_simulacao->nota_corte > $nota_corte->nota) {
-                $simulacoes_positivas[] = $nota_corte;
-            } else if ($user_simulacao->nota_corte < $nota_corte->nota) {
-                $simulacoes_negativas[] = $nota_corte;
             } else {
-                $simulacoes_neutras[] = $nota_corte;
+
+                if ($user_simulacao->nota_corte > $nota_corte->nota) {
+                    $simulacoes_positivas[] = $nota_corte;
+                } else if ($user_simulacao->nota_corte < $nota_corte->nota) {
+                    $simulacoes_negativas[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
             }
         }
 
