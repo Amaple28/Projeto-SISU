@@ -30,7 +30,7 @@
     </div>
 </div> --}}
 
-@if(isset($simulacoes_positivas , $simulacoes_negativas,$simulacoes_neutras))
+@if(isset($simulacoes_positivas , $simulacoes_negativas))
 @foreach($simulacoes_negativas as $simulacao_negativa)
 <div class="col-10 mb-3">
     <div class="card reprovado">

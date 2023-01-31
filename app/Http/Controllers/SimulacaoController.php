@@ -22,11 +22,12 @@ use Symfony\Component\Console\Input\Input;
 
 class SimulacaoController extends Controller
 {
-    public function simulacaoFaculdades(Request $request){
+    public function simulacaoFaculdades(Request $request)
+    {
         // dd($request->input('faculdades'));
         $user = Auth::user();
-        $user_simulacao= simulacao::where('user_id', $user->id)->first();
-        
+        $user_simulacao = simulacao::where('user_id', $user->id)->first();
+
         $simulacoes_positivas = [];
         $simulacoes_negativas = [];
         $simulacoes_neutras = [];
@@ -36,30 +37,56 @@ class SimulacaoController extends Controller
         // if($request->input('modalidade') == null){
         //     return redirect()->back()->with('error', 'Selecione uma modalidade');            
         // }
-                    
-        
-        if($request->input('faculdades') == null|| count($faculdades) > 3 || count($faculdades) < 1){
-            return redirect()->back()->with('error', 'Selecione no mínimo 1 e no máximo 3 faculdades');            
-        }
-        
-       
-        
-        
 
-        foreach($faculdades as $faculdade){
+
+        if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
+            return redirect()->back()->with('error', 'Selecione no mínimo 1 e no máximo 3 faculdades');
+        }
+
+
+
+
+
+        foreach ($faculdades as $faculdade) {
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
-            
-            if($user_simulacao->nota_corte > $nota_corte->nota){
+
+            if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
+                if (($user_simulacao->nota_corte *0.1) > $nota_corte->nota) {
+                    $simulacoes_positivas[] = $nota_corte;
+                } else if (($user_simulacao->nota_corte *0.1) < $nota_corte->nota) {
+                    $simulacoes_negativas[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            }
+            else if($request->input('estado')=='Acre' && $nota_corte->estado =='AC'){
+                if (($user_simulacao->nota_corte *0.15) > $nota_corte->nota) {
+                    $simulacoes_positivas[] = $nota_corte;
+                } else if (($user_simulacao->nota_corte *0.15) < $nota_corte->nota) {
+                    $simulacoes_negativas[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            }
+            else if($request->input('estado')=="Amazonas" && $nota_corte->estado=="AM"){
+                if (($user_simulacao->nota_corte * 0.2) > $nota_corte->nota) {
+                    $simulacoes_positivas[] = $nota_corte;
+                } else if (($user_simulacao->nota_corte * 0.2) < $nota_corte->nota) {
+                    $simulacoes_negativas[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            }
+
+            if ($user_simulacao->nota_corte > $nota_corte->nota) {
                 $simulacoes_positivas[] = $nota_corte;
-            }
-            else if($user_simulacao->nota_corte < $nota_corte->nota){
+            } else if ($user_simulacao->nota_corte < $nota_corte->nota) {
                 $simulacoes_negativas[] = $nota_corte;
-            }
-            else{
+            } else {
                 $simulacoes_neutras[] = $nota_corte;
             }
         }
-        
+
 
         $faculdades = faculdade::all();
 
@@ -67,12 +94,8 @@ class SimulacaoController extends Controller
             ->with('simulacao', $user_simulacao)
             ->with('simulacoes_positivas', $simulacoes_positivas)
             ->with('simulacoes_negativas', $simulacoes_negativas)
-            ->with('simulacoes_neutras', $simulacoes_neutras)
             ->with('user', $user)
             ->with('faculdades',  faculdade::all())
             ->with('estados',  Util::estados());
-            
     }
-    
-    
 }
