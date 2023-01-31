@@ -1,85 +1,189 @@
 <!doctype html>
 <html lang="pt-br">
-    @include('layouts.base.base')
+@include('layouts.base.base')
 
-    <style>
-        @include('layouts.css.admin');
-    </style>
+<style>
+@include('layouts.css.admin');
+</style>
 
-    <body>
-        @include('layouts.base.nav')
+<body>
+    @include('layouts.base.nav')
 
-        <div class="header">
-            <h2>Gerenciar Usuários</h2>
-            <a href="{{route('baixar-leads')}}" class="btn btn-warning">
-                <i class="fas fa-file-export"></i>    
-                Exportar Leads
-            </a>
-        </div>
+    <div class="header">
+        <h2>Gerenciar Usuários</h2>
+        <a href="{{route('baixar-leads')}}" class="btn btn-warning">
+            <i class="fas fa-file-export"></i>
+            Exportar Leads
+        </a>
+    </div>
 
-        {{-- criar tabela que cria paginação automaticamente com os dados do banco de dados e botões de ação para editar e excluir --}}
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    {{-- criar tabela que cria paginação automaticamente com os dados do banco de dados e botões de ação para editar e excluir --}}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                            @foreach ($users as $user)
-                                @if($user->tipo_user == 1)
-                                    <tr class="admin">
-                                        <td> <b>Admin: </b> {{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td class="acoes">
-                                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu">
-                                                <li><a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> Permissões</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Excluir Usuário</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td class="acoes">
-                                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{route('baixar-lead',$user->id)}}"> <i class="fas fa-download"></i> Exportar Dados</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> Permissões</a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @foreach ($users as $user)
+                        @if($user->tipo_user == 1)
+                        <tr class="admin">
+                            <td> <b>Admin: </b> {{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td class="acoes">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> Permissões</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-trash"></i> Excluir
+                                            Usuário</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Editar Notas</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form method="get" action="{{route('salvar-permissoes', $user->id)}}">
+                                        <div class="modal-body">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="tipo_user">Permissão:</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="tipo_user">
+                                                    <option selected>Selecione a permissão</option>
+                                                    <option value="1">Admin</option>
+                                                    <option value="0">Usuário</option>
+                                            </div>
+                                            
+                                            <input type="hidden" name="id" value="{{$user->id}}">
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                        <tr>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td class="acoes">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('baixar-lead',$user->id)}}"> <i
+                                                class="fas fa-download"></i> Exportar Dados</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    onclick="yourJsFunction(this)" id="{{$user->id}}"> <i class="fas fa-id-card"></i>
+                                            Permissões</button>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Editar Notas</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form method="get" action="{{route('salvar-permissoes', $user->id)}}">
+                                        <div class="modal-body">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="tipo_user">Permissão:</label>
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="tipo_user">
+                                                    <option selected>Selecione a permissão</option>
+                                                    <option value="1">Admin</option>
+                                                    <option value="0">Usuário</option>
+                                            </div>
+                                            
+                                            <input type="hidden" name="id" value="{{$user->id}}">
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        
-        <div class="card-footer">
-            {{$users->links()}}
-        </div>
-        
-        @include('layouts.base.footer')
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    
-    </body>
+    </div>
 
-    <script>
+    <div class="card-footer">
+        {{$users->links()}}
+    </div>
+
+    @include('layouts.base.footer')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
+
+</body>
+
+<script>
+const yourJsFunction = async (element) => {
+    const id = element.id;
+    const url = "{{route('editar-permissoes')}}" + '/' + id;
+    console.log(url);
+    console.log(id);
+    const data = await getData(url);
+    console.log(data);
+
+}
+
+const getData = async (url, options = {}) => {
+    try {
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+</script>
 
 </html>

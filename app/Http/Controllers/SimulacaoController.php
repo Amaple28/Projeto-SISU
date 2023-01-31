@@ -18,7 +18,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
-
+use Symfony\Component\Console\Input\Input;
 
 class SimulacaoController extends Controller
 {
@@ -31,19 +31,20 @@ class SimulacaoController extends Controller
         $simulacoes_negativas = [];
         $simulacoes_neutras = [];
         $modalidade = $request->input('modalidade');
-        $faculdades = [];
+        $faculdades = $request->input('faculdades');
+        // dd(count($faculdades));
+        // if($request->input('modalidade') == null){
+        //     return redirect()->back()->with('error', 'Selecione uma modalidade');            
+        // }
+                    
         
-        foreach($request->input('faculdades') as $faculdade){
-            $faculdades[] = faculdade::where('id', $faculdade)->first();            
-        }
-
-        if($request->input('estado') != 'Todos'){
-            $faculdades = faculdade::where('estado', $request->input('estado'))->get();
-        }
-
-        if($faculdades.length > 3 || $faculdades.length < 1){
+        if($request->input('faculdades') == null|| count($faculdades) > 3 || count($faculdades) < 1){
             return redirect()->back()->with('error', 'Selecione no mínimo 1 e no máximo 3 faculdades');            
         }
+        
+       
+        
+        
 
         foreach($faculdades as $faculdade){
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
@@ -58,18 +59,18 @@ class SimulacaoController extends Controller
                 $simulacoes_neutras[] = $nota_corte;
             }
         }
+        
 
         $faculdades = faculdade::all();
 
-        $estados = Util::estados();
-
         return view('simulacao')
+            ->with('simulacao', $user_simulacao)
             ->with('simulacoes_positivas', $simulacoes_positivas)
             ->with('simulacoes_negativas', $simulacoes_negativas)
             ->with('simulacoes_neutras', $simulacoes_neutras)
-            ->with('simulacao', $user_simulacao)
-            ->with('faculdades', $faculdades)
-            ->with('estados', $estados);
+            ->with('user', $user)
+            ->with('faculdades',  faculdade::all())
+            ->with('estados',  Util::estados());
             
     }
     

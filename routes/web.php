@@ -64,3 +64,10 @@ Route::get('/send-email-cadastro', [EmailController::class, 'sendEmailCadastro']
 //editar notas
 Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');
 Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name('salvar-notas');
+
+//editar permissoes
+Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissoes'])->name('editar-permissoes');
+Route::get('/salvar-permissoes/{id?}', [AdminController::class, 'salvarPermissoes'])->name('salvar-permissoes');
+
+//simulacao
+Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');

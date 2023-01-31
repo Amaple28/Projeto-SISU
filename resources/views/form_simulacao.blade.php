@@ -3,7 +3,7 @@
   <h4>Preencha o formulário e faça a sua simulação</h4>
 </div>
 
-<form action="{{route('dashboard')}}" method="get">
+<form action="{{route('simulacao')}}" method="get">
   @csrf
   <div class="container-fluid text-center">
     <div class="row">
