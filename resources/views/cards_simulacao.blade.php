@@ -40,7 +40,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->nota}}</h6>
             <p class="text-muted chances">
                 <i class="fas fa-long-arrow-alt-down"></i>
-                Chances Baixas de Aprovação
+                Chances Baixas
                 <i class="fas fa-frown"></i>
             </p>
         </div>
@@ -56,7 +56,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->nota}}</h6>
             <p class="text-muted chances">
                 <i class="fas fa-long-arrow-alt-up"></i>
-                Chances Altas de Aprovação
+                Chances Altas
                 <i class="fas fa-laugh-beam"></i>
             </p>
         </div>
