@@ -59,7 +59,7 @@ class UserController extends Controller
         $novoUsuario = new User();
         $novoUsuario->name = $request->input('name');        
         $novoUsuario->email= $request->input('email');
-        $novoUsuario->telefone= $request->input('tel');
+        
         $senha= $request->input('password');
         $novoUsuario->password = Hash::make($senha);
 
@@ -73,8 +73,18 @@ class UserController extends Controller
         $simulacao->modalidade =1;
         $simulacao->estado ='mg';
         $simulacao->nota_corte = ($simulacao->matematica + $simulacao->humanas + $simulacao->linguagens + $simulacao->natureza + $simulacao->redacao)/5;
-     
-
+        $phoneRegex = '/^\(\d{2}\)\s\d{5}-\d{4}$/';
+        
+        
+        if(preg_match($phoneRegex, $request->input('tel')))
+        {
+            $novoUsuario->telefone = $request->input('tel');
+        }
+        else{
+            return redirect('/')
+            ->with('error', 'Telefone inválido, tente novamente!')
+            ->with('tab', 'login');
+        }
         
         if (User::where('email',$novoUsuario->email)->first()){
             return redirect('/')
