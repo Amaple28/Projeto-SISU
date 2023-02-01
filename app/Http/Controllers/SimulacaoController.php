@@ -85,9 +85,9 @@ class SimulacaoController extends Controller
                 }
             }
         }
-
-
         $faculdades = faculdade::all();
+        
+
 
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
