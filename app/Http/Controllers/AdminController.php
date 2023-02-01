@@ -57,4 +57,18 @@ class AdminController extends Controller
         return response()->download('lead.csv');
     }
 
+    public function editarPermissao($id){
+        
+        $data= User::where('id',$id)->first();
+        return $data;
+    }
+
+    public function salvarPermissoes(Request $request){
+        $user = User::find($request->input('id'));
+        $user->tipo_user = $request->input('tipo_user');
+        $user->save();
+
+        return redirect()->route('admin');
+    }
+
 }
