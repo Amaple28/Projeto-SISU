@@ -71,3 +71,7 @@ Route::get('/salvar-permissoes/{id?}', [AdminController::class, 'salvarPermissoe
 
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
+
+
+Route::get('/editar-pesos/{id?}', [NotasController::class, 'editarPesos'])->name('editar-pesos');
+Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name('salvar-pesos');
