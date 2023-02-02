@@ -59,25 +59,45 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Editar Notas</h5>
+                                        <h5 class="modal-title">Editar Pesos</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="get" action="{{route('salvar-notas', $faculdade->id)}}">
+                                    <form method="get" action="{{route('salvar-pesos', $faculdade->id)}}">
                                         <div class="modal-body">
                                             @csrf
 
                                             <div class="form-group">
-                                                <label for="nota_sisu_atual">Nota Sisu Atual:</label>
-                                                <input type="text" class="form-control" id="nota_sisu_atual"
-                                                    value="{{$faculdade->getsisu_atual()}}" name="nota_sisu_atual">
+                                                <label for="matematica">Matematica</label>
+                                                <input type="text" class="form-control" id="matematica"
+                                                    value="" name="matematica">
                                             </div>
+
                                             <div class="form-group">
-                                                <label for="nota_sisu_anterior">Nota Sisu Anterior:</label>
-                                                <input type="text" class="form-control" id="nota_sisu_anterior"
-                                                    value="{{$faculdade->getsisu_anterior()}}"
-                                                    name="nota_sisu_anterior">
+                                                <label for="humanas">Humanas</label>
+                                                <input type="text" class="form-control" id="humanas"
+                                                    value="" name="humanas">
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="linguagens">Linguagens</label>
+                                                <input type="text" class="form-control" id="linguagens"
+                                                    value="" name="linguagens">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="natureza">Natureza</label>
+                                                <input type="text" class="form-control" id="natureza"
+                                                    value="" name="natureza">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="redacao">Redação</label>
+                                                <input type="text" class="form-control" id="redacao"
+                                                    value="" name="redacao">
+                                            </div>                                        
+
+                                            
                                             <input type="hidden" name="id" value="{{$faculdade->id}}">
 
                                         </div>
@@ -114,7 +134,7 @@
 <script>
 const yourJsFunction = async (element) => {
     const id = element.id;
-    const url = "{{route('editar-notas')}}" + '/' + id;
+    const url = "{{route('editar-pesos')}}" + '/' + id;
     console.log(url);
     console.log(id);
     const data = await getData(url);

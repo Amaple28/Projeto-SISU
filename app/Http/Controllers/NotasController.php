@@ -16,6 +16,7 @@ use App\Models\faculdade;
 use App\Models\sisu_atual;
 use App\Models\sisu_anterior;
 use Illuminate\Support\Facades\DB;
+use App\Models\PesoNotas;
 
 class NotasController extends Controller
 {
@@ -59,6 +60,35 @@ class NotasController extends Controller
           
 
         return redirect()->route('faculdades');
+    }
+
+
+    public function editarPesos($id)
+    {       
+        
+        $data = DB::table('faculdade')
+            ->join('PesoNotas', 'faculdade.id', '=', 'PesoNotas')                    
+            ->select('faculdade.*', 'PesoNotas as peso')
+            ->where('faculdade.id', '=', $id)
+            ->get();
+        return $data;
+        
+    }
+
+    public function salvarPesos(Request $request)
+    {
+        $id = $request->input('id');
+        $pesos = PesoNotas::where('faculdade_id', $id)->first();
+        
+        $pesos->matematica = $request->input('matematica');
+        $pesos->humanas = $request->input('humanas');
+        $pesos->linguagens = $request->input('linguagens');
+        $pesos->natureza = $request->input('natureza');
+        $pesos->redacao = $request->input('redacao');
+        $pesos->save();
+            
+
+        return redirect()->back()->with('success', 'Pesos atualizados com sucesso');
     }
 
 }

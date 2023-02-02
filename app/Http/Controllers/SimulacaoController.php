@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\simulacao;
 use App\Models\faculdade;
 use App\Models\sisu_atual;
+use App\Models\PesoNotas;
 use App\Models\sisu_anterior;
 use App\Util;
 
@@ -19,6 +20,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\DB;
 
 class SimulacaoController extends Controller
 {
@@ -97,4 +99,44 @@ class SimulacaoController extends Controller
             ->with('faculdades',  faculdade::all())
             ->with('estados',  Util::estados());
     }
+
+    public function editarPesos($id)
+    {       
+        
+            $data = DB::table('faculdade')
+                ->join('PesoNotas', 'faculdade.id', '=', 'PesoNotas')                    
+                ->select('faculdade.*', 'PesoNotas as peso')
+                ->where('faculdade.id', '=', $id)
+                ->get();
+            return $data;
+        
+    }
+
+    public function salvarPesos(Request $request)
+    {
+        $faculdade = faculdade::find($request->input('faculdade_id'));
+        $pesos = PesoNotas::where('faculdade_id', $faculdade->id)->first();
+
+        if ($pesos == null) {
+            $pesos = new PesoNotas();
+            $pesos->user_id = $faculdade->id;
+            $pesos->matematica = $request->input('matematica');
+            $pesos->humanas = $request->input('humanas');
+            $pesos->linguagens = $request->input('linguagens');
+            $pesos->natureza = $request->input('natureza');
+            $pesos->redacao = $request->input('redacao');
+            $pesos->save();
+        } else {
+            $pesos->matematica = $request->input('matematica');
+            $pesos->humanas = $request->input('humanas');
+            $pesos->linguagens = $request->input('linguagens');
+            $pesos->natureza = $request->input('natureza');
+            $pesos->redacao = $request->input('redacao');
+            $pesos->save();
+        }       
+
+        return redirect()->back()->with('success', 'Pesos atualizados com sucesso');
+    }
+
+    
 }

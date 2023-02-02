@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('_peso__notas', function (Blueprint $table) {
+        Schema::create('PesoNotas', function (Blueprint $table) {
             $table->id();
+            $table->string('faculdade_id');
             $table->float('matematica')->default(0.0);
             $table->float('humanas')->default(0.0);
             $table->float('natureza')->default(0.0);
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_peso__notas');
+        Schema::dropIfExists('PesoNotas');
     }
 };
