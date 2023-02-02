@@ -64,4 +64,25 @@
 </div>
 @endforeach
 @endif
+
+foreach ($faculdades as $faculdade) 
+<div class="card reprovado">
+        <div class="card-body">
+            <h5 class="card-title mb-3">{{$faculdade->sigla}}-{{$faculdade->nome}}</h5>          
+
+            <div class="quadro_resultado">
+                <div class="notas_corte col-6">
+                    <h6 class="card-subtitle mb-2">Notas de Corte</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">2022: {{$faculdade->getsisu_anterior()}}</li>
+                        <li class="list-group-item">2023: {{$faculdade->getsisu_atual()}}</li>
+                    </ul>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+ 
+
 {{-- fas fa-laugh-beam --}}
