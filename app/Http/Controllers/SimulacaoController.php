@@ -22,6 +22,7 @@ use Illuminate\Http\JsonResponse;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Facades\DB;
 
+
 class SimulacaoController extends Controller
 {
     public function simulacaoFaculdades(Request $request)
@@ -40,6 +41,7 @@ class SimulacaoController extends Controller
         //     return redirect()->back()->with('error', 'Selecione uma modalidade');            
         // }
 
+        
 
         if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
             return redirect()->back()->with('error', 'Selecione no mínimo 1 e no máximo 3 faculdades');
@@ -51,7 +53,7 @@ class SimulacaoController extends Controller
 
         foreach ($faculdades as $faculdade) {
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
-
+            $user_simulacao->nota_corte = $user_simulacao->pesoNotas($faculdade);
             if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
                 if (($user_simulacao->nota_corte * 0.1) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
@@ -100,43 +102,7 @@ class SimulacaoController extends Controller
             ->with('estados',  Util::estados());
     }
 
-    public function editarPesos($id)
-    {       
-        
-            $data = DB::table('faculdade')
-                ->join('PesoNotas', 'faculdade.id', '=', 'PesoNotas')                    
-                ->select('faculdade.*', 'PesoNotas as peso')
-                ->where('faculdade.id', '=', $id)
-                ->get();
-            return $data;
-        
-    }
 
-    public function salvarPesos(Request $request)
-    {
-        $faculdade = faculdade::find($request->input('faculdade_id'));
-        $pesos = PesoNotas::where('faculdade_id', $faculdade->id)->first();
-
-        if ($pesos == null) {
-            $pesos = new PesoNotas();
-            $pesos->user_id = $faculdade->id;
-            $pesos->matematica = $request->input('matematica');
-            $pesos->humanas = $request->input('humanas');
-            $pesos->linguagens = $request->input('linguagens');
-            $pesos->natureza = $request->input('natureza');
-            $pesos->redacao = $request->input('redacao');
-            $pesos->save();
-        } else {
-            $pesos->matematica = $request->input('matematica');
-            $pesos->humanas = $request->input('humanas');
-            $pesos->linguagens = $request->input('linguagens');
-            $pesos->natureza = $request->input('natureza');
-            $pesos->redacao = $request->input('redacao');
-            $pesos->save();
-        }       
-
-        return redirect()->back()->with('success', 'Pesos atualizados com sucesso');
-    }
 
     
 }

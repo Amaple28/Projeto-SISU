@@ -28,7 +28,7 @@
                             <th scope="col">Estado</th>
                             <th scope="col">2022</th>
                             <th scope="col">2023</th>
-                            <th scope="col" style="width:13% !important"></th>
+                            <th scope="col" style="width:13% !important">Pesos</th>
                             <th scope="col" style="width:13% !important"></th>
                         </tr>
                     </thead>
