@@ -44,9 +44,7 @@
             </div>
         </div>
 
-    {{--   <div class="card-footer">
-            {{$faculdades->links()}}
-        </div> --}}
+
 
 
         @include('layouts.base.footer')
