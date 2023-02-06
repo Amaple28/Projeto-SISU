@@ -30,17 +30,17 @@
     </div>
 </div> --}}
 
-@if(isset($simulacoes_positivas , $simulacoes_negativas,$simulacoes_neutras))
+@if(isset($simulacoes_positivas , $simulacoes_negativas))
 @foreach($simulacoes_negativas as $simulacao_negativa)
 <div class="col-10 mb-3">
     <div class="card reprovado">
         <div class="card-body">
             <h5 class="card-title">{{$simulacao_negativa->sigla}}-{{$simulacao_negativa->nome}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva->getsisu_anterior()}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->getsisu_atual()}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_negativa->getsisu_anterior()}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_negativa->nota}}</h6>
             <p class="text-muted chances">
                 <i class="fas fa-long-arrow-alt-down"></i>
-                Chances Baixas de Aprovação
+                Chances Baixas
                 <i class="fas fa-frown"></i>
             </p>
         </div>
@@ -51,12 +51,12 @@
 <div class="col-10 mb-3">
     <div class="card aprovado">
         <div class="card-body">
-            <h5 class="card-title">{{$simulacao_positiva->sigla}}-{{$simulacao_positiva->nome}}</h5>
+            <h5 class="card-title">{{$simulacao_positiva->getfaculdadeEstado()}}-{{$simulacao_positiva->getfaculdadeNome()}}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva->getsisu_anterior()}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->getsisu_atual()}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->nota}}</h6>
             <p class="text-muted chances">
                 <i class="fas fa-long-arrow-alt-up"></i>
-                Chances Altas de Aprovação
+                Chances Altas
                 <i class="fas fa-laugh-beam"></i>
             </p>
         </div>
@@ -64,4 +64,25 @@
 </div>
 @endforeach
 @endif
+
+foreach ($faculdades as $faculdade) 
+<div class="card reprovado">
+        <div class="card-body">
+            <h5 class="card-title mb-3">{{$faculdade->sigla}}-{{$faculdade->nome}}</h5>          
+
+            <div class="quadro_resultado">
+                <div class="notas_corte col-6">
+                    <h6 class="card-subtitle mb-2">Notas de Corte</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">2022: {{$faculdade->getsisu_anterior()}}</li>
+                        <li class="list-group-item">2023: {{$faculdade->getsisu_atual()}}</li>
+                    </ul>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+ 
+
 {{-- fas fa-laugh-beam --}}

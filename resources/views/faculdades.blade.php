@@ -3,7 +3,7 @@
 @include('layouts.base.base')
 
 <style>
-    @include('layouts.css.faculdades');
+@include('layouts.css.faculdades');
 </style>
 
 <body>
@@ -28,32 +28,89 @@
                             <th scope="col">Estado</th>
                             <th scope="col">2022</th>
                             <th scope="col">2023</th>
-                            <th scope="col" style="width:13% !important"></th>
+                            <th scope="col" style="width:13% !important">Pesos</th>
                             <th scope="col" style="width:13% !important"></th>
                         </tr>
                     </thead>
                     <tbody>
 
                         @foreach ($faculdades as $faculdade)
-                            <tr>
-                                <td>{{ $faculdade->nome }}</td>
-                                <td>{{ $faculdade->estado }}</td>
-                                <td>{{ $faculdade->getsisu_anterior() }}</td>
-                                <td>{{ $faculdade->getsisu_atual() }}</td>
-                                <td>
-                                    <button type="button"class="btn btn-outline-warning"data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        <i class="fas fa-edit"></i>
-                                        Editar
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-outline-danger">
-                                        <i class="fas fa-trash-alt"></i>
-                                        Excluir
-                                    </a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $faculdade->nome }}</td>
+                            <td>{{ $faculdade->estado }}</td>
+                            <td>{{ $faculdade->getsisu_anterior() }}</td>
+                            <td>{{ $faculdade->getsisu_atual() }}</td>
+                            <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    onclick="yourJsFunction(this)" id="{{$faculdade->id}}">
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </button>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Editar Pesos</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form method="get" action="{{route('salvar-pesos', $faculdade->id)}}">
+                                        <div class="modal-body">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="matematica">Matematica</label>
+                                                <input type="text" class="form-control" id="matematica"
+                                                    value="" name="matematica">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="humanas">Humanas</label>
+                                                <input type="text" class="form-control" id="humanas"
+                                                    value="" name="humanas">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="linguagens">Linguagens</label>
+                                                <input type="text" class="form-control" id="linguagens"
+                                                    value="" name="linguagens">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="natureza">Natureza</label>
+                                                <input type="text" class="form-control" id="natureza"
+                                                    value="" name="natureza">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="redacao">Redação</label>
+                                                <input type="text" class="form-control" id="redacao"
+                                                    value="" name="redacao">
+                                            </div>                                        
+
+                                            
+                                            <input type="hidden" name="id" value="{{$faculdade->id}}">
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -64,41 +121,40 @@
     <div class="card-footer">
         {{ $faculdades->links() }}
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 
     @include('layouts.base.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 
+
 </body>
-
-
-
 <script>
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-    var buttons = document.querySelectorAll('.myModal')
-    myModal.addEventListener('shown.bs.modal', function() {
-        myInput.focus()
-    })
+const yourJsFunction = async (element) => {
+    const id = element.id;
+    const url = "{{route('editar-pesos')}}" + '/' + id;
+    console.log(url);
+    console.log(id);
+    const data = await getData(url);
+    console.log(data);
+
+}
+
+const getData = async (url, options = {}) => {
+    try {
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+        const data = await response.json();
+
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 </script>
+
 
 </html>

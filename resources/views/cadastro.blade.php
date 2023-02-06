@@ -22,10 +22,10 @@
     </div>
 
     <div class="form-floating  mb-3">
-        <input required type="text" class="form-control" id="tel" name="tel" placeholder="xx xxxx-xxxx"
-            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-        <label for="tel">Telefone</label>
-    </div>
+  <input required type="text" class="form-control" id="tel" name="tel" placeholder="(xx) xxxx-xxxx"
+    oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');">
+  <label for="tel">WhatsApp</label>
+</div>
 
     {{-- <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
