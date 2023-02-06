@@ -66,18 +66,17 @@ class AdminController extends Controller
         return response()->download('lead.csv');
     }
 
-    public function editarPermissao($id){
+    public function editarPermissao(Request $request){
         
-        $data= User::where('id',$id)->first();
-        return $data;
-    }
+        if(is_null($request->input('tipo_user'))){
+            return redirect()->back()->with('error', 'Por Favor, selecione uma permissão!');   
+        }
 
-    public function salvarPermissoes(Request $request){
         $user = User::find($request->input('id'));
         $user->tipo_user = $request->input('tipo_user');
         $user->save();
 
-        return redirect()->back()->with('success', 'Permissão alterada com sucesso!');
+        return redirect()->back()->with('success', 'Permissão alterada com sucesso!');   
     }
 
     public function deleteUser(Request $request){
@@ -92,6 +91,11 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->with('error', 'Erro ao deletar usuário!');
         }
+    }
+
+    public function deletarUsuario($id){
+        $user = User::find($id);
+        return $user;
     }
 
 }
