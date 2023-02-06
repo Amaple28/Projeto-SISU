@@ -68,7 +68,7 @@ class AdminController extends Controller
         $user->tipo_user = $request->input('tipo_user');
         $user->save();
 
-        return redirect()->route('admin');
+        return redirect()->back()->with('success', 'Permissão alterada com sucesso!');
     }
 
 }

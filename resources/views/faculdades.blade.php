@@ -24,12 +24,11 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Nome</th>
+                            <th scope="col" style="width:60%;">Nome</th>
                             <th scope="col">Estado</th>
                             <th scope="col">2022</th>
                             <th scope="col">2023</th>
-                            <th scope="col" style="width:13% !important">Pesos</th>
-                            <th scope="col" style="width:13% !important"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,26 +39,20 @@
                             <td>{{ $faculdade->estado }}</td>
                             <td>{{ $faculdade->getsisu_anterior() }}</td>
                             <td>{{ $faculdade->getsisu_atual() }}</td>
-                            <td> <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            <td> 
+                                <a class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     onclick="yourJsFunction(this)" id="{{$faculdade->id}}">
                                     <i class="fas fa-edit"></i>
                                     Editar
-                                </button>
-                            </td>
-                            <td>
-                                <a href="#" class="btn btn-outline-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                    Excluir
                                 </a>
                             </td>
                         </tr>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
-
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Editar Pesos</h5>
+                                        <h5 class="modal-title">Editar</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -67,44 +60,10 @@
                                         <div class="modal-body">
                                             @csrf
 
-                                            <div class="form-group">
-                                                <label for="matematica">Matematica</label>
-                                                <input type="text" class="form-control" id="matematica"
-                                                    value="" name="matematica">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="humanas">Humanas</label>
-                                                <input type="text" class="form-control" id="humanas"
-                                                    value="" name="humanas">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="linguagens">Linguagens</label>
-                                                <input type="text" class="form-control" id="linguagens"
-                                                    value="" name="linguagens">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="natureza">Natureza</label>
-                                                <input type="text" class="form-control" id="natureza"
-                                                    value="" name="natureza">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="redacao">Redação</label>
-                                                <input type="text" class="form-control" id="redacao"
-                                                    value="" name="redacao">
-                                            </div>                                        
-
-                                            
-                                            <input type="hidden" name="id" value="{{$faculdade->id}}">
-
+                                            @include('edit_faculdade')
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" class="btn btn-warning">Salvar Alterações</button>
                                         </div>
                                     </form>
                                 </div>

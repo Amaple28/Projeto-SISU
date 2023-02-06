@@ -31,6 +31,16 @@ class NotasController extends Controller
         ->with('user', $user);
     }
 
+    public function notas(Request $request){
+        $faculdades = faculdade::all();
+       
+        $user=Auth::user();   
+
+        return view('notas_admin')
+        ->with('faculdades', $faculdades)
+        ->with('user', $user);
+    }
+
     public function editarNotas($id){
         
         $data = DB::table('faculdade')
@@ -88,7 +98,7 @@ class NotasController extends Controller
         $pesos->save();
             
 
-        return redirect()->back()->with('success', 'Pesos atualizados com sucesso');
+        return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
     }
 
 }

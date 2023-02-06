@@ -128,3 +128,9 @@
                 font-size: 0.3rem !important;
             }
         }
+    
+        .notas_admin{
+            display: flex;
+            justify-content: center;
+            margin-top: 2%;
+        }
