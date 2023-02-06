@@ -80,4 +80,18 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Permissão alterada com sucesso!');
     }
 
+    public function deleteUser(Request $request){
+        $id = $request->input('id');
+        $user = User::find($id);
+
+        if($user->tipo_user == 1){
+            return redirect()->back()->with('error', 'Não é possível deletar o usuário administrador!');
+        }
+        if ($user->delete()) {
+            return redirect()->back()->with('success', 'Usuário deletado com sucesso!');
+        } else {
+            return redirect()->back()->with('error', 'Erro ao deletar usuário!');
+        }
+    }
+
 }
