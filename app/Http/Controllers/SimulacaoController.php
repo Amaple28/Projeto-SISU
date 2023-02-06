@@ -92,7 +92,8 @@ class SimulacaoController extends Controller
                 }
             }
         }
-        $faculdades = faculdade::orderBy('id', 'desc')->paginate(10);
+        $faculdades = faculdade::orderBy('id', 'desc')->get();
+        
         
 
 
