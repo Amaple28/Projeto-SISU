@@ -26,9 +26,16 @@
             <div class="offcanvas-body body-nav">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 @if($user->tipo_user == 1)
-                
+
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('admin')}}">
+                      <i class="fas fa-home"></i>
+                      Home
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('users')}}">
                       <i class="fas fa-user-cog"></i>
                       Usuários
                     </a>

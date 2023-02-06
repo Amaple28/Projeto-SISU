@@ -42,10 +42,10 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             
             if($user->tipo_user == 1){                
-                return redirect('admin');
+                return redirect('users');
             }
             else{
-            return redirect('dashboard');
+                return redirect('dashboard');
             }
         } else{
             return redirect('/')

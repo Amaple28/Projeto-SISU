@@ -72,9 +72,11 @@ Route::get('/salvar-permissoes/{id?}', [AdminController::class, 'salvarPermissoe
 
 //editar usuarios
 Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
+Route::get('/users', [AdminController::class, 'users'])->name('users');
 
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
 
+//editar faculdades
 Route::get('/editar-pesos/{id?}', [NotasController::class, 'editarPesos'])->name('editar-pesos');
 Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name('salvar-pesos');

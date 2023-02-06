@@ -6,228 +6,48 @@
 @include('layouts.css.admin');
 </style>
 
-<body>
+<body class="dashboard_admin_corpo">
     @include('layouts.base.nav')
     @include('layouts.base.flash-message')
 
     <div class="header">
-        <h2>Gerenciar Usuários</h2>
-        <a href="{{route('baixar-leads')}}" class="btn btn-warning">
-            <i class="fas fa-file-export"></i>
-            Exportar Leads
-        </a>
+        <h2>Olá, {{$user->name}}</h2>
     </div>
 
-    {{-- criar tabela que cria paginação automaticamente com os dados do banco de dados e botões de ação para editar e excluir --}}
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Email</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="row dashboard_admin">
+            <div class="col-6 mb-3 pag_dashboard">
+                <a type="button" class="btn btn-outline-primary btn-lg" href="{{route('users')}}">
+                    <i class="fas fa-user-cog fa-2xl p-4"></i>
+                    <br>
+                    Usuários
+                </a>
+            </div>
 
-                        @foreach ($users as $user)
-                            @if($user->tipo_user == 1)
-                                <tr class="admin">
-                                    <td> <b>Admin: </b> {{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td class="acoes">
-                                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu">
-                                            <li>
-                                                {{-- <a class="dropdown-item" href="#"> <i class="fas fa-id-card"></i> Permissões</a> --}}
-                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModalUser"
-                                                onclick="yourJsFunction(this)" id="{{$user->id}}"> <i class="fas fa-id-card"></i>
-                                                    Permissões
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#excluirUserAdmin"
-                                                onclick="deleteJsFunction(this)" id="{{$user->id}}"> 
-                                                    <i class="fas fa-trash"></i> Excluir Usuário</a>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <div class="modal fade" id="exampleModalUser" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Permissão de Usuário</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <form method="get" action="{{route('salvar-permissoes', $user->id)}}">
-                                                <div class="modal-body">
-                                                    @csrf
+            <div class="col-6 mb-3 pag_dashboard">
+                <a type="button" class="btn btn-outline-success btn-lg" href="{{route('notas')}}">
+                    <i class="fas fa-edit fa-2xl p-4"></i>
+                    <br>
+                    Notas 2023
+                </a>
+            </div>
 
-                                                    <div class="form-group">
-                                                        <label for="tipo_user">Permissão:</label>
-                                                        <select class="form-select" aria-label="Default select example"
-                                                            name="tipo_user">
-                                                            <option selected>Selecione a permissão</option>
-                                                            <option value="1">Admin</option>
-                                                            <option value="0">Usuário</option>
-                                                    </div>
-                                                    
-                                                    <input type="hidden" name="id" value="{{$user->id}}">
+            <div class="col-6 mb-3 pag_dashboard">
+                <a type="button" class="btn btn-outline-danger btn-lg" href="{{route('dashboard')}}">
+                    <i class="fas fa-clipboard-list fa-2xl p-4"></i>
+                    <br>
+                    Simulação
+                </a>
+            </div>
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-warning">Alterar Permissão</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="excluirUserAdmin" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Excluir Usuário</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <form method="get" action="{{route('delete-user', $user->id)}}">
-                                                <div class="modal-body">
-                                                    @csrf
-
-                                                    <h6>
-                                                        Tem certeza que deseja excluir o usuário {{$user->name}}?
-                                                    </h6>
-                                                    
-                                                    <input type="hidden" name="id" value="{{$user->id}}">
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-danger">Excluir</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            @else
-                                <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td class="acoes">
-                                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="{{route('baixar-lead',$user->id)}}"> <i
-                                                    class="fas fa-download"></i> 
-                                                    Exportar Dados
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                onclick="yourJsFunction(this)" id="{{$user->id}}"> <i class="fas fa-id-card"></i>
-                                                    Permissões
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#excluirUser"
-                                                onclick="deleteJsFunction(this)" id="{{$user->id}}"> 
-                                                    <i class="fas fa-trash"></i> Excluir Usuário</a>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Permissão de Usuário</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <form method="get" action="{{route('salvar-permissoes', $user->id)}}">
-                                                <div class="modal-body">
-                                                    @csrf
-
-                                                    <div class="form-group mb-3">
-                                                        <label for="tipo_user">Permissão:</label>
-                                                        <select class="form-select" aria-label="Default select example"
-                                                            name="tipo_user">
-                                                            <option selected>Selecione a permissão</option>
-                                                            <option value="1">Admin</option>
-                                                            <option value="0">Usuário</option>
-                                                        </select>
-                                                    </div>
-                                                    
-                                                    <input type="hidden" name="id" value="{{$user->id}}">
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-warning">Alterar Permissão</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="excluirUser" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Excluir Usuário</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <form method="get" action="{{route('delete-user', $user->id)}}">
-                                                <div class="modal-body">
-                                                    @csrf
-
-                                                    <h6>
-                                                        Tem certeza que deseja excluir o usuário {{$user->name}}?
-                                                    </h6>
-                                                    
-                                                    <input type="hidden" name="id" value="{{$user->id}}">
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-danger">Excluir</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="col-6 mb-3 pag_dashboard">
+                <a type="button" class="btn btn-outline-dark btn-lg" href="{{route('faculdades')}}">
+                    <i class="fas fa-graduation-cap fa-2xl p-4"></i>
+                    <br>
+                    Faculdades
+                </a>
             </div>
         </div>
-    </div>
-
-    <div class="card-footer">
-        {{$users->links()}}
     </div>
 
     @include('layouts.base.footer')
@@ -238,38 +58,6 @@
 </body>
 
 <script>
-const yourJsFunction = async (element) => {
-    const id = element.id;
-    const url = "{{route('editar-permissoes')}}" + '/' + id;
-    console.log(url);
-    console.log(id);
-    const data = await getData(url);
-    console.log(data);
-
-}
-
-const deleteJsFunction = async (element) => {
-    const id = element.id;
-    const url = "{{route('delete-user')}}" + '/' + id;
-    console.log(url);
-    console.log(id);
-    const data = await getData(url);
-    console.log(data);
-
-}
-
-const getData = async (url, options = {}) => {
-    try {
-        const response = await fetch(url, {
-            method: 'GET'
-        });
-        const data = await response.json();
-
-        return data;
-    } catch (error) {
-        console.error(error);
-    }
-}
 </script>
 
 </html>

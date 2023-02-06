@@ -17,12 +17,21 @@ use Illuminate\Http\JsonResponse;
 
 class AdminController extends Controller
 {
+    public function users(Request $request){
+        $users = User::orderBy('id', 'desc')->paginate(15);
+        $user=Auth::user();   
+
+        return view('users')
+        ->with('users', $users)
+        ->with('user', $user);
+    }
+
     public function deletar($id){
 
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('admin');
+        return redirect()->route('users');
     }
 
     public function baixarLeads(Request $request){
