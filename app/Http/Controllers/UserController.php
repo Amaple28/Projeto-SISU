@@ -91,17 +91,23 @@ class UserController extends Controller
             ->with('error', 'Email já cadastrado, tente outro!');
         }
 
-        $novoUsuario->save();
-        $simulacao->user_id = $novoUsuario->id;
+
         try{ 
-            $simulacao->save();            
+            $novoUsuario->save(); 
+            $simulacao->user_id = $novoUsuario->id;
+            $simulacao->save();   
+                    
         } catch (\Throwable $th) {
+            $novoUsuario->delete();
             return redirect('/')
-            ->with('error', 'Erro ao cadastrar usuário, é necessario preencher todas as notas para cadastro!');
+            ->with('error', 'Preencha todas as notas!');
         }
-            return redirect('/')
-            ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
-            ->with('tab', 'login');        
+
+        
+        return redirect('/')
+        ->with('success', 'Usuário cadastrado com sucesso, faça o login!')
+        ->with('tab', 'login');    
+
     }    
 
 
