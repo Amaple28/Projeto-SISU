@@ -31,8 +31,10 @@ class SimulacaoController extends Controller
         $user = Auth::user();
         $user_simulacao = simulacao::where('user_id', $user->id)->first();
 
-        $simulacoes_positivas = [];
-        $simulacoes_negativas = [];
+        $simulacoes_positivas2022 = [];
+        $simulacoes_negativas2022 = [];
+        $simulacoes_positivas2023 = [];
+        $simulacoes_negativas2023 = [];
         $simulacoes_neutras = [];
         $modalidade = $request->input('modalidade');
         $faculdades = $request->input('faculdades');
@@ -59,34 +61,76 @@ class SimulacaoController extends Controller
             
             if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
                 if (($corte * 0.1) > $nota_corte->nota) {
-                    $simulacoes_positivas[] = $nota_corte;
+                    $simulacoes_positivas2023[] = $nota_corte;
                 } else if (($corte * 0.1) < $nota_corte->nota) {
-                    $simulacoes_negativas[] = $nota_corte;
+                    $simulacoes_negativas2023[] = $nota_corte;
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
             } else if ($request->input('estado') == 'Acre' && $nota_corte->estado == 'AC') {
                 if (($corte * 0.15) > $nota_corte->nota) {
-                    $simulacoes_positivas[] = $nota_corte;
+                    $simulacoes_positivas2023[] = $nota_corte;
                 } else if (($corte * 0.15) < $nota_corte->nota) {
-                    $simulacoes_negativas[] = $nota_corte;
+                    $simulacoes_negativas2023[] = $nota_corte;
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
             } else if ($request->input('estado') == "Amazonas" && $nota_corte->estado == "AM") {
                 if (($corte * 0.2) > $nota_corte->nota) {
-                    $simulacoes_positivas[] = $nota_corte;
+                    $simulacoes_positivas2023[] = $nota_corte;
                 } else if (($corte * 0.2) < $nota_corte->nota) {
-                    $simulacoes_negativas[] = $nota_corte;
+                    $simulacoes_negativas2023[] = $nota_corte;
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
             } else {
 
                 if ($corte > $nota_corte->nota) {
-                    $simulacoes_positivas[] = $nota_corte;
+                    $simulacoes_positivas2023[] = $nota_corte;
                 } else if ($corte < $nota_corte->nota) {
-                    $simulacoes_negativas[] = $nota_corte;
+                    $simulacoes_negativas2023[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            }
+        }
+
+        foreach ($faculdades as $faculdade) {
+            // dd($faculdade);
+            $nota_corte = sisu_anterior::where('faculdade_id', $faculdade)->first();
+            
+            $corte = $user_simulacao->pesoNotas($faculdade);
+            
+            if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
+                if (($corte * 0.1) > $nota_corte->nota) {
+                    $simulacoes_positivas2022[] = $nota_corte;
+                } else if (($corte * 0.1) < $nota_corte->nota) {
+                    $simulacoes_negativas2023[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            } else if ($request->input('estado') == 'Acre' && $nota_corte->estado == 'AC') {
+                if (($corte * 0.15) > $nota_corte->nota) {
+                    $simulacoes_positivas2022[] = $nota_corte;
+                } else if (($corte * 0.15) < $nota_corte->nota) {
+                    $simulacoes_negativas2022[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            } else if ($request->input('estado') == "Amazonas" && $nota_corte->estado == "AM") {
+                if (($corte * 0.2) > $nota_corte->nota) {
+                    $simulacoes_positivas2022[] = $nota_corte;
+                } else if (($corte * 0.2) < $nota_corte->nota) {
+                    $simulacoes_negativas2022[] = $nota_corte;
+                } else {
+                    $simulacoes_neutras[] = $nota_corte;
+                }
+            } else {
+
+                if ($corte > $nota_corte->nota) {
+                    $simulacoes_positivas2022[] = $nota_corte;
+                } else if ($corte < $nota_corte->nota) {
+                    $simulacoes_negativas2022[] = $nota_corte;
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
@@ -99,8 +143,10 @@ class SimulacaoController extends Controller
 
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
-            ->with('simulacoes_positivas', $simulacoes_positivas)
-            ->with('simulacoes_negativas', $simulacoes_negativas)
+            ->with('simulacoes_positivas2023', $simulacoes_positivas2023)
+            ->with('simulacoes_negativas2023', $simulacoes_negativas2023)
+            ->with('simulacoes_positivas2022', $simulacoes_positivas2022)
+            ->with('simulacoes_negativas2022', $simulacoes_negativas2022)
             ->with('user', $user)
             ->with('faculdades',  $faculdades)
             ->with('estados',  Util::estados());
