@@ -72,11 +72,9 @@ Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissao
 
 //editar usuarios
 Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
-<<<<<<< HEAD
 Route::get('/users', [AdminController::class, 'users'])->name('users');
-=======
 Route::get('/deletar-usuario/{id?}', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
->>>>>>> 5e85c12bbe0910e29699ac684c07be48ae38d4f3
+
 
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
