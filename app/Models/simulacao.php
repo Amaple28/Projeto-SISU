@@ -16,7 +16,7 @@ class simulacao extends Model
     protected $table = 'simulacao';
 
     public function pesoNotas($id){
-      $pesonotas = PesoNotas::where('$faculdade_id', $id)->first();
+      $pesonotas = PesoNotas::where('faculdade_id', $id)->first();
       $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
       $total = $soma / 5;
       return $total;
