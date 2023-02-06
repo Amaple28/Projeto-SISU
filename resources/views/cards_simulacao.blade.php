@@ -65,7 +65,7 @@
 @endforeach
 @endif
 
-foreach ($faculdades as $faculdade) 
+@foreach ($faculdades as $faculdade) 
 <div class="card reprovado">
         <div class="card-body">
             <h5 class="card-title mb-3">{{$faculdade->sigla}}-{{$faculdade->nome}}</h5>          

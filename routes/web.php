@@ -53,6 +53,7 @@ Route::post('deletar/{id}',[AdminController::class, 'deletar']);
 
 //Gerenciar faculdades
 Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculdades');
+Route::get('/notas', [NotasController::class, 'notas'])->name('notas');
 
 //baixar leads em excel
 Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
@@ -69,9 +70,11 @@ Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name
 Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissoes'])->name('editar-permissoes');
 Route::get('/salvar-permissoes/{id?}', [AdminController::class, 'salvarPermissoes'])->name('salvar-permissoes');
 
+//editar usuarios
+Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
+
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
-
 
 Route::get('/editar-pesos/{id?}', [NotasController::class, 'editarPesos'])->name('editar-pesos');
 Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name('salvar-pesos');

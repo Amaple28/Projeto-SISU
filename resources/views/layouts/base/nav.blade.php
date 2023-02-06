@@ -30,7 +30,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('admin')}}">
                       <i class="fas fa-user-cog"></i>
-                      Dashboard
+                      Usuários
                     </a>
                   </li>
                 
@@ -43,6 +43,13 @@
 
                   <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{route('faculdades')}}">
+                      <i class="fas fa-graduation-cap"></i>
+                      Faculdades
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{route('notas')}}">
                       <i class="fas fa-edit"></i>
                       Notas Sisu 2023
                     </a>
