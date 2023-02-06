@@ -54,6 +54,7 @@ Route::post('deletar/{id}',[AdminController::class, 'deletar']);
 //Gerenciar faculdades
 Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculdades');
 Route::get('/notas', [NotasController::class, 'notas'])->name('notas');
+Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
 
 //baixar leads em excel
 Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');

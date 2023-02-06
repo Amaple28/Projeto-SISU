@@ -8,12 +8,14 @@
 
 <body>
     @include('layouts.base.nav')
+    @include('layouts.base.flash-message')
 
     <div class="header">
         <h2>Cadastrar Notas 2023</h2>
     </div>
 
-    <form action="">
+    <form method="GET" action="/editar-notas-2023">
+        @csrf
         <div class="container">
             <div class="row notas_admin">
                 
@@ -21,12 +23,18 @@
                     <div class="col-md-6 col-12">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}}</span>
-                            <input type="number" class="form-control" placeholder="000.0" aria-describedby="basic-addon1">
+                            <input type="number" class="form-control" placeholder="000.0" aria-describedby="basic-addon1" 
+                            name="{{$faculdade->id}}" 
+                            @foreach ($notas_2023 as $nota)
+                                @if ($nota->faculdade_id == $faculdade->id)
+                                    value="{{$nota->nota}}"
+                                @endif
+                            @endforeach>
                         </div>
                     </div>
                 @endforeach
 
-                <a href="" class="btn btn-warning col-8 mb-3"> Salvar Alterações</a>
+                <button type="submit" class="btn btn-warning col-8 mb-3"> Salvar Alterações</button>
                 
             </div>
         </div>

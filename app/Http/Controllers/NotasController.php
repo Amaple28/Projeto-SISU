@@ -23,7 +23,7 @@ class NotasController extends Controller
 
     public function faculdades(Request $request){
         $faculdades = faculdade::orderBy('id', 'desc')->paginate(15);
-        
+
         $user=Auth::user();   
 
         return view('faculdades')
@@ -33,12 +33,33 @@ class NotasController extends Controller
 
     public function notas(Request $request){
         $faculdades = faculdade::all();
+        $notas_2023 = sisu_atual::all();
        
         $user=Auth::user();   
 
         return view('notas_admin')
         ->with('faculdades', $faculdades)
-        ->with('user', $user);
+        ->with('user', $user)
+        ->with('notas_2023', $notas_2023);
+    }
+
+    public function editarNotas2023(Request $request){
+        $faculdades = faculdade::all();
+
+        foreach ($faculdades as $faculdade) {
+            $nota = $request->input($faculdade->id);
+
+            if($nota == null){
+                $nota = 0;
+            }
+            
+            $nota_corte = sisu_atual::where('faculdade_id', $faculdade->id)->first();
+            $nota_corte->nota = $nota;
+            $nota_corte->save();
+        }
+
+        return redirect()->back()->with('success', 'Notas atualizadas com sucesso!');
+
     }
 
     public function editarNotas($id){
