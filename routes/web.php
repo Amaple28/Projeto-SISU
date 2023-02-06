@@ -67,11 +67,11 @@ Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name
 Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name('salvar-notas');
 
 //editar permissoes
-Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissoes'])->name('editar-permissoes');
-Route::get('/salvar-permissoes/{id?}', [AdminController::class, 'salvarPermissoes'])->name('salvar-permissoes');
+Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissao'])->name('editar-permissoes');
 
 //editar usuarios
 Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
+Route::get('/deletar-usuario/{id?}', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
 
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
