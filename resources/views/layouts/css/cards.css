@@ -34,3 +34,15 @@
 .notas_corte{
     text-align: left;
 }
+
+.pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    text-align: right;
+}
+
+.pagination i{
+    margin: 0 5px 0 5px;
+    cursor: pointer;
+}

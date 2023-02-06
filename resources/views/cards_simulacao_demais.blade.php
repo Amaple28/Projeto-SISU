@@ -34,6 +34,11 @@
         @endif --}}
         ">
             <div class="card-body">
+                <div class="pagination col-12">
+                    <i class="fas fa-circle fa-2xs"></i>
+                    <i class="fas fa-circle-notch fa-2xs"></i>
+                </div>
+
                 <h5 class="card-title mb-3">{{$faculdade->sigla}} - {{$faculdade->nome}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_anterior()}}</h6> 
                 {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6>  --}}
@@ -51,3 +56,6 @@
         </div>
     </div>
 @endforeach
+
+<script>
+</script>
