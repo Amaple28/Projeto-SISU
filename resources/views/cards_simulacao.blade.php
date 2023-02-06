@@ -35,7 +35,7 @@
         <div class="col-10 mb-3">
             <div class="card reprovado">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">{{$simulacao_negativa->sigla}} - {{$simulacao_negativa->nome}}</h5>
+                    <h5 class="card-title mb-3">{{$simulacao_negativa->getfaculdadeEstado()}} - {{$simulacao_negativa->getfaculdadeNome()}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_negativa->getsisu_anterior()}}</h6> 
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_negativa->nota}}</h6>  --}}
 
@@ -58,7 +58,7 @@
             <div class="card aprovado">
 
                 <div class="card-body">
-                    <h5 class="card-title mb-3">{{$simulacao_positiva->sigla}} - {{$simulacao_positiva->nome}}</h5>
+                    <h5 class="card-title mb-3">{{$simulacao_positiva->getfaculdadeEstado()}} - {{$simulacao_positiva->getfaculdadeNome()}}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva->getsisu_anterior()}}</h6> 
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->nota}}</h6>  --}}
 

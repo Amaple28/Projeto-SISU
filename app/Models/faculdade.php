@@ -35,6 +35,16 @@ class faculdade extends Model
          return $notas;
     }
 
-    
+    public function getSigla()
+    {
+        $sigla = $this->sigla;
+        return $sigla;
+    }
+
+    public function getNome()
+    {
+        $nome = $this->nome;
+        return $nome;
+    }
 
 }
