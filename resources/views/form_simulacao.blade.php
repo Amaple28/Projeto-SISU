@@ -32,12 +32,12 @@
         <div class="container-fluid text-center">
           <div class="row">
             @foreach ($faculdades as $faculdade)
-              <div class="col-6 col-sm-4">
+              <div class="col-12">
                 <div class="input-group mb-2">
                   <div class="input-group-text">
                     <input class="form-check-input mt-0" type="checkbox" name="faculdades[]" value="{{$faculdade->id}}">
                   </div>
-                  <input type="text" class="form-control" value="{{$faculdade->nome}}" disabled>
+                  <input type="text" class="form-control" value="{{$faculdade->nome}} - {{$faculdade->endereco}}" disabled>
                 </div>
               </div>
             @endforeach

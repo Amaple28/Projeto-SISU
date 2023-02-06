@@ -20,7 +20,7 @@
                 @foreach ($faculdades as $faculdade)
                     <div class="col-md-6 col-12">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">{{$faculdade->nome}}</span>
+                            <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}}</span>
                             <input type="number" class="form-control" placeholder="000.0" aria-describedby="basic-addon1">
                         </div>
                     </div>

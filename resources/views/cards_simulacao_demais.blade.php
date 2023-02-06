@@ -27,11 +27,11 @@
 @foreach ($faculdades as $faculdade) 
     <div class="col-10 mb-3">
         <div class="card 
-        @if($user_simulacao->nota_corte >= $faculdade->getsisu_anterior())
+        {{-- @if($user_simulacao->nota_corte >= $faculdade->getsisu_anterior())
             aprovado
         @else
             reprovado
-        @endif
+        @endif --}}
         ">
             <div class="card-body">
                 <h5 class="card-title mb-3">{{$faculdade->sigla}} - {{$faculdade->nome}}</h5>
