@@ -8,6 +8,7 @@
 
 <body>
     @include('layouts.base.nav')
+    @include('layouts.base.flash-message')
 
     <div class="header">
         <h2>Gerenciar Faculdades</h2>
@@ -40,14 +41,20 @@
                             <td>{{ $faculdade->getsisu_anterior() }}</td>
                             <td>{{ $faculdade->getsisu_atual() }}</td>
                             <td> 
-                                <a class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                {{-- <a class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     onclick="yourJsFunction(this)" id="{{$faculdade->id}}">
                                     <i class="fas fa-edit"></i>
                                     Editar
-                                </a>
+                                </a> --}}
+
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    id="{{$faculdade->id}}" onclick="yourJsFunction(this)">  
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </button>
                             </td>
                         </tr>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -69,8 +76,31 @@
                                 </div>
                             </div>
 
+                        </div> --}}
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Editar</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="get" action="{{route('salvar-pesos')}}">
+                                        <div class="modal-body">
+                                            @csrf
+
+                                            @include('edit_faculdade')
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+
                         @endforeach
+                        
                     </tbody>
                 </table>
             </div>
@@ -93,13 +123,25 @@
 <script>
 const yourJsFunction = async (element) => {
     const id = element.id;
-    const url = "{{route('editar-pesos')}}" + '/' + id;
-    console.log(url);
-    console.log(id);
+    const url = "{{route('editar-pesos')}}"
     const data = await getData(url);
-    console.log(data);
+    const editModal = document.getElementById('exampleModal');
 
+    const faculdadeId = editModal.querySelector('input[name="id"]');
+
+    faculdadeId.value = id;
+    console.log(id);
 }
+
+// const yourJsFunction = async (element) => {
+//     const id = element.id;
+//     const url = "{{route('editar-pesos')}}" + '/' + id;
+//     console.log(url);
+//     console.log(id);
+//     const data = await getData(url);
+//     console.log(data);
+
+// }
 
 const getData = async (url, options = {}) => {
     try {

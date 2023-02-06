@@ -42,7 +42,7 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu">
-                                        <li>
+                                            <li>
                                                 <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                 id="{{$user->id}}" onclick="yourJsFunction(this)">  <i class="fas fa-id-card"></i>
                                                     Permissões
