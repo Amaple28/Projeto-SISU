@@ -52,8 +52,10 @@ class SimulacaoController extends Controller
 
 
         foreach ($faculdades as $faculdade) {
+            // dd($faculdade);
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
-            $corte = $user_simulacao->pesoNotas($nota_corte->faculdade_id);
+            
+            $corte = $user_simulacao->pesoNotas($faculdade);
             
             if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
                 if (($corte * 0.1) > $nota_corte->nota) {
