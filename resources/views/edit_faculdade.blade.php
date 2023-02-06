@@ -34,31 +34,31 @@
         <div class="form-group col-md-4">
             <label for="matematica">Matematica</label>
             <input type="number" class="form-control" id="matematica"
-                value="{{$peso->matematica}}" name="matematica">
+                value="" name="matematica">
         </div>
         
         <div class="form-group col-md-4">
             <label for="humanas">Humanas</label>
             <input type="number" class="form-control" id="humanas"
-                value="{{$peso->humanas}}" name="humanas">
+                value="" name="humanas">
         </div>
         
         <div class="form-group col-md-4">
             <label for="linguagens">Linguagens</label>
             <input type="number" class="form-control" id="linguagens"
-                value="{{$peso->linguagens}}" name="linguagens">
+                value="" name="linguagens">
         </div>
         
         <div class="form-group col-md-4">
             <label for="natureza">Natureza</label>
             <input type="number" class="form-control" id="natureza"
-                value="{{$peso->natureza}}" name="natureza">
+                value="" name="natureza">
         </div>
         
         <div class="form-group col-md-4">
             <label for="redacao">Redação</label>
             <input type="number" class="form-control" id="redacao"
-                value="{{$peso->redacao}}" name="redacao">
+                value="" name="redacao">
         </div>                                        
         
         
