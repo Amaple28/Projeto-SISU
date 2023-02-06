@@ -23,7 +23,7 @@
     <button type="submit" class="btn btn-warning col-12 mb-3">Entrar</button>
 
     <div class="mb-3">
-        <a href="{{url ('/recuperar-senha')}}" class="btn btn-light col-12">Esqueci minha senha</a>
+        <a href="{{url ('/recuperar-senha')}}" class="btn btn-light col-12 esq_senha">Esqueci minha senha</a>
     </div>
 </form>
 

@@ -73,7 +73,7 @@
 
         <div class="row passos">
             <div class="col-12">
-                <h2>Como funciona o Simulador SISU MED?</h2>
+                <h2>Como funciona o Simulador SISU VEMMED?</h2>
             </div>
 
 

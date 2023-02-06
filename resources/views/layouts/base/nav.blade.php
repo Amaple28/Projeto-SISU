@@ -7,7 +7,7 @@
         
       <div>
           <a class="navbar-brand" href="#">
-              <h5>SISU MED</h5>
+              <h5>SISU VEMMED</h5>
           </a>
       </div>
       

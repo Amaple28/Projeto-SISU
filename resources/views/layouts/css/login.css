@@ -25,3 +25,7 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25) !important;
     border-color:rgba(255, 193, 7, 0.25) !important;
 }
+
+.esq_senha{
+    text-decoration: underline !important;
+}

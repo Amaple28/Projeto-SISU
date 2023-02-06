@@ -369,7 +369,7 @@
                         </table>
 
                         <p>Se você não se cadastrou no nosso site, por favor ignore este e-mail.</p>
-                        <p>Atenciosamente, Equipe SIMULADOR SISU MED.</p>
+                        <p>Atenciosamente, Equipe SIMULADOR SISU VEMMED.</p>
                       </td>
                     </tr>
                   </table>

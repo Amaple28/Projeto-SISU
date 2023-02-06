@@ -9,3 +9,17 @@
     transform: translateY(-50%);
     cursor: pointer;
 }
+
+.modal-body{
+    text-align: justify;
+}
+
+.modal-body a{
+    text-decoration: underline  !important;
+    color: darkgoldenrod;
+}
+
+.privacidade a{
+    text-decoration: underline  !important;
+    color: darkgoldenrod;
+}

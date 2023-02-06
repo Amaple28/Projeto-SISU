@@ -21,7 +21,7 @@ class EmailController extends Controller
         $data = array('name'=>$name, "body" => "Test mail");
         Mail::send('layouts.emails.cadastro', $data, function($message) use ($email, $name) {
             $message->to($email, $name)
-                    ->subject('Layout E-mail SIMULADOR SISU MED'); //assunto
+                    ->subject('Layout E-mail SIMULADOR SISU VEMMED'); //assunto
             $message->from('admin@simuladorsisumed.com','SIMULADOR SISUMED');
         });
         return back()->with('success', 'E-mail enviado com sucesso!');

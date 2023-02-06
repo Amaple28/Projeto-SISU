@@ -4,9 +4,9 @@
 </style>
 
 
-  <h2>SIMULADOR SISU MED</h2>
+  <h2>SIMULADOR SISU VEMMED</h2>
   <br>
-  <p>Com o SIMULADOR SISU MED você usa o resultado do Enem e confere suas chances de aprovação na faculdade dos seus sonhos!</p>
+  <p>Com o SIMULADOR SISU VEMMED você usa o resultado do Enem e confere suas chances de aprovação na faculdade dos seus sonhos!</p>
   <hr>
   <h4>Preencha as suas notas abaixo:</h4>
     

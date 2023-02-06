@@ -39,10 +39,33 @@
     <input type="number" hidden class="form-control resultadoLinguagens" id="linguagensR" name="linguagensR" min="0" max="1000" step=".1"  placeholder="000.0">
     <input type="number" hidden class="form-control resultadoRedacao"  id="redacaoR" name="redacaoR" min="0" max="1000" step=".1"  placeholder="000.0">
     
-  
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+        <label class="form-check-label privacidade" for="flexCheckDefault">
+          Li e aceito a <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Política de Privacidade</a>
+        </label>
+    </div>
 
     <button type="submit" class="btn btn-warning col-12">Cadastrar</button>
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Política de Privacidadde</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @include('politica_privacidade')
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
@@ -61,4 +84,11 @@
             this.classList.add('fa-eye');
         }
     });
+
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+    var buttons = document.querySelectorAll('.myModal')
+    myModal.addEventListener('shown.bs.modal', function() {
+        myInput.focus()
+    })
 </script>
