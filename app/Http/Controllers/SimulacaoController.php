@@ -36,25 +36,25 @@ class SimulacaoController extends Controller
         $simulacoes_neutras = [];
         $modalidade = $request->input('modalidade');
         $faculdades = $request->input('faculdades');
-        // dd(count($faculdades));
-        // if($request->input('modalidade') == null){
-        //     return redirect()->back()->with('error', 'Selecione uma modalidade');            
-        // }
+        $estado = $request->input('estado');
 
-        
-
-        if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
-            return redirect()->back()->with('error', 'Selecione no mínimo 1 e no máximo 3 faculdades');
+        if($estado == null){
+            return redirect()->back()->with('error', 'Selecione um estado!');
         }
 
+        if($modalidade == null){
+            return redirect()->back()->with('error', 'Selecione uma modalidade!');
+        }
 
-
+        if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
+            return redirect()->back()->with('error', 'Selecione 3 faculdades!');
+        }
 
 
         foreach ($faculdades as $faculdade) {
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
             $user_simulacao->nota_corte = $user_simulacao->pesoNotas($faculdade);
-            if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
+            if ($estado == 'Alagoas' && $nota_corte->estado == 'AL') {
                 if (($user_simulacao->nota_corte * 0.1) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
                 } else if (($user_simulacao->nota_corte * 0.1) < $nota_corte->nota) {
@@ -62,7 +62,7 @@ class SimulacaoController extends Controller
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
-            } else if ($request->input('estado') == 'Acre' && $nota_corte->estado == 'AC') {
+            } else if ($estado == 'Acre' && $nota_corte->estado == 'AC') {
                 if (($user_simulacao->nota_corte * 0.15) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
                 } else if (($user_simulacao->nota_corte * 0.15) < $nota_corte->nota) {
@@ -70,7 +70,7 @@ class SimulacaoController extends Controller
                 } else {
                     $simulacoes_neutras[] = $nota_corte;
                 }
-            } else if ($request->input('estado') == "Amazonas" && $nota_corte->estado == "AM") {
+            } else if ($estado == "Amazonas" && $nota_corte->estado == "AM") {
                 if (($user_simulacao->nota_corte * 0.2) > $nota_corte->nota) {
                     $simulacoes_positivas[] = $nota_corte;
                 } else if (($user_simulacao->nota_corte * 0.2) < $nota_corte->nota) {
@@ -89,16 +89,15 @@ class SimulacaoController extends Controller
                 }
             }
         }
-        $faculdades = faculdade::all();
+        $faculdades = faculdade::orderBy('id', 'desc')->paginate(10);
+        dd($faculdades);
         
-
-
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
             ->with('simulacoes_positivas', $simulacoes_positivas)
             ->with('simulacoes_negativas', $simulacoes_negativas)
             ->with('user', $user)
-            ->with('faculdades',  faculdade::all())
+            ->with('faculdades', $faculdades)
             ->with('estados',  Util::estados());
     }
 

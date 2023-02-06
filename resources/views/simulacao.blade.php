@@ -28,6 +28,10 @@
 
                 <div class="col-12 mb-3">
                     <h3>Resultado - Faculdades da sua Preferência</h3>
+
+                    <span class="span text-muted mb-3">
+                        **A nota de corte de 2023 é uma estimativa, podendo sofrer alterações.
+                    </span>
                 </div>
               
                 @include('cards_simulacao')
@@ -36,12 +40,13 @@
                     <h3>Demais Faculdades</h3>
                 </div>
 
-                <span class="span text-muted mb-3">
-                    **A nota de corte de 2023 é uma estimativa, podendo sofrer alterações.
-                </span>
-               
+                @include('cards_simulacao_demais')
             </div>
         </div>
+
+    {{--   <div class="card-footer">
+            {{$faculdades->links()}}
+        </div> --}}
 
 
         @include('layouts.base.footer')
