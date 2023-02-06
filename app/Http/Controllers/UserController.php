@@ -64,6 +64,11 @@ class UserController extends Controller
         $novoUsuario->password = Hash::make($senha);
 
         $simulacao = new simulacao();
+        if($request->input('matematicaR')==null && $request->input('humanasR')==null && $request->input('linguagensR')==null && $request->input('naturezaR')==null && $request->input('redacaoR')==null){
+            return redirect('/')
+            ->with('error', 'É necessario preencher ao menos uma nota para cada materia!');
+        }
+       
         $simulacao->matematica = $request->input('matematicaR');
         $simulacao->humanas = $request->input('humanasR');
         $simulacao->linguagens = $request->input('linguagensR');
