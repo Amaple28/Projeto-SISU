@@ -8,7 +8,7 @@
 
 <body>
     @include('layouts.base.nav')
-
+    @include('layouts.base.flash-message')
     <div class="header">
         <h2>Gerenciar Usuários</h2>
         <a href="{{route('baixar-leads')}}" class="btn btn-warning">
