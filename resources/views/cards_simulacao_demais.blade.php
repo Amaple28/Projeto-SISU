@@ -53,7 +53,8 @@
         </div>
     </div>
 @endforeach
-@endif
 {{$faculdades_demais->links()}}}
+@endif
+
 <script>
 </script>
