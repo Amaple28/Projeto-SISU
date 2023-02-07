@@ -27,17 +27,16 @@
 @foreach ($faculdades_demais as $faculdade) 
     <div class="col-10 mb-3">
         <div class="card 
-        @if(!$faculdade->getCalculoAtual($user->id, $estado))reprovado @else aprovado @endif"
-        ">
+        @if(!$faculdade->getCalculoAnterior($user->id, $estado))reprovado @else aprovado @endif">
         <div class="card-body">
-                    <h5 class="card-title mb-3">{{$faculdade->estado}} - {{$faculdade->nome}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_anterior()}}</h6> 
-                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6>
+                    <h5 class="card-title mb-3">{{$faculdade->estado}} - {{$faculdade->nome}} {{$faculdade->endereco}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_anterior()}} *</h6> 
+                    {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6> --}}
 
                     <div class="quadro_resultado">
                         <div class="col-12">
                             <p class="text-muted chances">
-                                @if(!$faculdade->getCalculoAtual($user->id, $estado))
+                                @if(!$faculdade->getCalculoAnterior($user->id, $estado))
                                 <i class="fas fa-long-arrow-alt-down"></i>
                                 Nota final abaixo da nota de corte.
                                 <i class="fas fa-frown"></i>
@@ -53,7 +52,9 @@
         </div>
     </div>
 @endforeach
-{{$faculdades_demais->links()}}}
+<div class="card-footer">
+{{$faculdades_demais->links()}}
+</div>
 @endif
 
 <script>

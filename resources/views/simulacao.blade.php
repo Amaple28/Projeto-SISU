@@ -29,9 +29,9 @@
                 <div class="col-12 mb-3">
                     <h3>Resultado - Faculdades da sua Preferência</h3>
 
-                    <span class="span text-muted mb-3">
+                    {{-- <span class="span text-muted mb-3">
                         **A nota de corte de 2023 é uma estimativa, podendo sofrer alterações.
-                    </span>
+                    </span> --}}
                 </div>
               
                 @include('cards_simulacao')

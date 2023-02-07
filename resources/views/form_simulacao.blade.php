@@ -15,7 +15,7 @@
             <option value="{{$estado}}">{{$estado}}</option>
           @endforeach
         </select>
-        <label for="floatingSelect">Estado onde cursou o Ensino Médio:</label>
+        <label for="floatingSelect">*Estado onde cursou o Ensino Médio:</label>
       </div>
 
       <div class="form-floating col-12 col-md-2 mb-3 lado_direito">
@@ -24,7 +24,7 @@
           <option value="1">Ampla Concorrência</option>
           <option value="2">Cota</option>
         </select>
-        <label for="floatingSelect">Modalidade:</label>
+        <label for="floatingSelect">*Modalidade:</label>
       </div>
 
       <div class="col-12 col-md-7 mb-3 faculdades container">
