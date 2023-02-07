@@ -23,8 +23,8 @@
         </div>
     </div>
 </div> --}}
-@if(isset($estado))
-@foreach ($faculdades as $faculdade) 
+@if(isset($faculdades_demais))
+@foreach ($faculdades_demais as $faculdade) 
     <div class="col-10 mb-3">
         <div class="card 
         @if(!$faculdade->getCalculoAtual($user->id, $estado))reprovado @else aprovado @endif"
@@ -54,6 +54,6 @@
     </div>
 @endforeach
 @endif
-
+{{$faculdades_demais->links()}}}
 <script>
 </script>
