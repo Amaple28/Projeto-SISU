@@ -23,39 +23,37 @@
         </div>
     </div>
 </div> --}}
-
+@if(isset($estado))
 @foreach ($faculdades as $faculdade) 
     <div class="col-10 mb-3">
         <div class="card 
-        {{-- @if($user_simulacao->nota_corte >= $faculdade->getsisu_anterior())
-            aprovado
-        @else
-            reprovado
-        @endif --}}
+        @if(!$faculdade->getCalculoAtual($user->id, $estado))reprovado @else aprovado @endif"
         ">
-            <div class="card-body">
-                <div class="pagination col-12">
-                    <i class="fas fa-circle fa-2xs"></i>
-                    <i class="fas fa-circle-notch fa-2xs"></i>
-                </div>
+        <div class="card-body">
+                    <h5 class="card-title mb-3">{{$faculdade->estado}} - {{$faculdade->nome}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_anterior()}}</h6> 
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6>
 
-                <h5 class="card-title mb-3">{{$faculdade->sigla}} - {{$faculdade->nome}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_anterior()}}</h6> 
-                {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6>  --}}
-
-                <div class="quadro_resultado">
-                    <div class="col-12">
-                        <p class="text-muted chances">
-                            <i class="fas fa-long-arrow-alt-down"></i>
-                            Nota final abaixo da nota de corte.
-                            <i class="fas fa-frown"></i>
-                        </p>
+                    <div class="quadro_resultado">
+                        <div class="col-12">
+                            <p class="text-muted chances">
+                                @if(!$faculdade->getCalculoAtual($user->id, $estado))
+                                <i class="fas fa-long-arrow-alt-down"></i>
+                                Nota final abaixo da nota de corte.
+                                <i class="fas fa-frown"></i>
+                                @else
+                                <i class="fas fa-long-arrow-alt-up"></i>
+                                Nota final acima da nota de corte.
+                                <i class="fas fa-laugh-beam"></i>
+                                @endif
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 @endforeach
+@endif
 
 <script>
 </script>
