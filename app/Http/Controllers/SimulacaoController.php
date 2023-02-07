@@ -48,7 +48,7 @@ class SimulacaoController extends Controller
             }
         }
         else if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
-           return redirect()->back()->with('error', 'Por Favor, selecione uma permissão!');
+           return redirect()->back()->with('error', 'Selecione 3 faculdades!');
         }
 
         $faculdades = faculdade::orderBy('id', 'desc')->get();
