@@ -43,7 +43,7 @@
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu">
                                             <li>
-                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#permissoes"
                                                 id="{{$user->id}}" onclick="yourJsFunction(this)">  <i class="fas fa-id-card"></i>
                                                     Permissões
                                                 </button>
@@ -69,31 +69,32 @@
 
                         @endforeach
                         <div class="modal fade" id="excluirUser" tabindex="-1" aria-labelledby="excluirUserLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Excluir Usuário</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <form method="get" action="{{route('delete-user')}}">
-                                    <div class="modal-body">
-                                        @csrf
-                                        <h6>
-                                            Tem certeza que deseja excluir este usuário?
-                                        </h6>
-                                        <input type="hidden" name="id" value="">
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Excluir Usuário</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form method="get" action="{{route('delete-user')}}">
+                                        <div class="modal-body">
+                                            @csrf
+                                            <h6>
+                                                Tem certeza que deseja excluir este usuário?
+                                            </h6>
+                                            <input type="hidden" name="id" value="">
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-danger">Excluir</button>
-                                    </div>
-                                </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="permissoes" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

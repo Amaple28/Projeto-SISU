@@ -66,7 +66,7 @@ class UserController extends Controller
         $simulacao = new simulacao();
         if($request->input('matematicaR')==null && $request->input('humanasR')==null && $request->input('linguagensR')==null && $request->input('naturezaR')==null && $request->input('redacaoR')==null){
             return redirect('/')
-            ->with('error', 'É necessario preencher ao menos uma nota para cada materia!');
+            ->with('error', 'Preencha as notas corretamente!');
         }
        
         $simulacao->matematica = $request->input('matematicaR');
@@ -101,11 +101,13 @@ class UserController extends Controller
             $novoUsuario->save(); 
             $simulacao->user_id = $novoUsuario->id;
             $simulacao->save();   
+
+            $novoUsuario->sendEmailCadastro($novoUsuario->id);
                     
         } catch (\Throwable $th) {
             $novoUsuario->delete();
             return redirect('/')
-            ->with('error', 'Preencha todas as notas!');
+            ->with('error', 'Erro ao cadastrar usuário, tente novamente!');
         }
 
         

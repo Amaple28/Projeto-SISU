@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Hash;
 
 class EmailController extends Controller
 {
-    public function sendEmailCadastro(Request $request)
-    {
-        $user = Auth::user();
-        $email = 'maisagabirodrigues@gmail.com';
-        $name = 'Maisa Gabriela Rodrigues';
-        $data = array('name'=>$name, "body" => "Test mail");
-        Mail::send('layouts.emails.cadastro', $data, function($message) use ($email, $name) {
-            $message->to($email, $name)
-                    ->subject('Layout E-mail SIMULADOR SISU VEMMED'); //assunto
-            $message->from('admin@simuladorsisumed.com','SIMULADOR SISUMED');
-        });
-        return back()->with('success', 'E-mail enviado com sucesso!');
-    }
+    // public function sendEmailCadastro(Request $request, $id)
+    // {
+    //     $user = Auth::find($id);
+    //     $email = $user->email;
+    //     $name = $user->name;
+    //     $data = array('name'=>$name, "body" => "Cadastro realizado com sucesso!");
+    //     Mail::send('layouts.emails.cadastro', $data, function($message) use ($email, $name) {
+    //         $message->to($email, $name)
+    //                 ->subject('SIMULADOR SISU VEMMED'); //assunto
+    //         $message->from('admin@simuladorsisumed.com','SIMULADOR SISUMED');
+    //     });
+    //     // return back()->with('success', 'E-mail enviado com sucesso!');
+    // }
 
     public function recuperarSenha(Request $request){
         return view('recuperarSenha');
