@@ -30,14 +30,14 @@
     </div>
 </div> --}}
 
-@if(isset($simulacoes_positivas , $simulacoes_negativas))
-    @foreach($simulacoes_negativas as $simulacao_negativa)
+@if(isset($simulacoes_positivas2023 , $simulacoes_negativas2023))
+    @foreach($simulacoes_negativas2023 as $simulacao_negativa2023)
         <div class="col-10 mb-3">
             <div class="card reprovado">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">{{$simulacao_negativa->getfaculdadeEstado()}} - {{$simulacao_negativa->getfaculdadeNome()}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_negativa->getsisu_anterior()}}</h6> 
-                    {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_negativa->nota}}</h6>  --}}
+                    <h5 class="card-title mb-3">{{$simulacao_negativa2023->getfaculdadeEstado()}} - {{$simulacao_negativa2023->getfaculdadeNome()}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_negativa2023->getsisu_anterior()}}</h6> 
+                    {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_negativa2023->nota}}</h6>  --}}
 
                     <div class="quadro_resultado">
                         <div class="col-12">
@@ -53,14 +53,14 @@
         </div>
     @endforeach
 
-    @foreach($simulacoes_positivas as $simulacao_positiva)
+    @foreach($simulacoes_positivas2023 as $simulacao_positiva2023)
         <div class="col-10 mb-3">
             <div class="card aprovado">
 
                 <div class="card-body">
-                    <h5 class="card-title mb-3">{{$simulacao_positiva->getfaculdadeEstado()}} - {{$simulacao_positiva->getfaculdadeNome()}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva->getsisu_anterior()}}</h6> 
-                    {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva->nota}}</h6>  --}}
+                    <h5 class="card-title mb-3">{{$simulacao_positiva2023->getfaculdadeEstado()}} - {{$simulacao_positiva2023->getfaculdadeNome()}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$simulacao_positiva2023->getsisu_anterior()}}</h6> 
+                    {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$simulacao_positiva2023->nota}}</h6>  --}}
 
                     <div class="quadro_resultado">
                         <div class="col-12">
