@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\sisu_anterior;
 use App\Models\sisu_atual;
+use App\Models\PesoNotas;
 
 
 class faculdade extends Model
@@ -45,6 +46,41 @@ class faculdade extends Model
     {
         $nome = $this->nome;
         return $nome;
+    }
+
+    public function getPesoMatematica()
+    {
+        $peso = PesoNotas::where('faculdade_id', $this->id)->first();
+        $peso_matematica = $peso->matematica;
+        return $peso_matematica;
+    }
+
+    public function getPesoHumanas()
+    {
+        $peso = PesoNotas::where('faculdade_id', $this->id)->first();
+        $peso_humanas = $peso->humanas;
+        return $peso_humanas;
+    }
+
+    public function getPesoLinguagens()
+    {
+        $peso = PesoNotas::where('faculdade_id', $this->id)->first();
+        $peso_linguagens = $peso->linguagens;
+        return $peso_linguagens;
+    }
+
+    public function getPesoNatureza()
+    {
+        $peso = PesoNotas::where('faculdade_id', $this->id)->first();
+        $peso_natureza = $peso->natureza;
+        return $peso_natureza;
+    }
+
+    public function getPesoRedacao()
+    {
+        $peso = PesoNotas::where('faculdade_id', $this->id)->first();
+        $peso_redacao = $peso->redacao;
+        return $peso_redacao;
     }
 
 }

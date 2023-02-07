@@ -47,14 +47,14 @@
                                     Editar
                                 </a> --}}
 
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    id="{{$faculdade->id}}" onclick="yourJsFunction(this)">  
+                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editFaculModal"
+                                    id="{{$faculdade->id}}" onclick="yourEditFaculd(this)">  
                                     <i class="fas fa-edit"></i>
                                     Editar
                                 </button>
                             </td>
                         </tr>
-                        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        {{-- <div class="modal fade" id="editFaculModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -78,7 +78,7 @@
 
                         </div> --}}
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="editFaculModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -121,11 +121,11 @@
 
 </body>
 <script>
-const yourJsFunction = async (element) => {
+const yourEditFaculd = async (element) => {
     const id = element.id;
     const url = "{{route('editar-pesos')}}"
     const data = await getData(url);
-    const editModal = document.getElementById('exampleModal');
+    const editModal = document.getElementById('editModalFacul');
 
     const faculdadeId = editModal.querySelector('input[name="id"]');
 

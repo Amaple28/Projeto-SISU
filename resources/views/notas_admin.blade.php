@@ -24,7 +24,7 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}} -{{$faculdade->turno}}</span>
                             <input type="number" class="form-control resultado" placeholder="000.0" aria-describedby="basic-addon1" 
-                            name="{{$faculdade->id}}}}" 
+                            name="{{$faculdade->id}}" 
                             @foreach ($notas_2023 as $nota)
                                 @if ($nota->faculdade_id == $faculdade->id)
                                     value="{{$nota->nota}}"

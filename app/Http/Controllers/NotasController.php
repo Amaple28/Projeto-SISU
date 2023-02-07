@@ -45,7 +45,7 @@ class NotasController extends Controller
 
     public function editarNotas2023(Request $request){
         $faculdades = faculdade::all();
-
+        
         foreach ($faculdades as $faculdade) {
             $nota = $request->input($faculdade->id);
 
@@ -109,6 +109,14 @@ class NotasController extends Controller
     public function salvarPesos(Request $request)
     {
         $id = $request->input('id');
+
+        $faculdade = faculdade::where('id', $id)->first();
+        $faculdade->nome = $request->input('nome');
+        $faculdade->sigla = $request->input('sigla');
+        $faculdade->estado = $request->input('estado');
+        $faculdade->endereco = $request->input('endereco');
+        $faculdade->save();
+
         $pesos = PesoNotas::where('faculdade_id', $id)->first();
         
         $pesos->matematica = $request->input('matematica');
@@ -121,5 +129,6 @@ class NotasController extends Controller
 
         return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
     }
+    
 
 }
