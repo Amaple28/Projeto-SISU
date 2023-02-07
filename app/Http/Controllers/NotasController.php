@@ -131,4 +131,50 @@ class NotasController extends Controller
     }
     
 
+    public function adicionarFaculdade(Request $request)
+    {
+        dd($request->all());
+        $faculdade = new faculdade();
+        $faculdade->nome = $request->input('nome');
+        $faculdade->sigla = $request->input('sigla');
+        $faculdade->estado = $request->input('estado');
+        $faculdade->endereco = $request->input('endereco');
+        
+        if(!$faculdade->save()){
+            return redirect()->back()->with('error', 'Erro ao cadastrar faculdade!');
+        }
+        $faculdade->save();
+
+        $pesos = new PesoNotas();
+        $pesos->faculdade_id = $faculdade->id;
+        $pesos->matematica = $request->input('matematica');
+        $pesos->humanas = $request->input('humanas');
+        $pesos->linguagens = $request->input('linguagens');
+        $pesos->natureza = $request->input('natureza');
+        $pesos->redacao = $request->input('redacao');
+        if(!$pesos->save()){
+            return redirect()->back()->with('error', 'Erro ao cadastrar pesos!');
+        }
+        $pesos->save();
+
+        $sisu_atual = new sisu_atual();
+        $sisu_atual->faculdade_id = $faculdade->id;
+        $sisu_atual->nota = $request->input('nota_corte2023');
+        if(!$sisu_atual->save()){
+            return redirect()->back()->with('error', 'Erro ao cadastrar notas!');
+        }
+        $sisu_atual->save();
+        
+
+        $sisu_anterior = new sisu_anterior();
+        $sisu_anterior->faculdade_id = $faculdade->id;
+        $sisu_anterior->nota = $request->input('nota_corte2022');
+        if(!$sisu_anterior->save()){
+            return redirect()->back()->with('error', 'Erro ao cadastrar notas!');
+        }
+        $sisu_anterior->save();
+        
+        return redirect()->back()->with('success', 'Faculdade cadastrada com sucesso!');
+    }
+
 }
