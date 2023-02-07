@@ -83,7 +83,7 @@ Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->n
 //editar faculdades
 Route::get('/editar-pesos/{id?}', [NotasController::class, 'editarPesos'])->name('editar-pesos');
 Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name('salvar-pesos');
-Route::get('/delete-faculdade/{id?}', [AdminController::class, 'deleteFaculdade'])->name('delete-faculdade');
+Route::get('/deletar-faculdade/{id?}', [NotasController::class, 'deletarFaculdade'])->name('deletar-faculdade');
 
 Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
 
