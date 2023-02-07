@@ -75,8 +75,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">
-                            <i class="fas fa-trash-alt"></i>
+                    <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#deletarUser"
+                            id="{{$user->id}}" href="#" onclick="yourDeleteUser(this)">
                             Excluir Conta
                         </a>
                     </li>
@@ -187,6 +187,33 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="deletarUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Usuário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="get" action="{{route('deletar-usuario')}}">
+                        <div class="modal-body">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <label for="password_atual">Tem certeza que gostaria de excluir sua conta?(Digite sua senha para confirmar)</label>
+                                
+                                <input type="password" class="form-control" name="password_atual" id="password_atual"
+                                    placeholder="">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-warning">Salvar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
         @endif
     </div>
 </nav>
@@ -197,7 +224,20 @@ const yourEditNavuser = async (element) => {
     const id = element.id;
     const url = "{{route('editar-usuario')}}"
 
-    const editModal = document.getElementById('exampleModal');
+    const editModal = document.getElementById('deletarUser');
+
+    const userId = editModal.querySelector('input[name="id"]');
+
+    userId.value = id;
+
+}
+
+const yourDeleteUser = async (element) => {
+
+    const id = element.id;
+    const url = "{{route('deletar-usuario')}}"
+
+    const editModal = document.getElementById('exampleSenha');
 
     const userId = editModal.querySelector('input[name="id"]');
 
@@ -207,14 +247,14 @@ const yourEditNavuser = async (element) => {
 
 const yourEditSenhauser = async (element) => {
 
-    const id = element.id;
-    const url = "{{route('editar-senha-usuario')}}"
+const id = element.id;
+const url = "{{route('editar-senha-usuario')}}"
 
-    const editModal = document.getElementById('exampleSenha');
+const editModal = document.getElementById('exampleSenha');
 
-    const userId = editModal.querySelector('input[name="id"]');
+const userId = editModal.querySelector('input[name="id"]');
 
-    userId.value = id;
+userId.value = id;
 
 }
 

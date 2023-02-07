@@ -45,7 +45,7 @@ class NotasController extends Controller
 
     public function editarNotas2023(Request $request){
         $faculdades = faculdade::all();
-
+        
         foreach ($faculdades as $faculdade) {
             $nota = $request->input($faculdade->id);
 
@@ -129,5 +129,6 @@ class NotasController extends Controller
 
         return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
     }
+    
 
 }
