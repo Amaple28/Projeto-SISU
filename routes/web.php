@@ -88,3 +88,5 @@ Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name
 
 
 Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
+
+Route::get('/adicionar-faculdade', [NotasController::class, 'adicionarFaculdade'])->name('adicionar-faculdade');

@@ -15,13 +15,13 @@
             <option value="{{$estado}}">{{$estado}}</option>
           @endforeach
         </select>
-        <label for="floatingSelect">Estado onde cursou  E.M.:</label>
+        <label for="floatingSelect">Estado onde cursou o Ensino Médio:</label>
       </div>
 
       <div class="form-floating col-12 col-md-2 mb-3 lado_direito">
         <select class="form-select" id="floatingSelect" name="modalidade" aria-label="Floating label select example">
           <option selected>Selecione...</option>
-          <option value="1">Ampla</option>
+          <option value="1">Ampla Concorrência</option>
           <option value="2">Cota</option>
         </select>
         <label for="floatingSelect">Modalidade:</label>

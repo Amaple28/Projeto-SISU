@@ -12,10 +12,11 @@
 
     <div class="header">
         <h2>Gerenciar Faculdades</h2>
-        {{-- <a href="#" class="btn btn-warning">
+        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#adicionarFaculdadeModal"
+                                    id="" onclick="yourAddFaculdade(this)"> 
                 <i class="fas fa-file-export"></i>    
-                Exportar Leads
-            </a> --}}
+                Adicionar Faculdade
+        </button> 
     </div>
 
     {{-- criar tabela que cria paginação automaticamente com os dados do banco de dados e botões de ação para editar e excluir --}}
@@ -48,7 +49,7 @@
                                 </a> --}}
 
                                 <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editFaculModal"
-                                    id="{{$faculdade->id}}" onclick="yourEditFaculd(this)">  
+                                    id="" onclick="yourEditFaculd(this)">  
                                     <i class="fas fa-edit"></i>
                                     Editar
                                 </button>
@@ -104,6 +105,26 @@
                     </tbody>
                 </table>
             </div>
+            <div class="modal fade" id="adicionarFaculdadeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Adicionar Faculdade</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="get" action="{{route('adicionar-faculdade')}}">
+                                        <div class="modal-body">
+                                            @csrf
+
+                                            @include('add_faculdade')
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-warning">Adicionar Faculdade</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
         </div>
     </div>
 
@@ -133,6 +154,13 @@ const yourEditFaculd = async (element) => {
     console.log(id);
 }
 
+const yourAddFaculdade = async (element) => {
+    
+    const url = "{{route('adicionar-faculdade')}}"
+    const data = await getData(url);
+    const editModal = document.getElementById('adicionarFaculdadeModal');
+
+}
 // const yourJsFunction = async (element) => {
 //     const id = element.id;
 //     const url = "{{route('editar-pesos')}}" + '/' + id;
