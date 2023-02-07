@@ -41,7 +41,7 @@ class SimulacaoController extends Controller
 
         $faculdades_escolhidas = [];
 
-        if ($faculdades != null) {
+        if ($faculdades != null && count($faculdades) <= 3 && count($faculdades) >= 1) {
             foreach ($faculdades as $faculdade) {
                 $faculdade = faculdade::where('id', $faculdade)->first();
                 array_push($faculdades_escolhidas, $faculdade);
