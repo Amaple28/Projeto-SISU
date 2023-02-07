@@ -24,7 +24,7 @@
     <div class="form-floating  mb-3">
   <input required type="text" class="form-control" id="tel" name="tel" placeholder="(xx) xxxx-xxxx"
     oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');">
-  <label for="tel">WhatsApp</label>
+  <label for="tel">(DDD)WhatsApp</label>
 </div>
 
     {{-- <div class="mb-3 form-check">

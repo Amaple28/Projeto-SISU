@@ -75,6 +75,9 @@ Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('
 Route::get('/users', [AdminController::class, 'users'])->name('users');
 Route::get('/deletar-usuario/{id?}', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
 
+Route::get('/editar-usuario/{id?}', [AdminController::class, 'editarUsuario'])->name('editar-usuario');
+Route::get('/editar-senha-usuario/{id?}', [AdminController::class, 'editarSenha'])->name('editar-senha-usuario');
+
 
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
