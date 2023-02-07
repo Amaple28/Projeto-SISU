@@ -133,13 +133,13 @@ class NotasController extends Controller
 
     public function adicionarFaculdade(Request $request)
     {
-        dd($request->all());
+        
         $faculdade = new faculdade();
         $faculdade->nome = $request->input('nome');
         $faculdade->sigla = $request->input('sigla');
         $faculdade->estado = $request->input('estado');
         $faculdade->endereco = $request->input('endereco');
-        
+        $faculdade->turno = $request->input('modalidade');
         if(!$faculdade->save()){
             return redirect()->back()->with('error', 'Erro ao cadastrar faculdade!');
         }
