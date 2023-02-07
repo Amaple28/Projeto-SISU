@@ -74,6 +74,20 @@
             <label for="redacao">Redação</label>
             <input type="number" class="form-control resultado" id="redacao" value="" name="redacao">
         </div>
-       
+        <script>
+        const notas = document.querySelectorAll(".resultado"); 
+        console.log(notas);
+        
+        notas.forEach(notas => {
+          notas.addEventListener('change', (event) => {
+            
+            if(event.target.value > 1000)
+            {
+              event.target.value = 1000;
+            }
+            event.target.value= parseFloat(event.target.value).toFixed(1);
+            });
+        });
+        </script>
     </div>
 </div>

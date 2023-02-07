@@ -43,8 +43,8 @@
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu">
                                             <li>
-                                                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#permissoes"
-                                                id="{{$user->id}}" onclick="yourJsFunction(this)">  <i class="fas fa-id-card"></i>
+                                                <button class="dropdown-item" onclick="editUserPermission(this)" data-bs-toggle="modal" data-bs-target="#editUserPermissionModal"
+                                                id="{{$user->id}}" >  <i class="fas fa-id-card"></i>
                                                     Permissões
                                                 </button>
                                             </li>
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                        <div class="modal fade" id="permissoes" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="editUserPermissionModal" tabindex="-1" aria-labelledby="editUserPermissionModal"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -116,7 +116,7 @@
                                             </select>
                                         </div>
                                         
-                                        <input type="hidden" name="id" value="">
+                                        <input type="hidden" name="id" id="editUserPermissionId" value="">
 
                                     </div>
                                     <div class="modal-footer">
@@ -142,17 +142,19 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
 
-</body>
-
 <script>
-   const yourJsFunction = async (element) => {
+    
+    function editUserPermission(element) {
     
     const id = element.id;
     const url = "{{route('editar-permissoes')}}" 
 
-    const editModal = document.getElementById('exampleModal');
+    const editModal = document.getElementById('editUserPermissionModal');
 
     const userId = editModal.querySelector('input[name="id"]');
+
+    console.log(id);
+    console.log(userId)
 
     userId.value = id;
 
@@ -167,20 +169,8 @@ const deleteJsFunction = async (element) => {
     userId.value = id;
 
 }
-
-const getData = async (url, data = {}) => {
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            body: JSON.stringify(data)
-        });
-        const data = await response.json();
-
-        return data;
-    } catch (error) {
-        console.error(error);
-    }
-}
 </script>
+</body>
+
 
 </html>

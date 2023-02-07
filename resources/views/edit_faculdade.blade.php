@@ -42,12 +42,12 @@
 
             <div class="form-group col-md-6 mb-3">
                 <label for="nota_corte2022">Nota de Corte 2022:</label>
-                <input type="number" class="form-control" id="nota_corte2022" value="" name="nota_corte2022">
+                <input type="number" class="form-control resultado" id="nota_corte2022" value="" name="nota_corte2022">
             </div>
     
             <div class="form-group col-md-6 mb-3">
                 <label for="nota_corte2023">Nota de Corte 2023:</label>
-                <input type="number" class="form-control" id="nota_corte" value="" name="nota_corte2023">
+                <input type="number" class="form-control resultado" id="nota_corte" value="" name="nota_corte2023">
             </div>
 
             <hr class="col-12">
@@ -85,6 +85,20 @@
             
             
             <input type="hidden" name="id" value="{{$faculdade->id}}">
-            
+            <script>
+                const notas = document.querySelectorAll(".resultado"); 
+                console.log(notas);
+                
+                notas.forEach(notas => {
+                  notas.addEventListener('change', (event) => {
+                    
+                    if(event.target.value > 1000)
+                    {
+                      event.target.value = 1000;
+                    }
+                    event.target.value= parseFloat(event.target.value).toFixed(1);
+                    });
+                });
+                </script>
         </div>
     </div>

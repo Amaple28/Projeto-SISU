@@ -155,6 +155,7 @@
 </body>
 <script>
 const yourEditFaculd = async (element) => {
+    
     const id = element.id;
     const url = "{{route('editar-pesos')}}"
     const data = await getData(url);
@@ -173,15 +174,15 @@ const yourAddFaculdade = async (element) => {
     const editModal = document.getElementById('adicionarFaculdadeModal');
 
 }
-// const yourJsFunction = async (element) => {
-//     const id = element.id;
-//     const url = "{{route('editar-pesos')}}" + '/' + id;
-//     console.log(url);
-//     console.log(id);
-//     const data = await getData(url);
-//     console.log(data);
+const yourJsFunction = async (element) => {
+    const id = element.id;
+    const url = "{{route('editar-pesos')}}" + '/' + id;
+    console.log(url);
+    console.log(id);
+    const data = await getData(url);
+    console.log(data);
 
-// }
+}
 
 const deleteJsFunction = async (element) => {
     const id = element.id;

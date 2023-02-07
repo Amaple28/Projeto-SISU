@@ -61,9 +61,6 @@ Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->n
 Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
 Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
 
-//enviar e-mail
-// Route::get('/send-email-cadastro', [EmailController::class, 'sendEmailCadastro'])->name('send-email-cadastro');
-
 //editar notas
 Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');
 Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name('salvar-notas');

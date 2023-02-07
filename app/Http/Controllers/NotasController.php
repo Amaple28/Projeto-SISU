@@ -133,7 +133,13 @@ class NotasController extends Controller
 
     public function adicionarFaculdade(Request $request)
     {
-        
+        $todos = $request->all();
+        foreach ($todos as $key => $value) {
+            if($value == null){
+                return redirect()->back()->with('error', 'Preencha todos os campos!');
+            }
+        }
+
         $faculdade = new faculdade();
         $faculdade->nome = $request->input('nome');
         $faculdade->sigla = $request->input('sigla');
