@@ -70,7 +70,7 @@
                 @if(!$faculdade->getCalculoAtual($user->id, $estado))reprovado @else aprovado @endif">
                 <div class="card-body">
                     <h5 class="card-title mb-3">{{$faculdade->estado}} - {{$faculdade->nome}} {{$faculdade->endereco}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_atual()}} *</h6> 
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}} *</h6> 
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6> --}}
 
                     <div class="quadro_resultado">
