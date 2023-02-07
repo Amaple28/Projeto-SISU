@@ -25,7 +25,7 @@ use App\Util;
 */
 
 //PÁGINA INICIAL
-Route::get('/', [UserController::class, 'indexFront']);
+Route::get('/', [UserController::class, 'indexFront'])->name('index');
 
 //CADASTRO DE USUÁRIO
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
@@ -38,9 +38,10 @@ Route::get('logout', function () {
 })->name('logout');
 
 //RECUPERAR SENHA
-Route::get('/recuperar-senha',[ResetPasswordController::class, 'recuperarSenha']);
-Route::post('/recuperacao-senha',[ResetPasswordController::class, 'recuperacaoSenha']);
-Route::post('/nova-senha/{id}',[ResetPasswordController::class, 'novaSenha']);
+Route::get('/recuperar-senha',[EmailController::class, 'recuperarSenha']);
+Route::post('/recuperacao-senha-email',[EmailController::class, 'recuperacaoSenhaEmail'])->name('recuperacao-senha-email');
+Route::get('/nova-senha-form/{id}',[EmailController::class, 'novaSenhaForm']);
+Route::post('/nova-senha/{id}',[EmailController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
 Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
