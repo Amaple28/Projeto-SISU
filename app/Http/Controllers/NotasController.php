@@ -32,7 +32,7 @@ class NotasController extends Controller
     }
 
     public function notas(Request $request){
-        $faculdades = faculdade::all();
+        $faculdades = faculdade::all()->sortBy( 'endereco');
         $notas_2023 = sisu_atual::all();
        
         $user=Auth::user();   
@@ -107,9 +107,15 @@ class NotasController extends Controller
     }
 
     public function salvarPesos(Request $request)
-    {
+    {   
+        $todos = $request->all();
+        foreach ($todos as $key => $value) {
+            if($value == null){
+                return redirect()->back()->with('error', 'Preencha todos os campos!');
+            }
+        }
         $id = $request->input('id');
-
+       
         $faculdade = faculdade::where('id', $id)->first();
         $faculdade->nome = $request->input('nome');
         $faculdade->sigla = $request->input('sigla');
@@ -181,6 +187,14 @@ class NotasController extends Controller
         $sisu_anterior->save();
         
         return redirect()->back()->with('success', 'Faculdade cadastrada com sucesso!');
+    }
+
+    public function deletarFaculdade(Request $request)
+    {
+        $id = $request->input('id');
+        $faculdade = faculdade::where('id', $id)->first();
+        $faculdade->delete();
+        return redirect()->back()->with('success', 'Faculdade deletada com sucesso!');
     }
 
 }
