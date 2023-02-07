@@ -45,6 +45,7 @@
 .pagination i{
     margin: 0 5px 0 5px;
     cursor: pointer;
+    color: #000;
 }
 
 .card-footer{

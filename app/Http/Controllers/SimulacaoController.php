@@ -54,7 +54,7 @@ class SimulacaoController extends Controller
         $faculdades = faculdade::orderBy('id', 'desc')->get();
         
         
-       $faculdades_demais = faculdade::orderBy('id', 'desc')->paginate(10);
+       $faculdades_demais = faculdade::orderBy('id', 'desc')->get();
 
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
