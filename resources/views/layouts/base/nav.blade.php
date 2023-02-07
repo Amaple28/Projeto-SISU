@@ -254,7 +254,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-warning">Ok</button>
+                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close">Ok</button>
                     </div>
                 </div>
             </div>
