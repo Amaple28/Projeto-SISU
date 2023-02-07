@@ -31,124 +31,38 @@ class SimulacaoController extends Controller
         $user = Auth::user();
         $user_simulacao = simulacao::where('user_id', $user->id)->first();
 
-        $simulacoes_positivas2022 = [];
-        $simulacoes_negativas2022 = [];
-        $simulacoes_positivas2023 = [];
-        $simulacoes_negativas2023 = [];
-        $simulacoes_neutras = [];
         $modalidade = $request->input('modalidade');
         $faculdades = $request->input('faculdades');
+        $estado = $request->input('estado');
         // dd(count($faculdades));
         // if($request->input('modalidade') == null){
         //     return redirect()->back()->with('error', 'Selecione uma modalidade');            
         // }
 
-        
+        $faculdades_escolhidas = [];
 
-        if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
+        if ($faculdades != null && count($faculdades) <= 3 && count($faculdades) >= 1) {
+            foreach ($faculdades as $faculdade) {
+                $faculdade = faculdade::where('id', $faculdade)->first();
+                array_push($faculdades_escolhidas, $faculdade);
+            }
+        }
+        else if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
            return redirect()->back()->with('error', 'Por Favor, selecione uma permissão!');
         }
 
-
-
-
-
-        foreach ($faculdades as $faculdade) {
-            // dd($faculdade);
-            $nota_corte = sisu_atual::where('faculdade_id', $faculdade)->first();
-            
-            $corte = $user_simulacao->pesoNotas($faculdade);
-            
-            if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
-                if (($corte * 0.1) > $nota_corte->nota) {
-                    $simulacoes_positivas2023[] = $nota_corte;
-                } else if (($corte * 0.1) < $nota_corte->nota) {
-                    $simulacoes_negativas2023[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            } else if ($request->input('estado') == 'Acre' && $nota_corte->estado == 'AC') {
-                if (($corte * 0.15) > $nota_corte->nota) {
-                    $simulacoes_positivas2023[] = $nota_corte;
-                } else if (($corte * 0.15) < $nota_corte->nota) {
-                    $simulacoes_negativas2023[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            } else if ($request->input('estado') == "Amazonas" && $nota_corte->estado == "AM") {
-                if (($corte * 0.2) > $nota_corte->nota) {
-                    $simulacoes_positivas2023[] = $nota_corte;
-                } else if (($corte * 0.2) < $nota_corte->nota) {
-                    $simulacoes_negativas2023[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            } else {
-
-                if ($corte > $nota_corte->nota) {
-                    $simulacoes_positivas2023[] = $nota_corte;
-                } else if ($corte < $nota_corte->nota) {
-                    $simulacoes_negativas2023[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            }
-        }
-
-        foreach ($faculdades as $faculdade) {
-            // dd($faculdade);
-            $nota_corte = sisu_anterior::where('faculdade_id', $faculdade)->first();
-            
-            $corte = $user_simulacao->pesoNotas($faculdade);
-            
-            if ($request->input('estado') == 'Alagoas' && $nota_corte->estado == 'AL') {
-                if (($corte * 0.1) > $nota_corte->nota) {
-                    $simulacoes_positivas2022[] = $nota_corte;
-                } else if (($corte * 0.1) < $nota_corte->nota) {
-                    $simulacoes_negativas2023[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            } else if ($request->input('estado') == 'Acre' && $nota_corte->estado == 'AC') {
-                if (($corte * 0.15) > $nota_corte->nota) {
-                    $simulacoes_positivas2022[] = $nota_corte;
-                } else if (($corte * 0.15) < $nota_corte->nota) {
-                    $simulacoes_negativas2022[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            } else if ($request->input('estado') == "Amazonas" && $nota_corte->estado == "AM") {
-                if (($corte * 0.2) > $nota_corte->nota) {
-                    $simulacoes_positivas2022[] = $nota_corte;
-                } else if (($corte * 0.2) < $nota_corte->nota) {
-                    $simulacoes_negativas2022[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            } else {
-
-                if ($corte > $nota_corte->nota) {
-                    $simulacoes_positivas2022[] = $nota_corte;
-                } else if ($corte < $nota_corte->nota) {
-                    $simulacoes_negativas2022[] = $nota_corte;
-                } else {
-                    $simulacoes_neutras[] = $nota_corte;
-                }
-            }
-        }
         $faculdades = faculdade::orderBy('id', 'desc')->get();
         
         
-
+       $faculdades_demais = faculdade::orderBy('id', 'desc')->paginate(10);
 
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
-            ->with('simulacoes_positivas2023', $simulacoes_positivas2023)
-            ->with('simulacoes_negativas2023', $simulacoes_negativas2023)
-            ->with('simulacoes_positivas2022', $simulacoes_positivas2022)
-            ->with('simulacoes_negativas2022', $simulacoes_negativas2022)
+            ->with('faculdades_escolhidas', $faculdades_escolhidas)
             ->with('user', $user)
+            ->with('estado', $estado)
             ->with('faculdades',  $faculdades)
+            ->with('faculdades_demais',  $faculdades_demais)
             ->with('estados',  Util::estados());
     }
 

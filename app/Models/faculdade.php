@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\sisu_anterior;
 use App\Models\sisu_atual;
 use App\Models\PesoNotas;
-
+use App\Models\User;
+use App\Models\simulacao;
 
 class faculdade extends Model
 {
@@ -83,4 +84,51 @@ class faculdade extends Model
         return $peso_redacao;
     }
 
+    public function getCalculoAtual($id, $estado){
+        $notas_usuario = simulacao::where('user_id', $id)->first();
+        $nota_corte = sisu_atual::where('faculdade_id', $this->id)->first();
+      
+        $nota = $notas_usuario->pesoNotas($this->id);
+        
+        if ($estado == 'Alagoas' && $this->estado == 'AL') {
+           $nota += $nota * .1;
+        }
+        if ($estado == 'Acre' && $this->estado == 'AC') {
+           $nota += $nota * .5;
+        }
+        if($estado =='Amazonas' && $this->estado == 'AM'){
+            $nota += $nota * .2;
+        }
+
+        if($nota>=$nota_corte->nota){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function getCalculoAnterior($id, $estado){
+        $notas_usuario = simulacao::where('user_id', $id)->first();
+        $nota_corte = sisu_anterior::where('faculdade_id', $this->id)->first();
+      
+        $nota = $notas_usuario->pesoNotas($this->id);
+        
+        if ($estado == 'Alagoas' && $this->estado == 'AL') {
+           $nota += $nota * 1.1;
+        }
+        if ($estado == 'Acre' && $this->estado == 'AC') {
+           $nota += $nota * 1.5;
+        }
+        if($estado =='Amazonas' && $this->estado == 'AM'){
+            $nota += $nota * 1.2;
+        }
+
+        if($nota>=$nota_corte->nota){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }
