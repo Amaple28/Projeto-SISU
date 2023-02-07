@@ -13,7 +13,7 @@
     <div class="header">
         <h2>Gerenciar Faculdades</h2>
         <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#adicionarFaculdadeModal"
-        id="" onclick="yourAddFaculdade(this)">
+        id="" onclick="yourAddFaculdade()">
             <i class="fas fa-plus"></i>
             Adicionar Faculdade
         </a>
@@ -205,6 +205,8 @@ const getData = async (url, options = {}) => {
         console.error(error);
     }
 }
+
+
 </script>
 
 

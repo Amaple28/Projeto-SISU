@@ -38,12 +38,12 @@
 
         <div class="form-group col-md-6 mb-3">
             <label for="nota_corte2022">Nota de Corte 2022:</label>
-            <input type="number" class="form-control" id="nota_corte2022" value="" name="nota_corte2022">
+            <input type="number" class="form-control resultado " id="nota_corte2022" value="" name="nota_corte2022">
         </div>
 
         <div class="form-group col-md-6 mb-3">
             <label for="nota_corte2023">Nota de Corte 2023:</label>
-            <input type="number" class="form-control" id="nota_corte" value="" name="nota_corte2023">
+            <input type="number" class="form-control resultado" id="nota_corte" value="" name="nota_corte2023">
         </div>
 
         <hr class="col-12">
@@ -51,30 +51,29 @@
 
         <div class="form-group col-md-4 mb-3">
             <label for="matematica">Matematica</label>
-            <input type="number" class="form-control" id="matematica" value="" name="matematica">
+            <input type="number" class="form-control resultado" id="matematica" value="" name="matematica">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="humanas">Humanas</label>
-            <input type="number" class="form-control" id="humanas" value="" name="humanas">
+            <input type="number" class="form-control resultado" id="humanas"  value="" name="humanas">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="linguagens">Linguagens</label>
-            <input type="number" class="form-control" id="linguagens" value="{{$faculdade->getPesoLinguagens()}}"
+            <input type="number" class="form-control resultado" id="linguagens" value=""
                 name="linguagens">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="natureza">Natureza</label>
-            <input type="number" class="form-control" id="natureza" value="" name="natureza">
+            <input type="number" class="form-control resultado" id="natureza" value=""  name="natureza">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="redacao">Redação</label>
-            <input type="number" class="form-control" id="redacao" value="" name="redacao">
+            <input type="number" class="form-control resultado" id="redacao" value="" name="redacao">
         </div>
        
-
     </div>
 </div>
