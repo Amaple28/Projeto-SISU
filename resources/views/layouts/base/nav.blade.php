@@ -66,29 +66,43 @@
                     </li>
 
                     @else
-                    <li class="nav-item">
-                        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    
+
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             id="{{$user->id}}" href="#" onclick="yourEditNavuser(this)">
                             <i class="fas fa-edit"></i>
-                            Editar Dados
-                        </button>
+                            Dados Pessoais
+                        </a>
                     </li>
 
-                    <li class="nav-item">
-                    <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#deletarUser"
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#deletarUser"
                             id="{{$user->id}}" href="#" onclick="yourDeleteUser(this)">
+                            <i class="fas fa-trash"></i>
                             Excluir Conta
+                        </a>
+                    </li>
+
+                    <li>
+                        <hr class="divider">
+                    </li>
+
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal"
+                            href="#" onclick="yourEditNavuser(this)">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Fique Atento
                         </a>
                     </li>
                     @endif
 
-
                     <li class="nav-item">
-                        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleSenha"
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleSenha"
                             id="{{$user->id}}" href="#" onclick="yourEditSenhauser(this)">
                             <i class="fas fa-lock"></i>
-                            Trocar Senha
-                        </button>
+                            Alterar Senha
+                        </a>
                     </li>
 
                     <li>
@@ -120,7 +134,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Editar Usuário</h5>
+                        <h5 class="modal-title">Dados Pessoais</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="get" action="{{route('editar-usuario')}}">
@@ -129,12 +143,17 @@
                             <div class="form-group mb-3">
                                 <label for="name">Nome:</label>
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="{{$user->name}}">
+                                    value="{{$user->name}}">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="telefone">Telefone:</label>
+                                <label for="name">Email:</label>
+                                <input type="text" class="form-control" name="email" id="email" disabled
+                                    value="{{$user->email}}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="telefone">(DDD) WhatsApp:</label>
                                 <input type="text" class="form-control" name="telefone" id="telefone"
-                                    placeholder="{{$user->telefone}}"
+                                    value="{{$user->telefone}}"
                                     oninput="this.value = this.value.replace(/\D/g, '').replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');">
                             </div>
                             <input type="hidden" name="id" value="{{$user->id}}">
@@ -152,7 +171,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Editar Usuário</h5>
+                        <h5 class="modal-title">Alterar Senha</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="get" action="{{route('editar-senha-usuario')}}">
@@ -171,7 +190,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="password_confirmation">Digite sua nova senha:</label>
+                                <label for="password_confirmation">Digite sua nova senha novamente:</label>
                                 <input type="password" class="form-control" name="password_confirmation"
                                     id="password_confirmation" placeholder="">
                             </div>
@@ -180,7 +199,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-warning">Salvar</button>
+                            <button type="submit" class="btn btn-warning">Alterar</button>
                         </div>
 
                     </form>
@@ -192,14 +211,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Editar Usuário</h5>
+                        <h5 class="modal-title">Excluir Conta</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="get" action="{{route('deletar-usuario')}}">
                         <div class="modal-body">
                             @csrf
                             <div class="form-group mb-3">
-                                <label for="password_atual">Tem certeza que gostaria de excluir sua conta?(Digite sua senha para confirmar)</label>
+                                <h6 for="password_atual">Tem certeza que gostaria de excluir sua conta? <br>(Se sim, digite sua senha para confirmar)</h6>
                                 
                                 <input type="password" class="form-control" name="password_atual" id="password_atual"
                                     placeholder="">
@@ -207,10 +226,36 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-warning">Salvar</button>
+                            <button type="submit" class="btn btn-danger">Excluir</button>
                         </div>
 
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Informações Importantes</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3 atento">
+                            <h6>1. Sobre as Notas</h6>
+                            <p>As notas de corte utilizadas no simulador foram obtidas através do portal <a href="https://sisu.mec.gov.br/#/relatorio#onepage" target="_blank">SISU MEC RELÁTORIOS</a> , para obter todas as informações sobre as notas utilizadas, acesse ao link e faça download dos relatórios correspondentes.</p>
+                            <p>O Simulador SISUMED não garante aprovação do usuário ao processo do SISU, os seus valores tem como objetivo ser uma referência para que o usuário possa analisar as possibilidades, quem garantirá o processo de ingresso a uma universidade será a ultima nota de corte calculada pelo processo seletivo do SISU, sendo esta nota de inteira responsábilidade do Sistema de Seleção Unificada - SISU 2023.</p>
+                            <h6>2. Sobre a Modalidade</h6>
+                            <p>As notas de cortes apresentadas para a modalidade de cota foi obtida utilizando o critério de selecionar a maior nota de corte entre as modalidades que possuem uma maior oferta de vagas, caso deseje saber todas as notas para cada tipo de modalidade, acesso ao <a href="https://sisu.mec.gov.br/#/relatorio#onepage" target="_blank">link</a> e baixe o relatório correspondente.</p>
+                            <h6>3. Sobre o Estado</h6>
+                            <p>Esta informação será utilizada para cálculo do bônus regional oferecido por algumas universidades do país.</p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning">Ok</button>
+                    </div>
                 </div>
             </div>
         </div>

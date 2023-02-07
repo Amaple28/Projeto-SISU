@@ -9,4 +9,13 @@ padding-left: 15px;
 .body-nav ul li .nav-link{
 color: #fff !important;
 }
+
+.atento a{
+    color: darkgoldenrod !important;
+    text-decoration: underline !important;
+}
+
+.atento a:hover{
+  color: #000 !important;
+}
   
