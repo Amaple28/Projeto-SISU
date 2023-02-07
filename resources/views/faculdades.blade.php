@@ -37,23 +37,10 @@
 
                         @foreach ($faculdades as $faculdade)
                         <tr>
-                            <td>{{ $faculdade->nome }}</td>
+                            <td>{{ $faculdade->nome }} {{ $faculdade->endereco }}</td>
                             <td>{{ $faculdade->estado }}</td>
                             <td>{{ $faculdade->getsisu_anterior() }}</td>
                             <td>{{ $faculdade->getsisu_atual() }}</td>
-                            {{-- <td> 
-                                <a class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    onclick="yourJsFunction(this)" id="{{$faculdade->id}}">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </a> 
-
-                                <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editFaculModal"
-                                    id="" onclick="yourEditFaculd(this)">  
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </button>
-                            </td> --}}
 
                             <td class="acoes">
                                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
