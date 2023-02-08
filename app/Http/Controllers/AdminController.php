@@ -95,7 +95,7 @@ class AdminController extends Controller
 
     public function deletarUsuario(Request $request,$id){
         $user = User::find($id);
-        if(!Hash::check($request->input('password_atual'), $user->password)){
+        if(!Hash::check($request->input('password_excluir'), $user->password)){
             return redirect()->back()->with('error', 'Senha atual incorreta!');
         }
         else{

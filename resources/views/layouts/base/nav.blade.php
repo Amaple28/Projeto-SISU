@@ -177,22 +177,25 @@
                     <form method="get" action="{{route('editar-senha-usuario')}}">
                         <div class="modal-body">
                             @csrf
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 senha">
                                 <label for="password_atual">Digite sua senha atual:</label>
                                 <input type="password" class="form-control" name="password_atual" id="password_atual"
                                     placeholder="">
+                                <i class="fas fa-eye" id="togglePasswordAtual"></i>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 senha">
                                 <label for="password">Digite sua nova senha:</label>
                                 <input type="password" class="form-control" name="password" id="password"
                                     placeholder="">
+                                    <i class="fas fa-eye" id="togglePassword"></i>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3 senha">
                                 <label for="password_confirmation">Digite sua nova senha novamente:</label>
                                 <input type="password" class="form-control" name="password_confirmation"
                                     id="password_confirmation" placeholder="">
+                                    <i class="fas fa-eye" id="togglePasswordConfirmation"></i>
                             </div>
 
                             <input type="hidden" name="id" value="{{$user->id}}">
@@ -217,11 +220,12 @@
                     <form method="get" action="{{route('deletar-usuario')}}">
                         <div class="modal-body">
                             @csrf
-                            <div class="form-group mb-3">
-                                <h6 for="password_atual">Tem certeza que gostaria de excluir sua conta? <br>(Se sim, digite sua senha para confirmar)</h6>
+                            <div class="form-group mb-3 senha">
+                                <h6 for="password_excluir">Tem certeza que gostaria de excluir sua conta? <br>(Se sim, digite sua senha para confirmar)</h6>
                                 
-                                <input type="password" class="form-control" name="password_atual" id="password_atual"
+                                <input type="password" class="form-control" name="password_excluir" id="password_excluir"
                                     placeholder="">
+                                <i class="fas fa-eye" id="togglePasswordExcluir"></i>
                             </div>
 
                         </div>
@@ -264,56 +268,120 @@
 </nav>
 
 <script>
-const yourEditNavuser = async (element) => {
+    const yourEditNavuser = async (element) => {
 
-    const id = element.id;
-    const url = "{{route('editar-usuario')}}"
+        const id = element.id;
+        const url = "{{route('editar-usuario')}}"
 
-    const editModal = document.getElementById('deletarUser');
+        const editModal = document.getElementById('deletarUser');
 
-    const userId = editModal.querySelector('input[name="id"]');
+        const userId = editModal.querySelector('input[name="id"]');
 
-    userId.value = id;
+        userId.value = id;
 
-}
-
-const yourDeleteUser = async (element) => {
-
-    const id = element.id;
-    const url = "{{route('deletar-usuario')}}"
-
-    const editModal = document.getElementById('exampleSenha');
-
-    const userId = editModal.querySelector('input[name="id"]');
-
-    userId.value = id;
-
-}
-
-const yourEditSenhauser = async (element) => {
-
-const id = element.id;
-const url = "{{route('editar-senha-usuario')}}"
-
-const editModal = document.getElementById('exampleSenha');
-
-const userId = editModal.querySelector('input[name="id"]');
-
-userId.value = id;
-
-}
-
-const getData = async (url, data = {}) => {
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            body: JSON.stringify(data)
-        });
-        const data = await response.json();
-
-        return data;
-    } catch (error) {
-        console.error(error);
     }
-}
+
+    const yourDeleteUser = async (element) => {
+
+        const id = element.id;
+        const url = "{{route('deletar-usuario')}}"
+
+        const editModal = document.getElementById('exampleSenha');
+
+        const userId = editModal.querySelector('input[name="id"]');
+
+        userId.value = id;
+
+    }
+
+    const yourEditSenhauser = async (element) => {
+
+        const id = element.id;
+        const url = "{{route('editar-senha-usuario')}}"
+
+        const editModal = document.getElementById('exampleSenha');
+
+        const userId = editModal.querySelector('input[name="id"]');
+
+        userId.value = id;
+
+    }
+
+    const getData = async (url, data = {}) => {
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                body: JSON.stringify(data)
+            });
+            const data = await response.json();
+
+            return data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function(e) {
+        const typelogin = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', typelogin);
+
+        if (this.classList.contains('fa-eye')) {
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
+    });
+
+    const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
+    const password_confirmation = document.querySelector('#password_confirmation');
+
+    togglePasswordConfirmation.addEventListener('click', function(e) {
+        const typelogin = password_confirmation.getAttribute('type') === 'password' ? 'text' : 'password';
+        password_confirmation.setAttribute('type', typelogin);
+
+        if (this.classList.contains('fa-eye')) {
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
+    });
+
+    const togglePasswordAtual = document.querySelector('#togglePasswordAtual');
+    const password_atual = document.querySelector('#password_atual');
+
+    togglePasswordAtual.addEventListener('click', function(e) {
+        const typelogin = password_atual.getAttribute('type') === 'password' ? 'text' : 'password';
+        password_atual.setAttribute('type', typelogin);
+
+        if (this.classList.contains('fa-eye')) {
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
+    });
+
+    const togglePasswordExcluir = document.querySelector('#togglePasswordExcluir');
+    const password_excluir = document.querySelector('#password_excluir');
+
+    togglePasswordExcluir.addEventListener('click', function(e) {
+        const typelogin = password_excluir.getAttribute('type') === 'password' ? 'text' : 'password';
+        password_excluir.setAttribute('type', typelogin);
+
+        if (this.classList.contains('fa-eye')) {
+            this.classList.remove('fa-eye');
+            this.classList.add('fa-eye-slash');
+        } else {
+            this.classList.remove('fa-eye-slash');
+            this.classList.add('fa-eye');
+        }
+    });
 </script>
