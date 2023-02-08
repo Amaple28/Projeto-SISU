@@ -108,7 +108,7 @@ class NotasController extends Controller
 
     public function salvarPesos(Request $request)
     {   
-        dd($request->all());
+       
         $todos = $request->all();
         foreach ($todos as $key => $value) {
             if($value == null){
