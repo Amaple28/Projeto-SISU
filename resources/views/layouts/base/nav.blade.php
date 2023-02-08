@@ -1,6 +1,4 @@
-<style>
-@include('layouts.css.nav');
-</style>
+<link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 
 <nav class="navbar navbar-light bg-warning">
     <div class="container-fluid">
