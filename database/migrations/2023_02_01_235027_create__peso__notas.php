@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('PesoNotas', function (Blueprint $table) {
             $table->id();
-            $table->string('faculdade_id');
+            $table->foreignId('faculdade_id')->constrained('faculdade')->onDelete('cascade');
             $table->float('matematica')->default(0.0);
             $table->float('humanas')->default(0.0);
             $table->float('natureza')->default(0.0);
             $table->float('linguagens')->default(0.0);
             $table->float('redacao')->default(0.0);
-            $table->float('nota_corte')->default(0.0);
             $table->timestamps();
         });
     }
