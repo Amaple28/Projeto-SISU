@@ -13,4 +13,9 @@ class PesoNotas extends Model
      * @var string
      */
     protected $table = 'PesoNotas';
+
+    public function faculdade()
+    {
+        return $this->belongsTo(faculdade::class);
+    }
 }

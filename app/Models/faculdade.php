@@ -24,16 +24,16 @@ class faculdade extends Model
     {
        $nota = sisu_anterior::where('faculdade_id', $this->id)->first();
        $notas = $nota->nota;
-         
+
         return $notas;
     }
 
     public function getsisu_atual()
     {
          $nota = sisu_atual::where('faculdade_id', $this->id)->first();
-         
+
          $notas = $nota->nota;
-         
+
          return $notas;
     }
 
@@ -87,9 +87,9 @@ class faculdade extends Model
     public function getCalculoAtual($id, $estado){
         $notas_usuario = simulacao::where('user_id', $id)->first();
         $nota_corte = sisu_atual::where('faculdade_id', $this->id)->first();
-      
+
         $nota = $notas_usuario->pesoNotas($this->id);
-        
+
         if ($estado == 'Alagoas' && $this->estado == 'AL') {
            $nota += $nota * .1;
         }
@@ -111,9 +111,9 @@ class faculdade extends Model
     public function getCalculoAnterior($id, $estado){
         $notas_usuario = simulacao::where('user_id', $id)->first();
         $nota_corte = sisu_anterior::where('faculdade_id', $this->id)->first();
-      
+
         $nota = $notas_usuario->pesoNotas($this->id);
-        
+
         if ($estado == 'Alagoas' && $this->estado == 'AL') {
            $nota += $nota * 1.1;
         }
@@ -130,5 +130,11 @@ class faculdade extends Model
             return false;
         }
 
+    }
+
+
+    public function PesoNotas()
+    {
+        return $this->hasOne(PesoNotas::class);
     }
 }
