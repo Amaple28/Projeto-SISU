@@ -19,7 +19,7 @@ class AdminController extends Controller
 {
     public function users(Request $request){
         $users = User::orderBy('id', 'desc')->paginate(15);
-        $user=Auth::user();   
+        $user=Auth::user();
 
         return view('users')
         ->with('users', $users)
@@ -60,23 +60,23 @@ class AdminController extends Controller
         if($user->tipo_user != 1){
             fputcsv($file, array($user->name, $user->email, $user->telefone));
         }
-        
+
         fclose($file);
 
         return response()->download('lead.csv');
     }
 
     public function editarPermissao(Request $request){
-        
+
         if(is_null($request->input('tipo_user'))){
-            return redirect()->back()->with('error', 'Por Favor, selecione uma permissão!');   
+            return redirect()->back()->with('error', 'Por Favor, selecione uma permissão!');
         }
 
         $user = User::find($request->input('id'));
         $user->tipo_user = $request->input('tipo_user');
         $user->save();
 
-        return redirect()->back()->with('success', 'Permissão alterada com sucesso!');   
+        return redirect()->back()->with('success', 'Permissão alterada com sucesso!');
     }
 
     public function deleteUser(Request $request){
@@ -93,14 +93,15 @@ class AdminController extends Controller
         }
     }
 
-    public function deletarUsuario(Request $request,$id){
-        $user = User::find($id);
+    public function deletarUsuario(Request $request){
+        $user = User::find($request->user);
         if(!Hash::check($request->input('password_excluir'), $user->password)){
             return redirect()->back()->with('error', 'Senha atual incorreta!');
         }
         else{
             $user->delete();
-            return redirect()->back()->with('success', 'Usuário deletado com sucesso!');
+
+            return redirect()->route('logout')->with('success', 'Usuário deletado com sucesso!');
         }
     }
 
@@ -118,7 +119,7 @@ class AdminController extends Controller
         }else{
             return redirect()->back()->with('error', 'Erro ao editar usuário!');
         }
-    
+
     }
 
 
@@ -140,7 +141,7 @@ class AdminController extends Controller
         }else{
             return redirect()->back()->with('error', 'Erro ao editar senha!');
         }
-    
+
     }
 
 }
