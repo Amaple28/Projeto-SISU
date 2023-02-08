@@ -48,7 +48,7 @@ Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
 
 //DASHBOARD DO ADMIN
 Route::get('/admin', [UserController::class, 'dashboardAdmin'])->name('admin');
-    
+
 
 Route::post('deletar/{id}',[AdminController::class, 'deletar']);
 
@@ -71,7 +71,7 @@ Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissao
 //editar usuarios
 Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
 Route::get('/users', [AdminController::class, 'users'])->name('users');
-Route::get('/deletar-usuario/{id?}', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
+Route::post('/deletar-usuario', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
 
 Route::get('/editar-usuario/{id?}', [AdminController::class, 'editarUsuario'])->name('editar-usuario');
 Route::get('/editar-senha-usuario/{id?}', [AdminController::class, 'editarSenha'])->name('editar-senha-usuario');

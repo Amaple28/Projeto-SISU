@@ -19,7 +19,7 @@
             <div class="col-md-6 mb-3">
                 <label for="estado">Modalidade</label>
                 <select class="form-select" name="modalidade">
-                    <option selected>Selecione...</option>
+                    <option selected value="">Selecione...</option>
                     <option value="1">Ampla Concorrência</option>
                     <option value="2">Cota</option>
                 </select>
@@ -42,12 +42,12 @@
 
             <div class="form-group col-md-6 mb-3">
                 <label for="nota_corte2022">Nota de Corte 2022:</label>
-                <input type="number" class="form-control resultado" id="nota_corte2022" value="" name="nota_corte2022">
+                <input type="number" class="form-control resultado" id="nota_corte2022" value="{{$faculdade->getsisu_anterior()}}" step="0.01" name="nota_corte2022">
             </div>
-    
+
             <div class="form-group col-md-6 mb-3">
                 <label for="nota_corte2023">Nota de Corte 2023:</label>
-                <input type="number" class="form-control resultado" id="nota_corte" value="" name="nota_corte2023">
+                <input type="number" class="form-control resultado" id="nota_corte" value="{{$faculdade->getsisu_atual()}}" step="0.01" name="nota_corte2023">
             </div>
 
             <hr class="col-12">
@@ -58,40 +58,40 @@
                 <input type="number" class="form-control" id="matematica"
                     value="{{$faculdade->getPesoMatematica()}}" name="matematica">
             </div>
-            
+
             <div class="form-group col-md-4 mb-3">
                 <label for="humanas">Humanas</label>
                 <input type="number" class="form-control" id="humanas"
                     value="{{$faculdade->getPesoHumanas()}}" name="humanas">
             </div>
-            
+
             <div class="form-group col-md-4 mb-3">
                 <label for="linguagens">Linguagens</label>
                 <input type="number" class="form-control" id="linguagens"
                     value="{{$faculdade->getPesoLinguagens()}}" name="linguagens">
             </div>
-            
+
             <div class="form-group col-md-4 mb-3">
                 <label for="natureza">Natureza</label>
                 <input type="number" class="form-control" id="natureza"
                     value="{{$faculdade->getPesoNatureza()}}" name="natureza">
             </div>
-            
+
             <div class="form-group col-md-4 mb-3">
                 <label for="redacao">Redação</label>
                 <input type="number" class="form-control" id="redacao"
                     value="{{$faculdade->getPesoRedacao()}}" name="redacao">
-            </div>                                        
-            
-            
+            </div>
+
+
             <input type="hidden" name="id" value="{{$faculdade->id}}">
             <script>
-                const notas = document.querySelectorAll(".resultado"); 
+                const notas = document.querySelectorAll(".resultado");
                 console.log(notas);
-                
+
                 notas.forEach(notas => {
                   notas.addEventListener('change', (event) => {
-                    
+
                     if(event.target.value > 1000)
                     {
                       event.target.value = 1000;

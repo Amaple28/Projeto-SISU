@@ -64,7 +64,7 @@
                     </li>
 
                     @else
-                    
+
 
                     <li class="nav-item mb-2">
                         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -215,14 +215,15 @@
                         <h5 class="modal-title">Excluir Conta</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="get" action="{{route('deletar-usuario')}}">
+                    <form method="post" action="{{route('deletar-usuario')}}">
                         <div class="modal-body">
                             @csrf
                             <div class="form-group mb-3 senha">
                                 <h6 for="password_excluir">Tem certeza que gostaria de excluir sua conta? <br>(Se sim, digite sua senha para confirmar)</h6>
-                                
+
                                 <input type="password" class="form-control" name="password_excluir" id="password_excluir"
-                                    placeholder="">
+                                placeholder="">
+                                <input type="hidden" class="form-control" value="{{$user->id}}" name="user">
                                 <i class="fas fa-eye" id="togglePasswordExcluir"></i>
                             </div>
 

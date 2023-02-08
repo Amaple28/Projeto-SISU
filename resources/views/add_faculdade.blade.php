@@ -51,36 +51,36 @@
 
         <div class="form-group col-md-4 mb-3">
             <label for="matematica">Matematica</label>
-            <input type="number" class="form-control resultado" id="matematica" value="" name="matematica">
+            <input type="number" class="form-control resultado" id="matematica" value="0" name="matematica">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="humanas">Humanas</label>
-            <input type="number" class="form-control resultado" id="humanas"  value="" name="humanas">
+            <input type="number" class="form-control resultado" id="humanas"  value="0" name="humanas">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="linguagens">Linguagens</label>
-            <input type="number" class="form-control resultado" id="linguagens" value=""
+            <input type="number" class="form-control resultado" id="linguagens" value="0"
                 name="linguagens">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="natureza">Natureza</label>
-            <input type="number" class="form-control resultado" id="natureza" value=""  name="natureza">
+            <input type="number" class="form-control resultado" id="natureza" value="0"  name="natureza">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="redacao">Redação</label>
-            <input type="number" class="form-control resultado" id="redacao" value="" name="redacao">
+            <input type="number" class="form-control resultado" id="redacao" value="0" name="redacao">
         </div>
         <script>
-        const notas = document.querySelectorAll(".resultado"); 
+        const notas = document.querySelectorAll(".resultado");
         console.log(notas);
-        
+
         notas.forEach(notas => {
           notas.addEventListener('change', (event) => {
-            
+
             if(event.target.value > 1000)
             {
               event.target.value = 1000;

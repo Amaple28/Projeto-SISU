@@ -15,13 +15,13 @@
         @csrf
         <div class="container">
             <div class="row notas_admin">
-                
+
                 @foreach ($faculdades as $faculdade)
                     <div class="col-md-6 col-12">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}} -{{$faculdade->turno}}</span>
-                            <input type="number" class="form-control resultado" placeholder="000.0" aria-describedby="basic-addon1" 
-                            name="{{$faculdade->id}}" 
+                            <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}} -{{$faculdade->modalidade}}</span>
+                            <input type="number" class="form-control resultado" placeholder="000.0" aria-describedby="basic-addon1"
+                            name="{{$faculdade->id}}"
                             @foreach ($notas_2023 as $nota)
                                 @if ($nota->faculdade_id == $faculdade->id)
                                     value="{{$nota->nota}}"
@@ -32,7 +32,7 @@
                 @endforeach
 
                 <button type="submit" class="btn btn-warning col-8 mb-3"> Salvar Alterações</button>
-                
+
             </div>
         </div>
     </form>
@@ -46,11 +46,11 @@
 </body>
 <script>
 
-const notas = document.querySelectorAll(".resultado"); 
+const notas = document.querySelectorAll(".resultado");
 
 notas.forEach(notas => {
   notas.addEventListener('change', (event) => {
-    
+
     if(event.target.value > 1000)
     {
       event.target.value = 1000;
