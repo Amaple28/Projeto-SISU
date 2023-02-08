@@ -1,6 +1,4 @@
-<style>
-    @include('layouts.css.footer');
-</style>
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
