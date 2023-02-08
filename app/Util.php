@@ -46,4 +46,13 @@ class Util extends Model
         );
         return $estados;
     }
+
+    public static function convertCommaStringToFloat(string|int $value) : float
+    {
+        if(gettype($value) === 'integer') {
+            return floatval($value);
+        } else {
+            return floatval(str_replace(',', '.', $value));
+        }
+    }
 }
