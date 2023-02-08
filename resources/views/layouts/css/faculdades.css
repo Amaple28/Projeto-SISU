@@ -29,10 +29,14 @@
             margin-top: 2%;
         }
 
-        .header a{
+        .header .grande{
             position: absolute;
             right : 0;
             margin-right: 2%;
+        }
+
+        .header .pequeno{
+            display: none;
         }
 
         .container{
@@ -44,13 +48,20 @@
                 font-size: 0.8rem;
             }
 
-            .header a{
-                position: fixed;
+            .header .pequeno{
+                /* position: fixed;
                 right : 0;
                 bottom: 0;
                 margin-right: 2%;
                 margin-bottom: 2%;
-                
+                 */
+                position: absolute;
+                right : 0;
+                margin-right: 2%;
+                display: block;
+            }
+            .header .grande{
+                display: none;
             }
         }
 

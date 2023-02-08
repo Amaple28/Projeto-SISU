@@ -12,9 +12,13 @@
 
     <div class="header">
         <h2>Gerenciar Usuários</h2>
-        <a href="{{route('baixar-leads')}}" class="btn btn-warning">
+        <a href="{{route('baixar-leads')}}" class="btn btn-warning grande">
             <i class="fas fa-file-export"></i>
             Exportar Leads
+        </a>
+
+        <a href="{{route('baixar-leads')}}" class="btn btn-warning pequeno">
+            <i class="fas fa-file-export fa-2xs"></i>
         </a>
     </div>
 
