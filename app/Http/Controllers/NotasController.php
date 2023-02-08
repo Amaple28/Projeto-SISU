@@ -24,7 +24,7 @@ class NotasController extends Controller
     public function faculdades(Request $request){
         $faculdades = faculdade::orderBy('id', 'desc')->paginate(15);
 
-        $user=Auth::user();   
+        $user=Auth::user();
 
         return view('faculdades')
         ->with('faculdades', $faculdades)
@@ -34,8 +34,8 @@ class NotasController extends Controller
     public function notas(Request $request){
         $faculdades = faculdade::all()->sortBy( 'endereco');
         $notas_2023 = sisu_atual::all();
-       
-        $user=Auth::user();   
+
+        $user=Auth::user();
 
         return view('notas_admin')
         ->with('faculdades', $faculdades)
@@ -45,14 +45,14 @@ class NotasController extends Controller
 
     public function editarNotas2023(Request $request){
         $faculdades = faculdade::all();
-        
+
         foreach ($faculdades as $faculdade) {
             $nota = $request->input($faculdade->id);
 
             if($nota == null){
                 $nota = 0;
             }
-            
+
             $nota_corte = sisu_atual::where('faculdade_id', $faculdade->id)->first();
             $nota_corte->nota = $nota;
             $nota_corte->save();
@@ -63,7 +63,7 @@ class NotasController extends Controller
     }
 
     public function editarNotas($id){
-        
+
         $data = DB::table('faculdade')
             ->join('sisu_atual', 'faculdade.id', '=', 'sisu_atual.faculdade_id')
             ->join('sisu_anterior', 'faculdade.id', '=', 'sisu_anterior.faculdade_id')
@@ -74,41 +74,39 @@ class NotasController extends Controller
     }
 
     public function salvarNotas(Request $request){
-        // dd($request->all());
         $id = $request->input('id');
         $nota_sisu_atual = $request->input('nota_sisu_atual');
         $nota_sisu_anterior = $request->input('nota_sisu_anterior');
         $faculdade = faculdade::where('id', $id)->first();
-        
+
         $sisu_anterior = sisu_anterior::where('faculdade_id', $faculdade->id)->first();
         $sisu_anterior->nota = $nota_sisu_anterior;
         $sisu_anterior->save();
 
         $sisu_atual = sisu_atual::where('faculdade_id', $faculdade->id)->first();
         $sisu_atual->nota = $nota_sisu_atual;
-        $sisu_atual->save();       
+        $sisu_atual->save();
 
-          
+
 
         return redirect()->route('faculdades');
     }
 
 
     public function editarPesos($id)
-    {       
-        
+    {
+
         $data = DB::table('faculdade')
-            ->join('PesoNotas', 'faculdade.id', '=', 'PesoNotas')                    
+            ->join('PesoNotas', 'faculdade.id', '=', 'PesoNotas')
             ->select('faculdade.*', 'PesoNotas as peso')
             ->where('faculdade.id', '=', $id)
             ->get();
         return $data;
-        
+
     }
 
     public function salvarPesos(Request $request)
-    {   
-       
+    {
         $todos = $request->all();
         foreach ($todos as $key => $value) {
             if($value == null){
@@ -116,7 +114,7 @@ class NotasController extends Controller
             }
         }
         $id = $request->input('id');
-       
+
         $faculdade = faculdade::where('id', $id)->first();
         $faculdade->nome = $request->input('nome');
         $faculdade->sigla = $request->input('sigla');
@@ -125,7 +123,7 @@ class NotasController extends Controller
         $faculdade->save();
 
         $pesos = PesoNotas::where('faculdade_id', $id)->first();
-        
+
         $pesos->matematica = $request->input('matematica');
         $pesos->humanas = $request->input('humanas');
         $pesos->linguagens = $request->input('linguagens');
@@ -134,17 +132,17 @@ class NotasController extends Controller
         $pesos->save();
 
         $nota_sisu_anterior = sisu_anterior::where('faculdade_id', $faculdade->id)->first();
-        $nota_sisu_anterior->nota = $request->input('nota_corte2022"');
+        $nota_sisu_anterior->nota = $request->input('nota_corte2022');
         $nota_sisu_anterior->save();
 
         $nota_sisu_atual = sisu_atual::where('faculdade_id', $faculdade->id)->first();
         $nota_sisu_atual->nota = $request->input('nota_corte2023');
         $nota_sisu_atual->save();
-            
+
 
         return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
     }
-    
+
 
     public function adicionarFaculdade(Request $request)
     {
@@ -160,7 +158,9 @@ class NotasController extends Controller
         $faculdade->sigla = $request->input('sigla');
         $faculdade->estado = $request->input('estado');
         $faculdade->endereco = $request->input('endereco');
-        $faculdade->turno = $request->input('modalidade');
+        $faculdade->modalidade = $request->input('modalidade');
+        $faculdade->peso = 0;
+
         if(!$faculdade->save()){
             return redirect()->back()->with('error', 'Erro ao cadastrar faculdade!');
         }
@@ -185,7 +185,7 @@ class NotasController extends Controller
             return redirect()->back()->with('error', 'Erro ao cadastrar notas!');
         }
         $sisu_atual->save();
-        
+
 
         $sisu_anterior = new sisu_anterior();
         $sisu_anterior->faculdade_id = $faculdade->id;
@@ -194,7 +194,7 @@ class NotasController extends Controller
             return redirect()->back()->with('error', 'Erro ao cadastrar notas!');
         }
         $sisu_anterior->save();
-        
+
         return redirect()->back()->with('success', 'Faculdade cadastrada com sucesso!');
     }
 
