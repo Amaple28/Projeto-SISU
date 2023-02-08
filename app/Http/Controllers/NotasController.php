@@ -108,6 +108,7 @@ class NotasController extends Controller
 
     public function salvarPesos(Request $request)
     {   
+       
         $todos = $request->all();
         foreach ($todos as $key => $value) {
             if($value == null){
@@ -131,6 +132,14 @@ class NotasController extends Controller
         $pesos->natureza = $request->input('natureza');
         $pesos->redacao = $request->input('redacao');
         $pesos->save();
+
+        $nota_sisu_anterior = sisu_anterior::where('faculdade_id', $faculdade->id)->first();
+        $nota_sisu_anterior->nota = $request->input('nota_corte2022"');
+        $nota_sisu_anterior->save();
+
+        $nota_sisu_atual = sisu_atual::where('faculdade_id', $faculdade->id)->first();
+        $nota_sisu_atual->nota = $request->input('nota_corte2023');
+        $nota_sisu_atual->save();
             
 
         return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
