@@ -1,10 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
   @include('layouts.base.base')
-    
-  <style>
-    @include('layouts.css.recuperarSenha');
-  </style>
+  <link rel="stylesheet" href="{{ asset('css/recuperarSenha.css') }}">
 
   <body>
         @include('layouts.base.flash-message')

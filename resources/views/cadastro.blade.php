@@ -1,6 +1,4 @@
-<style>
-    @include('layouts.css.cadastro');
-</style>
+<link rel="stylesheet" href="{{ asset('css/cadastro.css') }}">
 
 <form method="POST" action="/criar-usuario">
     @csrf

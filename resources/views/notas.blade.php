@@ -1,8 +1,4 @@
-
-<style>
-    @include('layouts.css.notas');
-</style>
-
+<link rel="stylesheet" href="{{ asset('css/notas.css') }}">
 
   <h2>SIMULADOR SISU VEMMED</h2>
   <br>

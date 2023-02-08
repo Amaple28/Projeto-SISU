@@ -1,6 +1,4 @@
-<style>
-    @include('layouts.css.login');
-</style>
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 <form method="post" action="/login">
     @csrf

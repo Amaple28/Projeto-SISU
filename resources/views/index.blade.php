@@ -2,10 +2,9 @@
 <html lang="pt-br">
 
   @include('layouts.base.base')
+  <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
   <style>
-    @include('layouts.css.index');
-
     .accordion{
       -- bs-accordion-active-color: #FFC107 !important;
     }

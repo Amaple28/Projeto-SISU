@@ -1,10 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
 @include('layouts.base.base')
-
-<style>
-@include('layouts.css.admin');
-</style>
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
 <body class="dashboard_admin_corpo">
     @include('layouts.base.nav')

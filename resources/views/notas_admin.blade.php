@@ -1,10 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
 @include('layouts.base.base')
-
-<style>
-@include('layouts.css.faculdades');
-</style>
+<link rel="stylesheet" href="{{ asset('css/faculdades.css') }}">
 
 <body>
     @include('layouts.base.nav')
