@@ -54,7 +54,7 @@ class User extends Authenticatable
         Mail::send('layouts.emails.cadastro', $data, function($message) use ($email, $name) {
             $message->to($email, $name)
                     ->subject('Cadastro'); //assunto
-            $message->from('admin@simuladorsisumed.com','SIMULADOR SISU VEMMED');
+            $message->from('contato@simuladorsisumed.com','SIMULADOR SISU VEMMED');
         });
 
         

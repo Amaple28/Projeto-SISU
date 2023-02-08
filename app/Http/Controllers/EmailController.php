@@ -56,7 +56,7 @@ class EmailController extends Controller
         Mail::send('layouts.emails.recuperarSenha', $data, function($message) use ($email, $name) {
             $message->to($email, $name)
                     ->subject('Recuperar Senha'); //assunto
-            $message->from('admin@simuladorsisumed.com','SIMULADOR SISU VEMMED');
+            $message->from('contato@simuladorsisumed.com','SIMULADOR SISU VEMMED');
         });
         return redirect('/nova-senha-form/'.$user->id)->with('success', 'E-mail enviado com sucesso!');
 
