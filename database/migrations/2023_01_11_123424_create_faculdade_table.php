@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('sigla');
-            $table->string('peso');
             $table->string('endereco');
             $table->string('estado');
-            $table->string('turno');
-            $table->string('telefone');
+            $table->string('modalidade');
             $table->timestamps();
         });
     }
