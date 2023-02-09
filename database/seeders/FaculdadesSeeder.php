@@ -44,8 +44,8 @@ class FaculdadesSeeder extends Seeder
         }
 
         foreach ($faculdadeCotas as $key => $value) {
-            if($value->TP_MODALIDADE != 'Ampla concorrência') $value->TP_MODALIDADE = 'COTAS';
-            faculdade::query()->updateOrCreate([
+            if($value->TP_MODALIDADE != 'Ampla concorrência') $value->TP_MODALIDADE = 'Cotas';
+            $faculdade = faculdade::query()->updateOrCreate([
                 "nome" => $value->NO_IES,
                 "sigla" => $value->SG_IES,
                 "endereco" => $value->NO_MUNICIPIO_CAMPUS,
