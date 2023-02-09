@@ -157,13 +157,13 @@ class faculdade extends Model
         $notas_usuario = $nusuario->pesoNotas($this->id);
 
         if ($estado == 'Alagoas' && $this->estado == 'AL') {
-            $notas_usuario += $notas_usuario * .01;
+            $notas_usuario += $notas_usuario * .1;
          }
          if ($estado == 'Acre' && $this->estado == 'AC') {
-            $notas_usuario += $notas_usuario * .05;
+            $notas_usuario += $notas_usuario * .5;
          }
          if($estado =='Amazonas' && $this->estado == 'AM'){
-             $notas_usuario += $notas_usuario *.02;
+             $notas_usuario += $notas_usuario *.2;
          }
 
         
