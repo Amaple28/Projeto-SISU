@@ -23,7 +23,7 @@
             @else aprovado @endif
             ">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">{{$faculdade->estado}} - {{$faculdade->nome}} {{$faculdade->endereco}} ({{$faculdade->modalidade}})</h5>
+                    <h5 class="card-title mb-3">{{$faculdade->estado}} -aa {{$faculdade->nome}} {{$faculdade->endereco}} ({{$faculdade->modalidade}})</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade->getsisu_anterior()}} *</h6>
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade->getsisu_atual()}}</h6> --}}
 
