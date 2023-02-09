@@ -32,7 +32,7 @@
                                 <i class="fas fa-long-arrow-alt-down"></i>
                                 Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculoAnterior($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
-                                @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === 'zero')
+                                @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === true)
                                 @dump('Ta')
                                 <i class="fa-duotone fa-circle-xmark"></i>
                                 Nota de Corte Zerada
