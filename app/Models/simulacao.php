@@ -32,7 +32,7 @@ class simulacao extends Model
   
         $soma += $this->natureza * $pesonotas->natureza;
         
-      $soma=637;
+      
 
       // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
       $total = $soma /10 ;
