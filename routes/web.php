@@ -44,29 +44,41 @@ Route::get('/nova-senha-form/{id}',[EmailController::class, 'novaSenhaForm']);
 Route::post('/nova-senha/{id}',[EmailController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard')->middleware('auth');
+Route::middleware('authenticated')->group(function() {
+    Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard')->middleware('auth');
+});
+
 
 //DASHBOARD DO ADMIN
-Route::get('/admin', [UserController::class, 'dashboardAdmin'])->name('admin');
+Route::middleware('admin')->group(function() {
+    Route::get('/admin', [UserController::class, 'dashboardAdmin'])->name('admin');
+    Route::post('deletar/{id}',[AdminController::class, 'deletar']);
+});
 
 
-Route::post('deletar/{id}',[AdminController::class, 'deletar']);
 
 //Gerenciar faculdades
-Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculdades');
-Route::get('/notas', [NotasController::class, 'notas'])->name('notas');
-Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
+Route::middleware('admin')->group(function() {
+    Route::get('/faculdades', [NotasController::class, 'faculdades'])->name('faculdades');
+    Route::get('/notas', [NotasController::class, 'notas'])->name('notas');
+    Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
+});
 
 //baixar leads em excel
-Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
-Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
+Route::middleware('admin')->group(function() {
+    Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baixar-leads');
+    Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
+});
 
 //editar notas
+Route::middleware('admin')->group(function() {
     Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');
     Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name('salvar-notas');
+});
+
 
 //editar permissoes
-Route::middleware('authenticated')->group(function() {
+Route::middleware('admin')->group(function() {
     Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissao'])->name('editar-permissoes');
 });
 
@@ -80,16 +92,20 @@ Route::middleware('admin')->group(function() {
 });
 
 //Usuario deletar ele mesmo
-Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
+Route::middleware('authenticated')->group(function() {
 
-//simulacao
-Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
+    Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
+    //simulacao
+    Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');
+});
 
-//editar faculdades
-Route::get('/editar-pesos/{id?}', [NotasController::class, 'editarPesos'])->name('editar-pesos');
-Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name('salvar-pesos');
-Route::get('/deletar-faculdade/{id?}', [NotasController::class, 'deletarFaculdade'])->name('deletar-faculdade');
+Route::middleware('admin')->group(function() {
+    //editar faculdades
+    Route::get('/editar-pesos/{id?}', [NotasController::class, 'editarPesos'])->name('editar-pesos');
+    Route::get('/salvar-pesos/{id?}', [NotasController::class, 'salvarPesos'])->name('salvar-pesos');
+    Route::get('/deletar-faculdade/{id?}', [NotasController::class, 'deletarFaculdade'])->name('deletar-faculdade');
 
-Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
+    Route::get('/editar-notas-2023', [NotasController::class, 'editarNotas2023'])->name('editar-notas-2023');
 
-Route::get('/adicionar-faculdade', [NotasController::class, 'adicionarFaculdade'])->name('adicionar-faculdade');
+    Route::get('/adicionar-faculdade', [NotasController::class, 'adicionarFaculdade'])->name('adicionar-faculdade');
+});
