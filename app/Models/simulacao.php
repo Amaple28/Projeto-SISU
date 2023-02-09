@@ -17,8 +17,13 @@ class simulacao extends Model
 
     public function pesoNotas($id){
       $pesonotas = PesoNotas::where('faculdade_id', $id)->first();
-      $soma = 0;
-      $dividendo=0;
+
+
+        $pesoMat = $pesonotas->matematica;
+        $pesoHum = $pesonotas->humanas;
+        $pesoRed = $pesonotas->redacao;
+        $pesoLin = $pesonotas->linguagens;
+        $pesoNatu = $pesonotas->natureza;
 
         $matematica = $this->matematica * $pesonotas->matematica;
 
@@ -30,10 +35,8 @@ class simulacao extends Model
 
         $natureza = $this->natureza * $pesonotas->natureza;
 
-        $soma = $matematica + $humanas + $redacao + $linguagens + $natureza;
-
         $numerator = $matematica + $humanas + $redacao + $linguagens + $natureza;
-        $denominator = $matematica + $humanas + $redacao + $linguagens + $natureza;
+        $denominator = $pesoMat + $pesoHum + $pesoRed + $pesoLin + $pesoNatu;
 
         $total = round($numerator/$denominator, 2);
       // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
