@@ -53,7 +53,7 @@ class SimulacaoController extends Controller
 
         $faculdades = faculdade::orderBy('id', 'desc')->get();
         
-       dd($request->input('modalidade'));
+       
         if($modalidade =1){
             $faculdades_demais= faculdade::where('modalidade','Ampla concorrência')->get();
         }
