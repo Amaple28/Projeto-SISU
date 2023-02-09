@@ -19,7 +19,7 @@
                 <div class="card  @if(!$faculdade_escolhida->getCalculoAnterior($user->id, $estado))reprovado @else aprovado @endif">
                     <div class="card-body">
                         <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} ({{$faculdade_escolhida->modalidade}})</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade_escolhida->getsisu_anterior()}} *</h6> 
+                        <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade_escolhida->getsisu_anterior()}} *</h6>
                         {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}}</h6> --}}
 
                         <div class="quadro_resultado">
@@ -31,7 +31,7 @@
                                     <i class="fas fa-frown"></i>
                                     @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
-                                    Nota final acima da nota de corte. 
+                                    Nota final acima da nota de corte. <b>Sua nota:{{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}
                                     <i class="fas fa-laugh-beam"></i>
                                     @endif
                                 </p>
@@ -45,7 +45,7 @@
                 <div class="card  @if(!$faculdade_escolhida->getCalculoAtual($user->id, $estado))reprovado @else aprovado @endif">
                     <div class="card-body">
                         <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} ({{$faculdade_escolhida->modalidade}})</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}} *</h6> 
+                        <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}} *</h6>
                         {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}}</h6> --}}
 
                         <div class="quadro_resultado">
@@ -57,7 +57,7 @@
                                     <i class="fas fa-frown"></i>
                                     @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
-                                    Nota final acima da nota de corte. 
+                                    Nota final acima da nota de corte.
                                     <i class="fas fa-laugh-beam"></i>
                                     @endif
                                 </p>
@@ -68,16 +68,16 @@
             </div>
 
         </div>
-        
+
     @endforeach
 
-  
+
         <!-- <div class="col-10 mb-3">
             <div class="card aprovado">
 
                 <div class="card-body">
                     <h5 class="card-title mb-3"></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: </h6> 
+                    <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: </h6>
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: </h6>  --}}
 
                     <div class="quadro_resultado">
@@ -92,5 +92,5 @@
                 </div>
             </div>
         </div> -->
-    
+
 @endif
