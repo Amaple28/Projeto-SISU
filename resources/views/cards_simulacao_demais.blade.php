@@ -18,7 +18,7 @@
 
         <div class="collapse show" id="collapsecard{{$faculdade->id}}">
             <div class="card
-            @if($faculdade->getCalculoAnterior($user->id, $estado) === 'zero') zerada
+            @if($faculdade->getsisu_anterior()<=100) zerada
             @elseif (!$faculdade->getCalculoAnterior($user->id, $estado)) reprovado
             @else aprovado @endif
             ">
@@ -34,7 +34,7 @@
                                 <i class="fas fa-long-arrow-alt-down"></i>
                                 Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
-                                @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === 'zero')
+                                @elseif ($faculdade->getsisu_atual() <=100)
                                 Nota de Corte Zerada
                                 @else
                                 
@@ -51,7 +51,7 @@
 
         <div class="collapse" id="collapsecard2{{$faculdade->id}}">
             <div class="card
-            @if($faculdade->getCalculoAtual($user->id, $estado) === 'zero') zerada
+            @if($faculdade->getsisu_atual() <=100) zerada
             @elseif (!$faculdade->getCalculoAtual($user->id, $estado)) reprovado
             @else aprovado @endif
             ">
@@ -67,7 +67,7 @@
                                 <i class="fas fa-long-arrow-alt-down"></i>
                                 Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
-                                @elseif ($faculdade->getCalculoAtual($user->id, $estado) === 'zero')
+                                @elseif ($faculdade->getsisu_atual() <=100)
                                 Nota de Corte Zerada
                                 @else
                                
