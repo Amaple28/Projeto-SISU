@@ -57,6 +57,7 @@
                                     Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                     <i class="fas fa-frown"></i>
                                     @elseif ($faculdade_escolhida->getCalculoAtual($user->id, $estado) === 'zero')
+                                    @dump('Gustavo')
                                     Nota de Corte Zerada
                                     @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
