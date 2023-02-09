@@ -23,7 +23,7 @@
                     aria-label="Floating label select example">
                     <option selected>Selecione...</option>
                     <option value="1">Ampla Concorrência</option>
-                    <option value="2">Cota/Escola Publica </option>
+                    <option value="2">Cota Escola Pública </option>
                     <option value="3">Todas</option>
                 </select>
                 <label for="floatingSelect">*Modalidade:</label>
