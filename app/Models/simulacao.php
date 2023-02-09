@@ -20,21 +20,21 @@ class simulacao extends Model
       $soma = 0;
       $dividendo=0;
  
-        // $soma += $this->matematica * $pesonotas->matematica;
+        $soma += $this->matematica * $pesonotas->matematica;
 
-        // $soma += $this->humanas * $pesonotas->humanas;
+        $soma += $this->humanas * $pesonotas->humanas;
 
-        // $soma += $this->redacao * $pesonotas->redacao;
+        $soma += $this->redacao * $pesonotas->redacao;
         
       
       
-        // $soma += $this->linguagens * $pesonotas->linguagens;
+        $soma += $this->linguagens * $pesonotas->linguagens;
   
-        // $soma += $this->natureza * $pesonotas->natureza;
+        $soma += $this->natureza * $pesonotas->natureza;
         
       
 
-      $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
+      // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
       $total = $soma /10 ;
       return $total;
     }
