@@ -121,13 +121,13 @@ class faculdade extends Model
         $nota = $notas_usuario->pesoNotas($this->id);
 
         if ($estado == 'Alagoas' && $this->estado == 'AL') {
-           $nota += $nota * 1.1;
+           $nota += $nota * .1;
         }
         if ($estado == 'Acre' && $this->estado == 'AC') {
-           $nota += $nota * 1.5;
+           $nota += $nota * .5;
         }
         if($estado =='Amazonas' && $this->estado == 'AM'){
-            $nota += $nota * 1.2;
+            $nota += $nota * .2;
         }
 
         if($nota>=$nota_corte->nota){
