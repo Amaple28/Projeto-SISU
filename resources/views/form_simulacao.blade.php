@@ -61,7 +61,7 @@
 <script>
 const modalidadeElement = document.querySelector(".conc");
 const ampla = document.querySelectorAll(".AMPLA");
-const cota = document.querySelectorAll(".COTA");
+const cota = document.querySelectorAll(".COTAS");
 
 modalidadeElement.addEventListener('change', (event) => {
     console.log(modalidadeElement.value);
