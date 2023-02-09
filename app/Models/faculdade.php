@@ -143,4 +143,13 @@ class faculdade extends Model
     {
         return $this->hasOne(PesoNotas::class);
     }
+
+    public function getModalidade(){
+        if($this->modalidade == 'Ampla concorrência'){
+            return 'AMPLA';
+        }
+        else{
+            return 'COTAS';
+        }
+    }
 }
