@@ -18,7 +18,7 @@
             <div class="collapse show" id="collapsecard{{$faculdade_escolhida->id}}">
                 <div class="card  @if(!$faculdade_escolhida->getCalculoAnterior($user->id, $estado))reprovado @else aprovado @endif">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} ({{$faculdade_escolhida->modalidade}})</h5>
+                        <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} (@if({{$faculdade_escolhida->modalidade}} == 'Cotas') Cota @else Ampla @endif)</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2022: {{$faculdade_escolhida->getsisu_anterior()}} *</h6> 
                         {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}}</h6> --}}
 
@@ -44,7 +44,7 @@
             <div class="collapse" id="collapsecard2{{$faculdade_escolhida->id}}">
                 <div class="card  @if(!$faculdade_escolhida->getCalculoAtual($user->id, $estado))reprovado @else aprovado @endif">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} ({{$faculdade_escolhida->modalidade}})</h5>
+                        <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} (@if({{$faculdade_escolhida->modalidade}} == 'Cotas') Cota @else Ampla @endif)</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}} *</h6> 
                         {{-- <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}}</h6> --}}
 
