@@ -36,13 +36,13 @@ class FaculdadesSeeder extends Seeder
                 "modalidade" => $value->TP_MODALIDADE
             ]);
 
-            sisu_atual::create([
+            sisu_atual::query()->updateOrCreate([
                 "faculdade_id" => $faculdade->id,
                 "curso" => 'medicina',
                 "nota" => 0
             ]);
 
-            sisu_anterior::create([
+            sisu_anterior::query()->updateOrCreate([
                 "faculdade_id" => $faculdade->id,
                 "curso" => 'medicina',
                 "nota" => 0
@@ -68,13 +68,13 @@ class FaculdadesSeeder extends Seeder
                 "modalidade" => $value->TP_MODALIDADE
             ]);
 
-            sisu_atual::create([
+            sisu_atual::query()->updateOrCreate([
                 "faculdade_id" => $faculdade->id,
                 "curso" => 'medicina',
                 "nota" => 0
             ]);
 
-            sisu_anterior::create([
+            sisu_anterior::query()->updateOrCreate([
                 "faculdade_id" => $faculdade->id,
                 "curso" => 'medicina',
                 "nota" => 0
