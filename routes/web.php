@@ -44,7 +44,7 @@ Route::get('/nova-senha-form/{id}',[EmailController::class, 'novaSenhaForm']);
 Route::post('/nova-senha/{id}',[EmailController::class, 'novaSenha']);
 
 //DASHBOARD DO USUÁRIO
-Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard');
+Route::get('/dashboard',[UserController::class,'dashboard'])->name('dashboard')->middleware('auth');
 
 //DASHBOARD DO ADMIN
 Route::get('/admin', [UserController::class, 'dashboardAdmin'])->name('admin');
@@ -62,20 +62,25 @@ Route::get('/baixar-leads', [AdminController::class, 'baixarLeads'])->name('baix
 Route::get('/baixar-lead/{id}', [AdminController::class, 'baixarLead'])->name('baixar-lead');
 
 //editar notas
-Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');
-Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name('salvar-notas');
+    Route::get('/editar-notas/{id?}', [NotasController::class, 'editarNotas'])->name('editar-notas');
+    Route::get('/salvar-notas/{id?}', [NotasController::class, 'salvarNotas'])->name('salvar-notas');
 
 //editar permissoes
-Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissao'])->name('editar-permissoes');
+Route::middleware('authenticated')->group(function() {
+    Route::get('/editar-permissoes/{id?}', [AdminController::class, 'editarPermissao'])->name('editar-permissoes');
+});
+
 
 //editar usuarios
+Route::middleware('admin')->group(function() {
+    Route::get('/users', [AdminController::class, 'users'])->name('users');
+    Route::get('/editar-usuario/{id?}', [AdminController::class, 'editarUsuario'])->name('editar-usuario');
+    Route::get('/editar-senha-usuario/{id?}', [AdminController::class, 'editarSenha'])->name('editar-senha-usuario');
+    Route::post('/deletar-usuario', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
+});
+
+//Usuario deletar ele mesmo
 Route::get('/delete-user/{id?}', [AdminController::class, 'deleteUser'])->name('delete-user');
-Route::get('/users', [AdminController::class, 'users'])->name('users');
-Route::post('/deletar-usuario', [AdminController::class, 'deletarUsuario'])->name('deletar-usuario');
-
-Route::get('/editar-usuario/{id?}', [AdminController::class, 'editarUsuario'])->name('editar-usuario');
-Route::get('/editar-senha-usuario/{id?}', [AdminController::class, 'editarSenha'])->name('editar-senha-usuario');
-
 
 //simulacao
 Route::get('/simulacao', [SimulacaoController::class, 'simulacaoFaculdades'])->name('simulacao');

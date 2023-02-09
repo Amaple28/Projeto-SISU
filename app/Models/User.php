@@ -57,6 +57,10 @@ class User extends Authenticatable
             $message->from('contato@simuladorsisumed.com','SIMULADOR SISU VEMMED');
         });
 
-        
+
+    }
+
+    public function isAdmin() {
+        return $this->tipo_user === 1;
     }
 }
