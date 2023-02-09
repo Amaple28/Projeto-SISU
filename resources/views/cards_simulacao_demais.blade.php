@@ -29,11 +29,11 @@
                             <p class="text-muted chances">
                                 @if(!$faculdade->getCalculoAnterior($user->id, $estado))
                                 <i class="fas fa-long-arrow-alt-down"></i>
-                                Nota final abaixo da nota de corte. Nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}
+                                Nota final abaixo da nota de corte. <b>Sua nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
                                 @else
                                 <i class="fas fa-long-arrow-alt-up"></i>
-                                Nota final acima da nota de corte. Nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}
+                                Nota final acima da nota de corte. <b>Sua nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-laugh-beam"></i>
                                 @endif
                             </p>
@@ -56,11 +56,11 @@
                             <p class="text-muted chances">
                                 @if(!$faculdade->getCalculoAtual($user->id, $estado))
                                 <i class="fas fa-long-arrow-alt-down"></i>
-                                Nota final abaixo da nota de corte. Nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}
+                                Nota final abaixo da nota de corte. <b>Sua nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
                                 @else
                                 <i class="fas fa-long-arrow-alt-up"></i>
-                                Nota final acima da nota de corte. Nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}
+                                Nota final acima da nota de corte. <b>Sua nota:{{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-laugh-beam"></i>
                                 @endif
                             </p>
