@@ -53,11 +53,11 @@
                                 <p class="text-muted chances">
                                     @if(!$faculdade_escolhida->getCalculoAtual($user->id, $estado))
                                     <i class="fas fa-long-arrow-alt-down"></i>
-                                    Nota final abaixo da nota de corte.
+                                    Nota final abaixo da nota de corte. Nota:{{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}
                                     <i class="fas fa-frown"></i>
                                     @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
-                                    Nota final acima da nota de corte.
+                                    Nota final acima da nota de corte.  Nota:{{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}
                                     <i class="fas fa-laugh-beam"></i>
                                     @endif
                                 </p>
