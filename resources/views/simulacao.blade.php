@@ -14,7 +14,7 @@
                 @include('form_simulacao')
 
                <div class="col-12 bg-warning mb-3 nota_corte">
-                    <h1>Sua Nota de Corte: {{$simulacao->nota_corte}}</h1>
+                    <h1>Sua Média Simples: {{$simulacao->nota_corte}}</h1>
                </div>
 
             </div>
