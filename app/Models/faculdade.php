@@ -107,11 +107,11 @@ class faculdade extends Model
         }
 
         if($nota>=$nota_corte->nota){
-            return true;
-        }else if($nota_corte->nota == 0){
+            return 1;
+        }else if($nota_corte->nota === 0){
             return 'zero';
         }else {
-            return false;
+            return 0;
         }
 
     }
@@ -133,11 +133,11 @@ class faculdade extends Model
         }
 
         if($nota>=$nota_corte->nota){
-            return true;
+            return 1;
         }else if($nota_corte->nota === 0){
             return 'zero';
         }else {
-            return false;
+            return 0;
         }
 
     }
