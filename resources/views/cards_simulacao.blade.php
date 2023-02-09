@@ -26,13 +26,13 @@
                                 <p class="text-muted chances">
                                     @if(!$faculdade_escolhida->getCalculoAnterior($user->id, $estado))
                                     <i class="fas fa-long-arrow-alt-down"></i>
-                                    <span>
-                                        Nota final abaixo da nota de corte. <b>Sua nota:    {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
-                                    </span>
+                                    Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade_escolhida->getCalculoAnterior($user->id,$estado)}}</b>
                                     <i class="fas fa-frown"></i>
+                                    @elseif ($faculdade_escolhida->getCalculoAnterior($user->id, $estado) === 'zero')
+                                    Nota de Corte Zerada
                                     @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
-                                    Nota final acima da nota de corte. <b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
+                                    Nota final acima da nota de corte.
                                     <i class="fas fa-laugh-beam"></i>
                                     @endif
                                 </p>
@@ -56,13 +56,11 @@
                                     Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade_escolhida->getCalculoAtual($user->id,$estado)}}</b>
                                     <i class="fas fa-frown"></i>
                                     @elseif ($faculdade_escolhida->getCalculoAtual($user->id, $estado) === 'zero')
+                                    Nota de Corte Zerada
+                                    @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
                                     Nota final acima da nota de corte.
                                     <i class="fas fa-laugh-beam"></i>
-                                    @else
-                                    <i class="fa-duotone fa-circle-xmark"></i>
-                                    Nota de Corte Zerada
-                                    <i class="fa-solid fa-face-grin-beam-sweat"></i>
                                     @endif
                                 </p>
                             </div>
