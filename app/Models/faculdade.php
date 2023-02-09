@@ -108,7 +108,9 @@ class faculdade extends Model
 
         if($nota>=$nota_corte->nota){
             return true;
-        }else{
+        }else if($nota_corte->nota === 0){
+            return 'zero';
+        }else {
             return false;
         }
 
