@@ -43,7 +43,7 @@
             </div>
 
             <div class="collapse" id="collapsecard2{{$faculdade_escolhida->id}}">
-                <div class="card @if($faculdade_escolhida->getsisu_atual() <=1) zerada @elseif(!$faculdade_escolhida->getCalculoAtual($user->id, $estado)) reprovado @elseif ($faculdade_escolhida->getCalculoAtual($user->id, $estado) == 'zero') zerada  @else aprovado @endif">
+                <div class="card @if($faculdade_escolhida->getsisu_atual() <=100) zerada @elseif(!$faculdade_escolhida->getCalculoAtual($user->id, $estado)) reprovado @elseif ($faculdade_escolhida->getCalculoAtual($user->id, $estado) == 'zero') zerada  @else aprovado @endif">
                     <div class="card-body">
                         <h5 class="card-title mb-3">{{$faculdade_escolhida->estado}} - {{$faculdade_escolhida->nome}} {{$faculdade_escolhida->endereco}} ({{$faculdade_escolhida->modalidade}})</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Nota de Corte 2023: {{$faculdade_escolhida->getsisu_atual()}} *</h6>
