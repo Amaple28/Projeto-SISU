@@ -39,7 +39,6 @@ class simulacao extends Model
         $denominator = $pesoMat + $pesoHum + $pesoRed + $pesoLin + $pesoNatu;
 
         $total = round($numerator/$denominator, 2);
-      // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
-      return $total;
+      return number_format((float) $total);
     }
 }
