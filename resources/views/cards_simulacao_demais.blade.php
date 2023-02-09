@@ -35,11 +35,12 @@
                                 Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
                                 @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === 'zero')
+                                Nota de Corte Zerada
+                                @else
+                                
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte.
                                 <i class="fas fa-laugh-beam"></i>
-                                @else
-                                Nota de Corte Zerada
                                 @endif
                             </p>
                         </div>
@@ -50,8 +51,8 @@
 
         <div class="collapse" id="collapsecard2{{$faculdade->id}}">
             <div class="card
-            @if($faculdade->getCalculoAnterior($user->id, $estado) === 'zero') zerada
-            @elseif (!$faculdade->getCalculoAnterior($user->id, $estado)) reprovado
+            @if($faculdade->getCalculoAtual($user->id, $estado) === 'zero') zerada
+            @elseif (!$faculdade->getCalculoAtual($user->id, $estado)) reprovado
             @else aprovado @endif
             ">
                 <div class="card-body">
@@ -67,12 +68,13 @@
                                 Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
                                 @elseif ($faculdade->getCalculoAtual($user->id, $estado) === 'zero')
+                                Nota de Corte Zerada
+                                @else
+                               
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
 
                                 <i class="fas fa-laugh-beam"></i>
-                                @else
-                                Nota de Corte Zerada
                                 @endif
                             </p>
                         </div>
