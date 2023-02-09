@@ -34,10 +34,10 @@ class SimulacaoController extends Controller
         $modalidade = $request->input('modalidade');
         $faculdades = $request->input('faculdades');
         $estado = $request->input('estado');
-        // dd(count($faculdades));
-        // if($request->input('modalidade') == null){
-        //     return redirect()->back()->with('error', 'Selecione uma modalidade');            
-        // }
+         
+         if($request->input('modalidade') == null){
+             return redirect()->back()->with('error', 'Selecione uma modalidade');            
+         }
 
         $faculdades_escolhidas = [];
 
