@@ -20,8 +20,7 @@
             <div class="card
             @if($faculdade->getCalculoAnterior($user->id, $estado) === 'zero') zerada
             @elseif (!$faculdade->getCalculoAnterior($user->id, $estado)) reprovado
-            @else aprovado
-            @endif
+            @else aprovado @endif
             ">
                 <div class="card-body">
                     <h5 class="card-title mb-3">{{$faculdade->estado}} - {{$faculdade->nome}} {{$faculdade->endereco}} ({{$faculdade->modalidade}})</h5>
