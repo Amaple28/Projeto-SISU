@@ -155,19 +155,19 @@ class faculdade extends Model
         public function getCalculaNotaUserFacul($id,$estado){
         $nusuario = simulacao::where('user_id', $id)->first();
         $notas_usuario = $nusuario->pesoNotas($this->id);
-        
+
 
         if ($estado == 'Alagoas' && $this->estado == 'AL') {
             $notas_usuario += $notas_usuario * .1;
          }
          if ($estado == 'Acre' && $this->estado == 'AC') {
-            $notas_usuario += $notas_usuario * .5;
+            $notas_usuario += $notas_usuario * .05;
          }
          if($estado =='Amazonas' && $this->estado == 'AM'){
              $notas_usuario += $notas_usuario *.2;
          }
 
-        
+
         return $notas_usuario;
     }
 }
