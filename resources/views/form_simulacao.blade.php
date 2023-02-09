@@ -34,7 +34,7 @@
                 <div class="container-fluid text-center">
                     <div class="row">
                         @foreach ($faculdades as $faculdade)
-                        <div class="col-12 {{$faculdade->modalidade}}">
+                        <div class="col-12 {{$faculdade->getModalidade()}}">
                             <div class="input-group mb-2">
                                 <div class="input-group-text">
                                     <input class="form-check-input mt-0" type="checkbox" name="faculdades[]"
@@ -61,7 +61,7 @@
 <script>
 const modalidadeElement = document.querySelector(".conc");
 const ampla = document.querySelectorAll(".AMPLA");
-const cota = document.querySelectorAll(".COTA");
+const cota = document.querySelectorAll(".COTAS");
 
 modalidadeElement.addEventListener('change', (event) => {
     console.log(modalidadeElement.value);

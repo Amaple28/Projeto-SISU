@@ -1,2 +1,4 @@
-*
+
 !.gitignore
+!json/*.json
+!public/storage/json/

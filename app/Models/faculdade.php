@@ -23,6 +23,9 @@ class faculdade extends Model
     public function getsisu_anterior()
     {
        $nota = sisu_anterior::where('faculdade_id', $this->id)->first();
+       if ($nota == null) {
+           return 0;
+       }
        $notas = $nota->nota;
 
         return $notas;
@@ -31,6 +34,9 @@ class faculdade extends Model
     public function getsisu_atual()
     {
          $nota = sisu_atual::where('faculdade_id', $this->id)->first();
+            if ($nota == null) {
+                return 0;
+            }
 
          $notas = $nota->nota;
 
@@ -136,5 +142,14 @@ class faculdade extends Model
     public function PesoNotas()
     {
         return $this->hasOne(PesoNotas::class);
+    }
+
+    public function getModalidade(){
+        if($this->modalidade == 'Ampla concorrência'){
+            return 'AMPLA';
+        }
+        else{
+            return 'COTAS';
+        }
     }
 }
