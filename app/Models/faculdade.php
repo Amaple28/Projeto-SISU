@@ -152,7 +152,7 @@ class faculdade extends Model
             return 'COTAS';
         }
     }
-        public function getCalculaNotaUserFaculdade2023($id,$estado){
+        public function getCalculaNotaUserFacul($id,$estado){
         $nusuario = simulacao::where('user_id', $id)->first();
         $notas_usuario = $nusuario->pesoNotas($this->id);
 
