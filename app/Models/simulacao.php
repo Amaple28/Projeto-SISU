@@ -50,7 +50,7 @@ class simulacao extends Model
       }
 
       // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
-      $total = $soma / 10;
+      $total = ($soma / 10)/5;
       return $total;
     }
 }
