@@ -53,7 +53,7 @@
                                 <p class="text-muted chances">
                                     @if(!$faculdade_escolhida->getCalculoAtual($user->id, $estado))
                                     <i class="fas fa-long-arrow-alt-down"></i>
-                                    Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade_escolhida->getCalculoAtual($user->id,$estado)}}</b>
+                                    Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                     <i class="fas fa-frown"></i>
                                     @elseif ($faculdade_escolhida->getCalculoAtual($user->id, $estado) === 'zero')
                                     <i class="fas fa-long-arrow-alt-up"></i>
