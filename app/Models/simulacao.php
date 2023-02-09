@@ -18,31 +18,31 @@ class simulacao extends Model
     public function pesoNotas($id){
       $pesonotas = PesoNotas::where('faculdade_id', $id)->first();
       $soma = 0;
-      if($pesonotas->matematica !=1){
+      if($pesonotas->matematica !=0){
         $soma += $this->matematica * $pesonotas->matematica;
       }
       else{
         $soma += $this->matematica;
       }
-      if($pesonotas->humanas !=1){
+      if($pesonotas->humanas !=0){
         $soma += $this->humanas * $pesonotas->humanas;
       }
       else{
         $soma += $this->humanas;
       }
-      if($pesonotas->redacao !=1){
+      if($pesonotas->redacao !=0){
         $soma += $this->redacao * $pesonotas->redacao;
       }
       else{
         $soma += $this->redacao;
       }
-      if($pesonotas->linguagens !=1){
+      if($pesonotas->linguagens !=0){
         $soma += $this->linguagens * $pesonotas->linguagens;
       }
       else{
         $soma += $this->linguagens;
       }
-      if($pesonotas->natureza !=1){
+      if($pesonotas->natureza !=0){
         $soma += $this->natureza * $pesonotas->natureza;
       }
       else{
