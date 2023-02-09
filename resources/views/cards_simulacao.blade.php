@@ -59,7 +59,7 @@
                                     Nota de Corte Zerada
                                     @else
                                     <i class="fas fa-long-arrow-alt-up"></i>
-                                    Nota final acima da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
+                                    Nota final acima da nota de corte.<b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
                                     <i class="fas fa-laugh-beam"></i>
                                     @endif
                                 </p>
