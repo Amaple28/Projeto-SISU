@@ -57,7 +57,8 @@
                                     <i class="fas fa-frown"></i>
                                     @elseif ($faculdade_escolhida->getCalculoAtual($user->id, $estado) === 'zero')
                                     <i class="fas fa-long-arrow-alt-up"></i>
-                                    Nota final acima da nota de corte.
+                                    Nota final acima da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
+
                                     <i class="fas fa-laugh-beam"></i>
                                     @else
                                     Nota de Corte Zerada
