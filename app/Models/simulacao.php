@@ -18,31 +18,31 @@ class simulacao extends Model
     public function pesoNotas($id){
       $pesonotas = PesoNotas::where('faculdade_id', $id)->first();
       $soma = 0;
-      if($pesonotas->matematica !=0){
+      if($pesonotas->matematica !=1){
         $soma += $this->matematica * $pesonotas->matematica;
       }
       else{
         $soma += $this->matematica;
       }
-      if($pesonotas->humanas !=0){
+      if($pesonotas->humanas !=1){
         $soma += $this->humanas * $pesonotas->humanas;
       }
       else{
         $soma += $this->humanas;
       }
-      if($pesonotas->redacao !=0){
+      if($pesonotas->redacao !=1){
         $soma += $this->redacao * $pesonotas->redacao;
       }
       else{
         $soma += $this->redacao;
       }
-      if($pesonotas->linguagens !=0){
+      if($pesonotas->linguagens !=1){
         $soma += $this->linguagens * $pesonotas->linguagens;
       }
       else{
         $soma += $this->linguagens;
       }
-      if($pesonotas->natureza !=0){
+      if($pesonotas->natureza !=1){
         $soma += $this->natureza * $pesonotas->natureza;
       }
       else{
@@ -50,7 +50,7 @@ class simulacao extends Model
       }
 
       // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
-      $total = $soma / 5;
+      $total = $soma / 10;
       return $total;
     }
 }
