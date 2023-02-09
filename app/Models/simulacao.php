@@ -19,20 +19,18 @@ class simulacao extends Model
       $pesonotas = PesoNotas::where('faculdade_id', $id)->first();
       $soma = 0;
       $dividendo=0;
- 
-        $soma += $this->matematica * $pesonotas->matematica;
 
-        $soma += $this->humanas * $pesonotas->humanas;
+        $matematica = $this->matematica * $pesonotas->matematica;
 
-        $soma += $this->redacao * $pesonotas->redacao;
-        
-      
-      
-        $soma += $this->linguagens * $pesonotas->linguagens;
-  
-        $soma += $this->natureza * $pesonotas->natureza;
-        
-      
+        $humanas = $this->humanas * $pesonotas->humanas;
+
+        $redacao = $this->redacao * $pesonotas->redacao;
+
+        $linguagens = $this->linguagens * $pesonotas->linguagens;
+
+        $natureza = $this->natureza * $pesonotas->natureza;
+
+        $soma = $matematica + $humanas + $redacao + $linguagens + $natureza;
 
       // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
       $total = $soma /10 ;
