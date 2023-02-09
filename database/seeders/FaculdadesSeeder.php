@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\faculdade;
 use App\Models\PesoNotas;
+use App\Models\sisu_anterior;
+use App\Models\sisu_atual;
+use App\Models\User;
 use App\Util;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -33,6 +36,18 @@ class FaculdadesSeeder extends Seeder
                 "modalidade" => $value->TP_MODALIDADE
             ]);
 
+            sisu_atual::create([
+                "faculdade_id" => $faculdade->id,
+                "curso" => 'medicina',
+                "nota" => 0
+            ]);
+
+            sisu_anterior::create([
+                "faculdade_id" => $faculdade->id,
+                "curso" => 'medicina',
+                "nota" => 0
+            ]);
+
             PesoNotas::query()->updateOrCreate([
                 "faculdade_id" => $faculdade->id,
                 "matematica" => Util::convertCommaStringToFloat($value->PESO_MATEMATICA),
@@ -51,6 +66,18 @@ class FaculdadesSeeder extends Seeder
                 "endereco" => $value->NO_MUNICIPIO_CAMPUS,
                 "estado" => $value->SG_UF_CAMPUS,
                 "modalidade" => $value->TP_MODALIDADE
+            ]);
+
+            sisu_atual::create([
+                "faculdade_id" => $faculdade->id,
+                "curso" => 'medicina',
+                "nota" => 0
+            ]);
+
+            sisu_anterior::create([
+                "faculdade_id" => $faculdade->id,
+                "curso" => 'medicina',
+                "nota" => 0
             ]);
 
             PesoNotas::query()->updateOrCreate([
