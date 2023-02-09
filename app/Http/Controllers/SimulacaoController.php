@@ -53,8 +53,16 @@ class SimulacaoController extends Controller
 
         $faculdades = faculdade::orderBy('id', 'desc')->get();
         
-        
-       $faculdades_demais = faculdade::orderBy('id', 'desc')->get();
+        if($modalidade =1){
+            $faculdades_demais= faculdade::orderBy('id', 'desc')->where('modalidade','Ampla concorrência')->get();
+        }
+        elseif($modalidade =2){
+            $faculdades_demais= faculdade::orderBy('id', 'desc')->where('modalidade','Cotas')->get();
+        }
+        elseif($modalidade =3){
+            $faculdades_demais = faculdade::orderBy('id', 'desc')->get();
+        }       
+       
 
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
@@ -63,7 +71,8 @@ class SimulacaoController extends Controller
             ->with('estado', $estado)
             ->with('faculdades',  $faculdades)
             ->with('faculdades_demais',  $faculdades_demais)
-            ->with('estados',  Util::estados());
+            ->with('estados',  Util::estados())
+            ->with('modalidade', $modalidade);
     }
 
 
