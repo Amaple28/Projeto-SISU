@@ -19,9 +19,9 @@
             <div class="col-md-6 mb-3">
                 <label for="estado">Modalidade</label>
                 <select class="form-select" name="modalidade">
-                    <option selected value="">Selecione...</option>
-                    <option value="1">Ampla Concorrência</option>
-                    <option value="2">Cota</option>
+                    <option selected value="{{$faculdade->modalidade}}">Selecione...</option>
+                    <option value="Ampla Concorrência">Ampla Concorrência</option>
+                    <option value="Cota">Cota</option>
                 </select>
             </div>
 

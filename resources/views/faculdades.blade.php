@@ -36,7 +36,7 @@
 
                         @foreach ($faculdades as $faculdade)
                         <tr>
-                            <td>{{ $faculdade->nome }} - {{ $faculdade->endereco }}</td>
+                            <td>{{ $faculdade->nome }} - {{ $faculdade->endereco }} - <h6>{{$faculdade->modalidade}}</h6></td>
                             <td>{{ $faculdade->estado }}</td>
                             <td>{{ $faculdade->getsisu_anterior() }}</td>
                             <td>{{ $faculdade->getsisu_atual() }}</td>
