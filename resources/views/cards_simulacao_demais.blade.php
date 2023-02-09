@@ -31,7 +31,7 @@
                                 <i class="fas fa-long-arrow-alt-down"></i>
                                 Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculoAnterior($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
-                                @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === true)
+                                @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === 'zero')
                                 <i class="fa-duotone fa-circle-xmark"></i>
                                 Nota de Corte Zerada
                                 <i class="fa-solid fa-face-grin-beam-sweat"></i>
@@ -58,11 +58,11 @@
                     <div class="quadro_resultado">
                         <div class="col-12">
                             <p class="text-muted chances">
-                                @if(!$faculdade->getCalculoAnterior($user->id, $estado))
+                                @if(!$faculdade->getCalculoAtual($user->id, $estado))
                                 <i class="fas fa-long-arrow-alt-down"></i>
-                                Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculoAnterior($user->id,$estado)}}</b>
+                                Nota final abaixo da nota de corte.<b>Sua nota: {{$faculdade->getCalculoAtual($user->id,$estado)}}</b>
                                 <i class="fas fa-frown"></i>
-                                @elseif ($faculdade->getCalculoAnterior($user->id, $estado) === true)
+                                @elseif ($faculdade->getCalculoAtual($user->id, $estado) === 'zero')
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte.
                                 <i class="fas fa-laugh-beam"></i>
