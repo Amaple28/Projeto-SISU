@@ -32,8 +32,11 @@ class simulacao extends Model
 
         $soma = $matematica + $humanas + $redacao + $linguagens + $natureza;
 
+        $numerator = $matematica + $humanas + $redacao + $linguagens + $natureza;
+        $denominator = $matematica + $humanas + $redacao + $linguagens + $natureza;
+
+        $total = round($numerator/$denominator, 2);
       // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
-      $total = $soma /10 ;
       return $total;
     }
 }
