@@ -152,4 +152,21 @@ class faculdade extends Model
             return 'COTAS';
         }
     }
+        public function getCalculaNotaUserFaculdade2023($id,$estado){
+        $nusuario = simulacao::where('user_id', $id)->first();
+        $notas_usuario = $nusuario->pesoNotas($this->id);
+
+        if ($estado == 'Alagoas' && $this->estado == 'AL') {
+            $notas_usuario += $$notas_usuario * 1.1;
+         }
+         if ($estado == 'Acre' && $this->estado == 'AC') {
+            $notas_usuario += $$notas_usuario * 1.5;
+         }
+         if($estado =='Amazonas' && $this->estado == 'AM'){
+             $notas_usuario += $$notas_usuario * 1.2;
+         }
+
+        
+        return $notas_usuario;
+    }
 }
