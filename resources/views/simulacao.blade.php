@@ -11,6 +11,33 @@
         <div class="container-fluid text-center">
             <div class="row">
 
+                {{-- video de apresentação do site responsivo (local)  --}}
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <video controls id="myVideo">
+                                <source src="{{asset('imagens/bem_vindo.mp4')}}" type="video/mp4">
+                            </video>
+                        </div>
+
+                        <div class="col-md-4 grupo">
+
+                            <h5 class="m-4">Clique para entrar no grupo e receber todas as informações sobre o sisu: </h5>
+                            
+
+                            <a type="button" class="btn btn-success mt-3 mb-2" href="https://sendflow.pro/i/medsisu-geral" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                                Entrar no grupo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 bg-warning mb-2 nota_corte">
+                    <h4>Preencha o formulário e faça a sua simulação</h4>
+                </div>
+
                 @include('form_simulacao')
 
                <div class="col-12 bg-warning mb-3 nota_corte">

@@ -60,3 +60,32 @@
 .active_filter i{
     color: #000 !important;
 }
+
+video{
+    max-width: 90% !important;
+    border-radius: 10px;
+
+}
+
+.div_video{
+    max-width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    padding: 10px;
+}
+
+.grupo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.grupo h5{
+    margin-top:0;
+}
