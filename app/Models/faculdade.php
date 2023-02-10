@@ -171,8 +171,9 @@ class faculdade extends Model
              $notas_usuario += $notas_usuario *.2;
          }
 
-        //  converter notas pra float
-        $notas_usuario = floatval($notas_usuario);
+        //  converter notas pra float sempre com duas casas decimais
+        $notas_usuario = number_format($notas_usuario, 2, '.', '');
+        // $notas_usuario = floatval($notas_usuario);
 
         return $notas_usuario;
     }
