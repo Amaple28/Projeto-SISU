@@ -17,7 +17,7 @@
         </div>
 
         <div class="collapse show" id="collapsecard{{$faculdade->id}}">
-            <div class="card
+            <div class="card d-show
             @if($faculdade->getsisu_anterior()<=100) zerada
             @elseif (!$faculdade->getCalculoAnterior($user->id, $estado)) reprovado
             @else aprovado @endif

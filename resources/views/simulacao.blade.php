@@ -36,12 +36,12 @@
                 <div class="col-12 mb-3">
                     <h3>Demais Faculdades</h3>
 
-                    @if($user->tipo_user == 1)
+
                         <div class="div_filtro">
-                            <p onclick="adicionarClasse('aprovado')" class="filtro"><i class="fas fa-laugh-squint" style="color:#00cc00;"></i> Aprovadas</p>
-                            <p onclick="adicionarClasse('reprovado')" class="filtro"><i class="fas fa-frown" style="color:#ff3300;"></i> Reprovadas</p>
+                            <p onclick="showAprovadas(this)" class="filtro"><i class="fas fa-laugh-squint" style="color:#00cc00;"></i> Aprovadas</p>
+                            <p onclick="showReprovadas(this)" class="filtro"><i class="fas fa-frown" style="color:#ff3300;"></i> Reprovadas</p>
                         </div>
-                    @endif
+
                 </div>
                 @include('cards_simulacao_demais')
             </div>
