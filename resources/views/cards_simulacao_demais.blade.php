@@ -3,7 +3,7 @@
 
 @if(isset($faculdades_demais))
 @foreach ($faculdades_demais as $faculdade)
-    <div class="col-10 mb-3">
+    <div class="full-card col-10 mb-3">
 
 
         <div class="pagination">

@@ -3,7 +3,7 @@
 
 @if(isset($faculdades_escolhidas))
     @foreach($faculdades_escolhidas as $faculdade_escolhida)
-        <div class="col-10 mb-3">
+        <div class=" col-10 mb-3">
 
             <div class="pagination">
                 <a data-bs-toggle="collapse" href="#collapsecard{{$faculdade_escolhida->id}}" role="button" aria-expanded="false" aria-controls="collapsecard{{$faculdade_escolhida->id}} collapsecard2{{$faculdade_escolhida->id}}">
@@ -27,16 +27,15 @@
                             <div class="col-12">
                                 <p class="text-muted chances">
                                 @if(!$faculdade_escolhida->getCalculoAnterior($user->id, $estado))
-                                <i class="fas fa-long-arrow-alt-down"></i>
-                                Nota final abaixo da nota de corte. <b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
-                                <i class="fas fa-frown"></i>
+                                    <i class="fas fa-long-arrow-alt-down"></i>
+                                    Nota final abaixo da nota de corte. <b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
+                                    <i class="fas fa-frown"></i>
                                 @elseif ($faculdade_escolhida->getsisu_anterior() <=100)
-                                Nota de Corte Zerada
+                                    Nota de Corte Zerada
                                 @else
-                                
-                                <i class="fas fa-long-arrow-alt-up"></i>
-                                Nota final acima da nota de corte. <b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
-                                <i class="fas fa-laugh-squint"></i>
+                                    <i class="fas fa-long-arrow-alt-up"></i>
+                                    Nota final acima da nota de corte. <b>Sua nota: {{$faculdade_escolhida->getCalculaNotaUserFacul($user->id,$estado)}}</b>
+                                    <i class="fas fa-laugh-squint"></i>
                                 @endif
                                 </p>
                             </div>
