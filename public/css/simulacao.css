@@ -43,4 +43,19 @@
 
 .filtro{
    cursor: pointer;
+   border: 1px solid #ced4da;
+   border-radius: 5px;
+   padding: 10px;
+}
+
+.active_filter{
+    background-color: #FFC107;
+    border: 1px solid #FFC107;
+    color: #000 !important;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.active_filter i{
+    color: #000 !important;
 }

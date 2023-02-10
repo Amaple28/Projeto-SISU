@@ -38,8 +38,8 @@
 
                     @if($user->tipo_user == 1)
                         <div class="div_filtro">
-                            <p onclick="adicionarClasse('aprovado')" class="filtro"><i class="fas fa-laugh-squint " style="color:#00cc00;"></i> Aprovadas</p>
-                            <p onclick="adicionarClasse('reprovado')" class="filtro"><i class="fas fa-frown filtro" style="color:#ff3300;"></i> Reprovadas</p>
+                            <p onclick="adicionarClasse('aprovado')" class="filtro"><i class="fas fa-laugh-squint" style="color:#00cc00;"></i> Aprovadas</p>
+                            <p onclick="adicionarClasse('reprovado')" class="filtro"><i class="fas fa-frown" style="color:#ff3300;"></i> Reprovadas</p>
                         </div>
                     @endif
                 </div>
