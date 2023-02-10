@@ -40,7 +40,7 @@
 
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte. <b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
-                                <i class="fas fa-laugh-beam"></i>
+                                <i class="fas fa-laugh-squint"></i>
                                 @endif
                             </p>
                         </div>
@@ -74,7 +74,7 @@
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte. <b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
 
-                                <i class="fas fa-laugh-beam"></i>
+                                <i class="fas fa-laugh-squint"></i>
                                 @endif
                             </p>
                         </div>

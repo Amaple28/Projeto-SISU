@@ -35,6 +35,14 @@
 
                 <div class="col-12 mb-3">
                     <h3>Demais Faculdades</h3>
+
+                    @if($user->tipo_user == 1)
+                        <div class="div_filtro">
+                            <p class="filtro"><i class="fas fa-laugh-squint " style="color:#00cc00;"></i> Aprovadas</p>
+                            <p class="filtro"><i class="fas fa-frown filtro" style="color:#ff3300;"></i> Reprovadas</p>
+                            <p class="filtro"><i class="fas fa-laugh filtro"></i> Todas</p>
+                        </div>
+                    @endif
                 </div>
 
                 @include('cards_simulacao_demais')
