@@ -27,16 +27,15 @@ class SimulacaoController extends Controller
 {
     public function simulacaoFaculdades(Request $request)
     {
-        // dd($request->input('faculdades'));
         $user = Auth::user();
         $user_simulacao = simulacao::where('user_id', $user->id)->first();
 
         $modalidade = $request->input('modalidade');
         $faculdades = $request->input('faculdades');
         $estado = $request->input('estado');
-         
-         if($request->input('modalidade') == null){
-             return redirect()->back()->with('error', 'Selecione uma modalidade');            
+
+         if($request->input('modalidade') === null){
+             return redirect()->back()->with('error', 'Selecione uma modalidade');
          }
 
         $faculdades_escolhidas = [];
@@ -52,17 +51,17 @@ class SimulacaoController extends Controller
         }
 
         $faculdades = faculdade::orderBy('id', 'desc')->get();
-        
+
         if($request->input('modalidade') == 1){
             $faculdades_demais= faculdade::where('modalidade','Ampla concorrência')->get();
         }
         elseif($request->input('modalidade') == 2){
             $faculdades_demais= faculdade::where('modalidade', 'Cotas')->get();
         }
-        elseif($request->input('modalidade') == 3){
+        else {
             $faculdades_demais = faculdade::orderBy('id', 'desc')->get();
-        }     
-       
+        }
+
 
         return view('simulacao')
             ->with('simulacao', $user_simulacao)
@@ -77,5 +76,5 @@ class SimulacaoController extends Controller
 
 
 
-    
+
 }
