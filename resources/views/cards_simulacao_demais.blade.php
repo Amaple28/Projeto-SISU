@@ -37,7 +37,7 @@
                                 @elseif ($faculdade->getsisu_anterior() <=100)
                                 Nota de Corte Zerada
                                 @else
-                                
+
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte.
                                 <i class="fas fa-laugh-beam"></i>
@@ -70,7 +70,7 @@
                                 @elseif ($faculdade->getsisu_atual() <=100)
                                 Nota de Corte Zerada
                                 @else
-                               
+
                                 <i class="fas fa-long-arrow-alt-up"></i>
                                 Nota final acima da nota de corte.<b>Sua nota: {{$faculdade->getCalculaNotaUserFacul($user->id,$estado)}}</b>
 
