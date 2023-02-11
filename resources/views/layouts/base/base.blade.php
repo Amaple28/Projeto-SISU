@@ -21,5 +21,22 @@ fbq('track', 'Lead');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=525431748084092&ev=Lead&noscript=1"
 /></noscript>
+
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-982867710"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-982867710');
+</script>
+
+<!-- Event snippet for [MEDSISU] - Cadastro Simulador conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-982867710/Z7IeCMvA2IsYEP691dQD'});
+</script>
 </head>
 
