@@ -15,7 +15,7 @@
                 {{-- <div class="container">
                     <div class="row"> --}}
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 div_video">
                             <video controls id="myVideo">
                                 <source src="{{asset('imagens/bem_vindo.mp4')}}" type="video/mp4">
                             </video>
