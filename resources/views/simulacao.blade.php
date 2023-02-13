@@ -12,14 +12,14 @@
             <div class="row">
 
                 {{-- video de apresentação do site responsivo (local)  --}}
-                <div class="container">
-                    <div class="row">
+                {{-- <div class="container">
+                    <div class="row"> --}}
 
-                        <!-- <div class="col-md-8">
+                        <div class="col-md-8">
                             <video controls id="myVideo">
                                 <source src="{{asset('imagens/bem_vindo.mp4')}}" type="video/mp4">
                             </video>
-                        </div> -->
+                        </div>
 
                         <div class="col-md-4 grupo">
 
@@ -31,8 +31,8 @@
                                 Entrar no grupo
                             </a>
                         </div>
-                    </div>
-                </div>
+                    {{-- </div>
+                </div> --}}
 
                 <div class="col-12 bg-warning mb-2 nota_corte">
                     <h4>Preencha o formulário e faça a sua simulação</h4>

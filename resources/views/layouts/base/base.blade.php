@@ -40,3 +40,10 @@ src="https://www.facebook.com/tr?id=525431748084092&ev=Lead&noscript=1"
 </script>
 </head>
 
+<style>
+  body{
+    min-height: 100vh !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+</style>
