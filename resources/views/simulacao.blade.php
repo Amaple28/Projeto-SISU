@@ -15,11 +15,11 @@
                 {{-- <div class="container">
                     <div class="row"> --}}
 
-                        <div class="col-md-8 div_video">
+                        {{-- <div class="col-md-8 div_video">
                             <video controls id="myVideo">
                                 <source src="{{asset('imagens/bem_vindo.mp4')}}" type="video/mp4">
                             </video>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-4 grupo">
 
