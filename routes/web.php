@@ -27,6 +27,8 @@ use App\Util;
 //PÁGINA INICIAL
 Route::get('/', [UserController::class, 'indexFront'])->name('index');
 
+Route::get('/colocacao', [AdminController::class, 'colocacao'])->name('colocacao');
+
 //CADASTRO DE USUÁRIO
 Route::post('/criar-usuario',[UserController::class, 'criarUsuario']);
 //LOGIN DE USUÁRIO

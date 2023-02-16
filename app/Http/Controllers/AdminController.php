@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\simulacao;
+use App\Models\faculdade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -38,11 +40,13 @@ class AdminController extends Controller
         $users = User::all();
 
         $file = fopen('leads.csv', 'w');
-        fputcsv($file, array('Nome', 'Email', 'Telefone'));
+        fputcsv($file, array('Nome', 'Email', 'Telefone', 'Notas'));
 
         foreach ($users as $user) {
             if($user->tipo_user != 1){
-                fputcsv($file, array($user->name, $user->email, $user->telefone));
+                $notas = simulacao::where('user_id', $user->id)->first();
+                // dd($notas->nota_corte);
+                fputcsv($file, array($user->name, $user->email, $user->telefone, $notas->nota_corte));
             }
         }
 
@@ -53,12 +57,14 @@ class AdminController extends Controller
 
     public function baixarLead(Request $request, $id){
         $user = User::find($id);
+        
 
         $file = fopen('lead.csv', 'w');
-        fputcsv($file, array('Nome', 'Email', 'Telefone'));
+        fputcsv($file, array('Nome', 'Email', 'Telefone', 'Notas'));
 
         if($user->tipo_user != 1){
-            fputcsv($file, array($user->name, $user->email, $user->telefone));
+            $notas = simulacao::where('user_id', $user->id)->first();
+            fputcsv($file, array($user->name, $user->email, $user->telefone, $notas->nota));
         }
 
         fclose($file);
@@ -142,6 +148,27 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Erro ao editar senha!');
         }
 
+    }
+
+
+    public function colocacao(Request $request){
+
+        // faculdades
+        // id = 64 (uftm - ampla)
+        // id = 91 (uftm - cota)
+        // id = 35 (ufmg - ampla)
+        // id = 129 (ufmg - cota)
+        // id = 27 (ufg - ampla)
+        // id = 169 (ufg - cota)
+        // id = 61 (ufscar - ampla)
+        // id = 154 (ufscar - cota)
+
+        $simulacoes = simulacao::where('faculdades_id', '35')->get();
+        dd($simulacoes);
+
+
+
+        return view('colocacao');
     }
 
 }
