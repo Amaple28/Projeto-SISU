@@ -1,3 +1,4 @@
+
 .faculdades{
     display: flex;
     height: 10rem;
@@ -11,11 +12,11 @@
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
-    background-clip: padding-box;    
+    background-clip: padding-box;
 }
 
 .lado_direito a{
-  margin-top: 5%;  
+  margin-top: 5%;
 }
 
 .row{
@@ -32,4 +33,60 @@
 .span{
     font-weight: bold;
     font-size: 15px !important;
+}
+
+.div_filtro{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.filtro{
+   cursor: pointer;
+   border: 1px solid #ced4da;
+   border-radius: 5px;
+   padding: 10px;
+}
+
+.active_filter{
+    transition: linear .3s;
+    background-color: #FFC107;
+    border: 1px solid #FFC107;
+    color: #000 !important;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.active_filter i{
+    color: #000 !important;
+}
+
+video{
+    max-width: 90% !important;
+    border-radius: 10px !important;
+
+}
+
+.div_video{
+    max-width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    padding: 10px;
+}
+
+.grupo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.grupo h5{
+    margin-top:0;
 }

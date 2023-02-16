@@ -14,9 +14,9 @@
     </div>
 
     <div class="form-floating  mb-3 senha">
-        <input required type="password" class="form-control" id="password" name='password' placeholder="Password">
+        <input required type="password" class="form-control" id="passwordCadastro" name='password' placeholder="Senha">
         <label for="password">Senha</label>
-        <i class="fas fa-eye" id="togglePassword"></i>
+        <i class="fas fa-eye" id="togglePasswordCadastro"></i>
     </div>
 
     <div class="form-floating  mb-3">
@@ -67,12 +67,12 @@
 
 
 <script>
-    const togglePassword = document.querySelector('#togglePassword');
-    const password = document.querySelector('#password');
+    const togglePasswordCadastro = document.querySelector('#togglePasswordCadastro');
+    const passwordCadastro = document.querySelector('#passwordCadastro');
 
-    togglePassword.addEventListener('click', function(e) {
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
+    togglePasswordCadastro.addEventListener('click', function(e) {
+        const typelogin = passwordCadastro.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordCadastro.setAttribute('type', typelogin);
 
         if (this.classList.contains('fa-eye')) {
             this.classList.remove('fa-eye');
@@ -82,6 +82,9 @@
             this.classList.add('fa-eye');
         }
     });
+</script>
+
+<script>
 
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')

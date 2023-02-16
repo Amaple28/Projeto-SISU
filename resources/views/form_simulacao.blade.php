@@ -1,6 +1,6 @@
-<div class="col-12 col-md-12 mb-3" id="simular">
+{{-- <div class="col-12 col-md-12 mb-3" id="simular">
     <h4>Preencha o formulário e faça a sua simulação</h4>
-</div>
+</div> --}}
 
 <form action="{{route('simulacao')}}" method="get">
     @csrf

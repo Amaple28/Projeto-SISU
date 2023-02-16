@@ -19,7 +19,7 @@
                 @foreach ($faculdades as $faculdade)
                     <div class="col-md-6 col-12">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}} -{{substr($faculdade->modalidade, 0, strlen($faculdade->modalidade) - 1)}}</span>
+                            <span class="input-group-text" id="basic-addon1">{{$faculdade->sigla}} - {{$faculdade->endereco}} - @if($faculdade->modalidade === 'Cotas') {{substr($faculdade->modalidade, 0, strlen($faculdade->modalidade) - 1)}} @else {{$faculdade->modalidade}} @endif</span>
                             <input type="number" class="form-control resultado" placeholder="000.0" aria-describedby="basic-addon1"
                             name="{{$faculdade->id}}"
                             @foreach ($notas_2023 as $nota)

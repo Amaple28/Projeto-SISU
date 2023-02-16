@@ -8,7 +8,7 @@
     </div>
 
     <div class="form-floating  mb-3 senha">
-        <input required type="password" class="form-control" id="passwordlogin" name="password" placeholder="Password">
+        <input required type="password" class="form-control" id="passwordlogin" name="password" placeholder="Senha">
         <label for="password">Senha</label>
         <i class="fas fa-eye" id="togglePasswordlogin"></i>
     </div>

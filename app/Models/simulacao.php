@@ -17,25 +17,28 @@ class simulacao extends Model
 
     public function pesoNotas($id){
       $pesonotas = PesoNotas::where('faculdade_id', $id)->first();
-      $soma = 0;
-      $dividendo=0;
- 
-        $soma += $this->matematica * $pesonotas->matematica;
 
-        $soma += $this->humanas * $pesonotas->humanas;
 
-        $soma += $this->redacao * $pesonotas->redacao;
-        
-      
-      
-        $soma += $this->linguagens * $pesonotas->linguagens;
-  
-        $soma += $this->natureza * $pesonotas->natureza;
-        
-      
+        $pesoMat = $pesonotas->matematica;
+        $pesoHum = $pesonotas->humanas;
+        $pesoRed = $pesonotas->redacao;
+        $pesoLin = $pesonotas->linguagens;
+        $pesoNatu = $pesonotas->natureza;
 
-      // $soma= ($this->matematica * $pesonotas->matematica) + ($this->humanas * $pesonotas->humanas) + ($this->redacao * $pesonotas->redacao) + ($this->linguagens * $pesonotas->linguagens) + ($this->natureza * $pesonotas->natureza);
-      $total = $soma /10 ;
-      return $total;
+        $matematica = $this->matematica * $pesonotas->matematica;
+
+        $humanas = $this->humanas * $pesonotas->humanas;
+
+        $redacao = $this->redacao * $pesonotas->redacao;
+
+        $linguagens = $this->linguagens * $pesonotas->linguagens;
+
+        $natureza = $this->natureza * $pesonotas->natureza;
+
+        $numerator = $matematica + $humanas + $redacao + $linguagens + $natureza;
+        $denominator = $pesoMat + $pesoHum + $pesoRed + $pesoLin + $pesoNatu;
+
+        $total = round($numerator/$denominator, 2);
+      return number_format((float) $total);
     }
 }
