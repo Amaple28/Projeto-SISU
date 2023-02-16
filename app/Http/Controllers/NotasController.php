@@ -206,4 +206,10 @@ class NotasController extends Controller
         return redirect()->back()->with('success', 'Faculdade deletada com sucesso!');
     }
 
+    public function baixarNotas()
+    {
+        $usuarios = User::all();
+        dd($usuarios);
+    }
+
 }
