@@ -102,7 +102,7 @@ class UserController extends Controller
             $simulacao->user_id = $novoUsuario->id;
             $simulacao->save();   
 
-            $novoUsuario->sendEmailCadastro($novoUsuario->id);
+            // $novoUsuario->sendEmailCadastro($novoUsuario->id);
                     
         } catch (\Throwable $th) {
             $novoUsuario->delete();

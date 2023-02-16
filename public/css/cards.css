@@ -12,6 +12,10 @@
     color: #d63e17;
 }
 
+.zerada{
+    border-left: 10px solid rgb(83, 78, 78) !important;
+}
+
 .aprovado{
     border-left: 10px solid #00cc00;
 }
