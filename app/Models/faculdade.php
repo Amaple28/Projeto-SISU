@@ -107,9 +107,11 @@ class faculdade extends Model
         }
 
         if($nota>=$nota_corte->nota){
-            return true;
-        }else{
-            return false;
+            return 1;
+        }else if($nota_corte->nota === 0){
+            return 'zero';
+        }else {
+            return 0;
         }
 
     }
@@ -131,9 +133,11 @@ class faculdade extends Model
         }
 
         if($nota>=$nota_corte->nota){
-            return true;
-        }else{
-            return false;
+            return 1;
+        }else if($nota_corte->nota === 0){
+            return 'zero';
+        }else {
+            return 0;
         }
 
     }
@@ -155,19 +159,22 @@ class faculdade extends Model
         public function getCalculaNotaUserFacul($id,$estado){
         $nusuario = simulacao::where('user_id', $id)->first();
         $notas_usuario = $nusuario->pesoNotas($this->id);
-        
+
 
         if ($estado == 'Alagoas' && $this->estado == 'AL') {
             $notas_usuario += $notas_usuario * .1;
          }
          if ($estado == 'Acre' && $this->estado == 'AC') {
-            $notas_usuario += $notas_usuario * .5;
+            $notas_usuario += $notas_usuario * .05;
          }
          if($estado =='Amazonas' && $this->estado == 'AM'){
              $notas_usuario += $notas_usuario *.2;
          }
 
-        
+        //  converter notas pra float sempre com duas casas decimais
+        $notas_usuario = number_format($notas_usuario, 2, '.', '');
+        // $notas_usuario = floatval($notas_usuario);
+
         return $notas_usuario;
     }
 }

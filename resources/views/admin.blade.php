@@ -6,6 +6,9 @@
 <body class="dashboard_admin_corpo">
     @include('layouts.base.nav')
     @include('layouts.base.flash-message')
+
+
+
     <div class="header">
         <h2>Olá, {{$user->name}}</h2>
     </div>
