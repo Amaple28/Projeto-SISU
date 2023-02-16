@@ -109,3 +109,10 @@ Route::middleware('admin')->group(function() {
 
     Route::get('/adicionar-faculdade', [NotasController::class, 'adicionarFaculdade'])->name('adicionar-faculdade');
 });
+
+
+//download notas usuarios
+Route::middleware('admin')->group(function() {
+    Route::get('/baixar-notas', [NotasController::class, 'baixarNotasForm'])->name('baixar-notas');
+    Route::get('/baixar-nota/{id}', [NotasController::class, 'baixarNota'])->name('baixar-nota');
+});
