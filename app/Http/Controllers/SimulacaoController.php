@@ -50,7 +50,11 @@ class SimulacaoController extends Controller
         else if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
            return redirect()->back()->with('error', 'Selecione 3 faculdades!');
         }
-
+        $user_simulacao->faculdades_id = json_encode($faculdades_escolhidas);
+        $user_simulacao->modalidade = $modalidade;
+        $user_simulacao->estado = $estado;
+        $user_simulacao->save();
+        
         $faculdades = faculdade::orderBy('id', 'desc')->get();
         
         
