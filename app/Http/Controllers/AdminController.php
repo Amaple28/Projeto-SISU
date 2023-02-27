@@ -40,13 +40,13 @@ class AdminController extends Controller
         $users = User::all();
 
         $file = fopen('leads.csv', 'w');
-        fputcsv($file, array('Nome', 'Email', 'Telefone', 'Notas'));
+        fputcsv($file, array('Nome', 'Email', 'Telefone', 'Matemática', 'Humanas', 'Natureza', 'Linguagens', 'Redação', 'Nota de Corte'));
 
         foreach ($users as $user) {
             if($user->tipo_user != 1){
                 $notas = simulacao::where('user_id', $user->id)->first();
                 // dd($notas->nota_corte);
-                fputcsv($file, array($user->name, $user->email, $user->telefone, $notas->nota_corte));
+                fputcsv($file, array($user->name, $user->email, $user->telefone, $notas->matematica, $notas->humanas, $notas->natureza, $notas->linguagens, $notas->redacao, $notas->nota_corte));
             }
         }
 
