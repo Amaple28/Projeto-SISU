@@ -1,5 +1,7 @@
+{{-- style --}}
 <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
+{{-- footer --}}
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         
@@ -15,6 +17,7 @@
             </span>
         </div>
 
+        {{-- redes sociais --}}
         <div class="icones">
             <a href="https://www.facebook.com/sabrinaoliveirabh" target="_blank">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="facebook" width="30" height="30" class="d-inline-block align-text-top">
@@ -33,12 +36,11 @@
             </a>
         </div>
 
+        {{-- copy que aparece somente quando o tamanho da tela diminui e o de cima some --}}
         <div class="col-12 copy">
             <span>
                 Copyright © 2023 - Todos os direitos reservados
             </span>
         </div>
-
-      
     </div>
   </nav>

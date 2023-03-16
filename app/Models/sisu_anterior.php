@@ -12,6 +12,7 @@ class sisu_anterior extends Model
    
     protected $table = 'sisu_anterior';
 
+    // pegar nota da faculdade no sisu atual
     public function getsisu_atual(){
         $sisu_atual = sisu_atual::where('faculdade_id', $this->faculdade_id)->first();
         return $sisu_atual->nota;

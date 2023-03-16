@@ -1,3 +1,4 @@
+{{-- style --}}
 <style>
     .alert {
         position: fixed;
@@ -12,9 +13,9 @@
         padding-right: 2.5rem !important;
     }
 </style>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
+{{-- mensagem de sucesso --}}
 @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert" id="myAlert">
         <i class="fas fa-grin"></i>
@@ -23,7 +24,7 @@
     </div>
 @endif
 
-
+{{-- mensagem de erro --}}
 @if ($message = Session::get('error'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert" id="myAlert">
         <i class="fas fa-frown"></i>
@@ -32,6 +33,7 @@
     </div>
 @endif
 
+{{-- mensagem de alerta --}}
 @if ($message = Session::get('warning'))
     <div class="alert alert-warning alert-dismissible fade show" role="alert" id="myAlert">
         <i class="fas fa-meh"></i>
@@ -40,6 +42,7 @@
     </div>
 @endif
 
+{{-- mensagem de informação --}}
 @if ($message = Session::get('info'))
     <div class="alert alert-info alert-dismissible fade show" role="alert" id="myAlert">
         <i class="fas fa-info-circle"></i>
@@ -48,6 +51,7 @@
     </div>
 @endif
 
+{{-- mensagem de erro de validação --}}
 @if ($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert" id="myAlert">
         <i class="fas fa-question-circle"></i>
@@ -56,6 +60,7 @@
     </div>
 @endif
 
+{{-- script --}}
 <script>
     window.setTimeout(function() {
         var alerta = document.getElementById('myAlert');

@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
-// use App\Mail\SendGridMail;
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 
 class EmailController extends Controller
 {
+    //envia email para o user assim que ele fizer o cadastro
+    //############# foi desativado pois nos primeiros dias de uso do site, 
+    //o servidor de email atingiu o limite de envio de emails por dia #############
     // public function sendEmailCadastro(Request $request, $id)
     // {
     //     $user = Auth::find($id);
@@ -28,65 +30,66 @@ class EmailController extends Controller
     //     // return back()->with('success', 'E-mail enviado com sucesso!');
     // }
 
-    public function recuperarSenha(Request $request){
-        return view('recuperarSenha');
+    //view esqueceu sua senha
+    public function recuperarSenha(Request $request)
+    {
+        return view('user.recuperarSenha');
     }
 
-    public function recuperacaoSenhaEmail(Request $request){
+    //envia email do user cadastrado que esqueceu a senha
+    public function recuperacaoSenhaEmail(Request $request)
+    {
 
         $request->validate([
             'email' => 'required'
         ]);
 
-        $token = rand(100000,999999);
-        
+        //verifica se o email existe no banco de dados e gera um token
+        $token = rand(100000, 999999);
         $email = $request->email;
         $user = User::where('email', $email)->first();
-
-        if(!$user){
+        if (!$user) {
             return back()->with('error', 'E-mail não encontrado!');
         }
-
         $user->remember_token = $token;
         $user->save();
         $name = $user->name;
 
-
-        $data = array('name'=>$name, "body" => "Recuperar Senha", "token" => $token);
-        Mail::send('layouts.emails.recuperarSenha', $data, function($message) use ($email, $name) {
+        //componentes do email
+        $data = array('name' => $name, "body" => "Recuperar Senha", "token" => $token);
+        Mail::send('layouts.emails.recuperarSenha', $data, function ($message) use ($email, $name) {
             $message->to($email, $name)
-                    ->subject('Recuperar Senha'); //assunto
-            $message->from('contato@simuladorsisumed.com','SIMULADOR SISU VEMMED');
+                ->subject('Recuperar Senha'); //assunto
+            $message->from('contato@simuladorsisumed.com', 'SIMULADOR SISU VEMMED');
         });
-        return redirect('/nova-senha-form/'.$user->id)->with('success', 'E-mail enviado com sucesso!');
-
+        return redirect('/nova-senha-form/' . $user->id)->with('success', 'E-mail enviado com sucesso!');
     }
 
-    public function novaSenhaForm(Request $request, $id){
+    //view para o user digitar a nova senha
+    public function novaSenhaForm(Request $request, $id)
+    {
         $user = User::find($id);
 
-        return view('novaSenha')
-        ->with('user', $user);
+        return view('user.novaSenha')
+            ->with('user', $user);
     }
 
-    public function novaSenha(Request $request, $id){
-
+    //altera a senha do user
+    public function novaSenha(Request $request, $id)
+    {
         $request->validate([
             'cod' => 'required'
         ]);
 
         $user = User::find($id);
-        
-        if($user->remember_token != $request->cod){
+
+        if ($user->remember_token != $request->cod) {
             return back()->with('error', 'Código inválido!');
-        } else{
+        } else {
             $user->password = Hash::make($request->senha);
             $user->save();
         }
 
-        
         return redirect('/')->with('success', 'Senha alterada com sucesso!');
     }
-
-
 }

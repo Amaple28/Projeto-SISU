@@ -1,21 +1,21 @@
-.navbar-brand{
-    display: flex;
-  }
-  
-.navbar-brand h5{
-padding-left: 15px;
+.navbar-brand {
+  display: flex;
 }
 
-.body-nav ul li .nav-link{
-color: #fff !important;
+.navbar-brand h5 {
+  padding-left: 15px;
 }
 
-.atento a{
-    color: darkgoldenrod !important;
-    text-decoration: underline !important;
+.body-nav ul li .nav-link {
+  color: #fff !important;
 }
 
-.atento a:hover{
+.atento a {
+  color: darkgoldenrod !important;
+  text-decoration: underline !important;
+}
+
+.atento a:hover {
   color: #000 !important;
 }
 
@@ -30,4 +30,3 @@ color: #fff !important;
   transform: translateY(-50%);
   cursor: pointer;
 }
-  

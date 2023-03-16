@@ -10,16 +10,16 @@
     cursor: pointer;
 }
 
-.modal-body{
+.modal-body {
     text-align: justify;
 }
 
-.modal-body a{
-    text-decoration: underline  !important;
+.modal-body a {
+    text-decoration: underline !important;
     color: darkgoldenrod;
 }
 
-.privacidade a{
-    text-decoration: underline  !important;
+.privacidade a {
+    text-decoration: underline !important;
     color: darkgoldenrod;
 }

@@ -1,3 +1,4 @@
+{{-- form para add nova faculdade --}}
 <div class="container">
     <div class="row">
 
@@ -38,7 +39,8 @@
 
         <div class="form-group col-md-6 mb-3">
             <label for="nota_corte2022">Nota de Corte 2022:</label>
-            <input type="number" class="form-control resultado " id="nota_corte2022" value="" name="nota_corte2022">
+            <input type="number" class="form-control resultado " id="nota_corte2022" value=""
+                name="nota_corte2022">
         </div>
 
         <div class="form-group col-md-6 mb-3">
@@ -56,38 +58,39 @@
 
         <div class="form-group col-md-4 mb-3">
             <label for="humanas">Humanas</label>
-            <input type="number" class="form-control resultado" id="humanas"  value="0" name="humanas">
+            <input type="number" class="form-control resultado" id="humanas" value="0" name="humanas">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="linguagens">Linguagens</label>
-            <input type="number" class="form-control resultado" id="linguagens" value="0"
-                name="linguagens">
+            <input type="number" class="form-control resultado" id="linguagens" value="0" name="linguagens">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="natureza">Natureza</label>
-            <input type="number" class="form-control resultado" id="natureza" value="0"  name="natureza">
+            <input type="number" class="form-control resultado" id="natureza" value="0" name="natureza">
         </div>
 
         <div class="form-group col-md-4 mb-3">
             <label for="redacao">Redação</label>
             <input type="number" class="form-control resultado" id="redacao" value="0" name="redacao">
         </div>
+
+        {{-- scripts --}}
         <script>
-        const notas = document.querySelectorAll(".resultado");
-        console.log(notas);
+            // nao permite que o usuario digite um valor maior que 1000
+            const notas = document.querySelectorAll(".resultado");
+            console.log(notas);
 
-        notas.forEach(notas => {
-          notas.addEventListener('change', (event) => {
+            notas.forEach(notas => {
+                notas.addEventListener('change', (event) => {
 
-            if(event.target.value > 1000)
-            {
-              event.target.value = 1000;
-            }
-            event.target.value= parseFloat(event.target.value).toFixed(1);
+                    if (event.target.value > 1000) {
+                        event.target.value = 1000;
+                    }
+                    event.target.value = parseFloat(event.target.value).toFixed(1);
+                });
             });
-        });
         </script>
     </div>
 </div>

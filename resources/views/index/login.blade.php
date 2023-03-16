@@ -1,5 +1,7 @@
+{{-- style --}}
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
+{{-- form para realizar login --}}
 <form method="post" action="/login">
     @csrf
     <div class="form-floating mb-3">
@@ -13,20 +15,21 @@
         <i class="fas fa-eye" id="togglePasswordlogin"></i>
     </div>
 
+    {{-- check box para permanecer conectado --}}
     <div class="mb-3 form-check conectado">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">  Permanecer conectado</label>
+        <label class="form-check-label" for="exampleCheck1"> Permanecer conectado</label>
     </div>
 
     <button type="submit" class="btn btn-warning col-12 mb-3">Entrar</button>
 
     <div class="mb-3">
-        <a href="{{url ('/recuperar-senha')}}" class="btn btn-light col-12 esq_senha">Esqueci minha senha</a>
+        <a href="{{ url('/recuperar-senha') }}" class="btn btn-light col-12 esq_senha">Esqueci minha senha</a>
     </div>
 </form>
 
 
-
+{{-- script para mostrar e esconder a senha --}}
 <script>
     const togglePasswordlogin = document.querySelector('#togglePasswordlogin');
     const passwordlogin = document.querySelector('#passwordlogin');

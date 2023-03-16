@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\DB;
 
 class SimulacaoController extends Controller
 {
+    //realiza simulacao de aprovação de acordo com os dados informados pelo usuario
     public function simulacaoFaculdades(Request $request)
     {
         $user = Auth::user();
@@ -34,10 +35,11 @@ class SimulacaoController extends Controller
         $faculdades = $request->input('faculdades');
         $estado = $request->input('estado');
 
-         if($request->input('modalidade') === null){
-             return redirect()->back()->with('error', 'Selecione uma modalidade');
-         }
+        if ($request->input('modalidade') === null) {
+            return redirect()->back()->with('error', 'Selecione uma modalidade');
+        }
 
+        //filtra as faculdades escolhidas pelo user
         $faculdades_escolhidas = [];
 
         if ($faculdades != null && count($faculdades) <= 3 && count($faculdades) >= 1) {
@@ -45,26 +47,22 @@ class SimulacaoController extends Controller
                 $faculdade = faculdade::where('id', $faculdade)->first();
                 array_push($faculdades_escolhidas, $faculdade);
             }
+        } else if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
+            return redirect()->back()->with('error', 'Selecione 3 faculdades!');
         }
-        else if ($request->input('faculdades') == null || count($faculdades) > 3 || count($faculdades) < 1) {
-           return redirect()->back()->with('error', 'Selecione 3 faculdades!');
-        }
-        
-        
+
+        //separa o restante das faculdades de acordo com modalidade selecionada
         $faculdades = faculdade::orderBy('id', 'desc')->get();
 
-        if($request->input('modalidade') == 1){
-            $faculdades_demais= faculdade::where('modalidade','Ampla concorrência')->get();
-        }
-        elseif($request->input('modalidade') == 2){
-            $faculdades_demais= faculdade::where('modalidade', 'Cotas')->get();
-        }
-        else {
+        if ($request->input('modalidade') == 1) {
+            $faculdades_demais = faculdade::where('modalidade', 'Ampla concorrência')->get();
+        } elseif ($request->input('modalidade') == 2) {
+            $faculdades_demais = faculdade::where('modalidade', 'Cotas')->get();
+        } else {
             $faculdades_demais = faculdade::orderBy('id', 'desc')->get();
         }
 
-
-        return view('simulacao')
+        return view('user.simulacao')
             ->with('simulacao', $user_simulacao)
             ->with('faculdades_escolhidas', $faculdades_escolhidas)
             ->with('user', $user)
@@ -74,8 +72,4 @@ class SimulacaoController extends Controller
             ->with('estados',  Util::estados())
             ->with('modalidade', $modalidade);
     }
-
-
-
-
 }

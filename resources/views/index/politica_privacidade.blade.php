@@ -1,3 +1,6 @@
+{{-- html com texto da politica de privacidade --}}
+
+{{-- ######################################### --}}
 <p>O Simulador Sisumed respeita o direito à privacidade e zela pela segurança dos dados pessoais de seus usuários e, por isso, apresentamos nossa Política de Privacidade, aplicável ao website da plataforma.</p>
 <p>Ao acessar, usar ou navegar por nossa Plataforma, você está sujeito ao tratamento de dados pessoais nos termos apresentados nesta Política de Privacidade. Se você não concordar com a Política de Privacidade, não utilize os serviços do Simulador Sisumed.</p>
 <p>A Política de Privacidade é válida para todos os usuários do Simulador Sisumed.</p>
